@@ -117,12 +117,8 @@ function ProgressRing({ progress }: { progress: number }) {
 /* ------------------------------- Phase views ------------------------------ */
 
 function BreathePhase({ reduced, onDone }: { reduced: boolean; onDone: () => void }) {
-  const elapsed = useElapsed(true, "breathe");
+  const elapsed = useElapsed(true, "breathe", BREATHE_MS, onDone);
 
-  useEffect(() => {
-    const t = setTimeout(onDone, BREATHE_MS);
-    return () => clearTimeout(t);
-  }, [onDone]);
 
   const inCycle = elapsed % CYCLE;
   const cycleIndex = Math.min(CYCLES - 1, Math.floor(elapsed / CYCLE));
