@@ -79,7 +79,9 @@ export function Problems() {
                 <span className="relative">
                   <MethodGlyph variant={i} />
                 </span>
-                <span className="relative mt-6 text-xl font-bold text-ink">{problem.title}</span>
+                <span className="relative mt-6 font-display text-xl font-bold leading-snug tracking-[-0.015em] text-ink">
+                  {problem.title}
+                </span>
                 <span className="relative mt-2 text-sm leading-relaxed text-muted-foreground">
                   {problem.hint}
                 </span>
