@@ -106,7 +106,11 @@ function BodyScanPhase({ reduced, onDone }: { reduced: boolean; onDone: () => vo
   const progress = Math.min(1, elapsed / total);
 
   return (
-    <div className="flex flex-col items-center gap-12 text-center">
+    <div className="flex flex-col items-center gap-10 text-center">
+      <Instruction>
+        Move through your body one part at a time. Let each one go as you reach it.
+      </Instruction>
+
       <div className="relative size-56 md:size-64">
         <ProgressRing progress={progress} />
         <div
