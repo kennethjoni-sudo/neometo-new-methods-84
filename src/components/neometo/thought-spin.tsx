@@ -25,27 +25,66 @@ function usePrefersReducedMotion() {
   return reduced;
 }
 
-/** Elapsed ms in the current phase, driven by rAF. */
-function useElapsed(active: boolean, key: string) {
+/**
+ * Elapsed ms in the current phase, measured from a wall-clock start time so it
+ * stays accurate when the tab is backgrounded or rAF/timers are throttled.
+ * Calls `onDone` as soon as `duration` has truly elapsed — checked in the rAF
+ * loop, on a low-frequency interval (survives rAF suspension), and on
+ * visibility/focus changes (immediate catch-up when the tab returns).
+ */
+function useElapsed(active: boolean, key: string, duration?: number, onDone?: () => void) {
   const [elapsed, setElapsed] = useState(0);
   const frame = useRef<number | null>(null);
+  const doneRef = useRef(false);
+  const onDoneRef = useRef(onDone);
+  onDoneRef.current = onDone;
+
   useEffect(() => {
-    if (!active) {
-      setElapsed(0);
-      return;
-    }
-    const start = performance.now();
-    const tick = (now: number) => {
-      setElapsed(now - start);
-      frame.current = requestAnimationFrame(tick);
+    doneRef.current = false;
+    const start = Date.now();
+
+    const sync = () => {
+      const e = Date.now() - start;
+      if (duration != null && e >= duration) {
+        setElapsed(duration);
+        if (!doneRef.current) {
+          doneRef.current = true;
+          onDoneRef.current?.();
+        }
+        return true;
+      }
+      setElapsed(e);
+      return false;
     };
-    frame.current = requestAnimationFrame(tick);
+
+    sync();
+
+    if (active) {
+      const tick = () => {
+        if (sync()) return;
+        frame.current = requestAnimationFrame(tick);
+      };
+      frame.current = requestAnimationFrame(tick);
+    }
+
+    // Backstop: intervals keep firing (throttled to ~1s) while backgrounded.
+    const interval = setInterval(sync, 500);
+    const onVisible = () => sync();
+    document.addEventListener("visibilitychange", onVisible);
+    window.addEventListener("focus", onVisible);
+
     return () => {
       if (frame.current) cancelAnimationFrame(frame.current);
+      clearInterval(interval);
+      document.removeEventListener("visibilitychange", onVisible);
+      window.removeEventListener("focus", onVisible);
+      setElapsed(0);
     };
-  }, [active, key]);
+  }, [active, key, duration]);
+
   return elapsed;
 }
+
 
 const PARTICLES = 14;
 
