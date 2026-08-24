@@ -26,11 +26,6 @@ export function SiteFooter() {
           ))}
         </nav>
       </div>
-      <div className="section-shell mt-10 border-t border-border/70 pt-6">
-        <p className="text-xs text-muted-foreground">
-          NEOMETO provides self-help and educational tools, not medical diagnosis.
-        </p>
-      </div>
     </footer>
   );
 }
