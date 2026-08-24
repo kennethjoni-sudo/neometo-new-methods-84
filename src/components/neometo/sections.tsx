@@ -64,7 +64,7 @@ export function Problems() {
     <section id="methods" className="scroll-mt-24 py-20 md:py-28">
       <div className="section-shell">
         <Reveal>
-          <h2 className="max-w-2xl text-[1.75rem] font-extrabold leading-tight text-ink md:text-[2.5rem]">
+          <h2 className="max-w-2xl text-[1.75rem] font-bold leading-tight text-ink md:text-[2.5rem]">
             What do you want to handle better?
           </h2>
         </Reveal>
@@ -112,7 +112,7 @@ export function Manifesto() {
   return (
     <section className="py-20 md:py-28">
       <Reveal className="section-shell grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:items-center">
-        <h2 className="text-[1.75rem] font-extrabold leading-tight text-ink md:text-[2.5rem]">
+        <h2 className="text-[1.75rem] font-bold leading-tight text-ink md:text-[2.5rem]">
           You don&apos;t always need another explanation. Sometimes you need a method.
         </h2>
         <div className="space-y-5 text-base leading-relaxed text-muted-foreground md:text-lg">
@@ -149,7 +149,7 @@ export function HowItWorks() {
           {steps.map((step, i) => (
             <Reveal as="li" key={step.number} delay={i * 120}>
               <div className="h-full rounded-3xl border border-border bg-surface p-8 shadow-soft transition-transform duration-500 hover:-translate-y-1">
-                <span className="block text-5xl font-extrabold tracking-tight text-brand-soft">
+                <span className="block text-5xl font-bold tracking-tight text-brand-soft">
                   {step.number}
                 </span>
                 <h3 className="mt-6 text-xl font-bold text-ink md:text-[1.75rem]">{step.title}</h3>
@@ -174,7 +174,7 @@ export function FeaturedMethod() {
         <article className="grid gap-10 overflow-hidden rounded-4xl border border-border bg-surface p-8 shadow-soft transition-shadow duration-700 hover:shadow-lift md:grid-cols-[1fr_0.8fr] md:items-center md:p-14">
           <div>
             <p className="eyebrow">Featured method</p>
-            <h2 className="mt-5 text-[1.75rem] font-extrabold text-ink md:text-[2.5rem]">
+            <h2 className="mt-5 text-[1.75rem] font-bold text-ink md:text-[2.5rem]">
               Thought Spin
             </h2>
             <p className="mt-3 text-sm font-semibold text-brand">2–3 minutes</p>
@@ -212,7 +212,7 @@ export function Advisor() {
     <section id="advisor" className="scroll-mt-24 py-20 md:py-28">
       <Reveal className="section-shell grid gap-12 lg:grid-cols-2 lg:items-center">
         <div>
-          <h2 className="text-[1.75rem] font-extrabold leading-tight text-ink md:text-[2.5rem]">
+          <h2 className="text-[1.75rem] font-bold leading-tight text-ink md:text-[2.5rem]">
             Not sure what method you need?
           </h2>
           <Button asChild size="lg" className="mt-8 rounded-full px-8 text-base">
@@ -288,7 +288,7 @@ export function Coming() {
     <section id="coming" className="scroll-mt-24 py-20 md:py-28">
       <div className="section-shell">
         <Reveal>
-          <h2 className="text-[1.75rem] font-extrabold text-ink md:text-[2.5rem]">
+          <h2 className="text-[1.75rem] font-bold text-ink md:text-[2.5rem]">
             One method becomes many.
           </h2>
         </Reveal>
@@ -314,7 +314,7 @@ export function FinalCta() {
       <div className="section-shell relative text-center">
         <ParticleField className="absolute inset-x-0 -top-6 mx-auto h-56 max-w-2xl opacity-50" />
         <Reveal className="relative">
-          <h2 className="text-[1.75rem] font-extrabold text-ink md:text-[3.25rem]">
+          <h2 className="text-[1.75rem] font-bold text-ink md:text-[3.25rem]">
             What could you handle better today?
           </h2>
           <Button asChild size="lg" className="mt-10 rounded-full px-10 text-base">

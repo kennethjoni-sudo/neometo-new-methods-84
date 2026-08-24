@@ -11,7 +11,7 @@ export function SiteFooter() {
     <footer id="footer" className="border-t border-border/70 py-14">
       <div className="section-shell flex flex-col gap-10 md:flex-row md:items-end md:justify-between">
         <div>
-          <p className="text-base font-extrabold tracking-[0.22em] text-ink">NEOMETO</p>
+          <p className="text-base font-bold tracking-[0.22em] text-ink">NEOMETO</p>
           <p className="mt-2 text-sm text-muted-foreground">New Methods for Modern Minds.</p>
         </div>
         <nav aria-label="Footer" className="flex flex-wrap gap-x-8 gap-y-3">
