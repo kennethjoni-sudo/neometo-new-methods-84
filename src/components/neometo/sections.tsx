@@ -1,5 +1,6 @@
 import { ArrowRight, Sparkles } from "lucide-react";
 
+import flowArt from "@/assets/neometo-flow.png.asset.json";
 import { Button } from "@/components/ui/button";
 import { MethodGlyph, ParticleField } from "@/components/neometo/particle-field";
 import { Reveal } from "@/components/neometo/reveal";
@@ -10,7 +11,13 @@ export function Hero() {
   return (
     <section id="top" className="relative overflow-hidden pb-20 pt-16 md:pb-32 md:pt-28">
       <div className="grid-fade absolute inset-0" aria-hidden="true" />
-      <ParticleField className="absolute inset-x-0 top-8 mx-auto hidden h-[380px] max-w-5xl opacity-70 md:block" />
+      <img
+        src={flowArt.url}
+        alt=""
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-[42%] w-full select-none object-cover opacity-60 [mask-image:linear-gradient(to_top,black,transparent_95%)] md:h-[52%]"
+      />
+      <ParticleField className="absolute inset-x-0 top-8 mx-auto hidden h-[380px] max-w-5xl opacity-40 md:block" />
       <div className="section-shell relative">
         <div className="max-w-3xl animate-rise">
           <p className="eyebrow">NEOMETO — New Method</p>
@@ -41,6 +48,7 @@ export function Hero() {
     </section>
   );
 }
+
 
 /* -------------------------------- Problems -------------------------------- */
 
@@ -181,9 +189,16 @@ export function FeaturedMethod() {
               <a href="#advisor">Try Thought Spin</a>
             </Button>
           </div>
-          <div className="relative aspect-square w-full max-w-sm justify-self-center rounded-3xl bg-background">
+          <div className="relative aspect-square w-full max-w-sm justify-self-center overflow-hidden rounded-3xl bg-background">
+            <img
+              src={flowArt.url}
+              alt=""
+              aria-hidden="true"
+              className="absolute inset-0 size-full object-cover opacity-80"
+            />
             <ParticleField mode="orbit" className="absolute inset-6" />
           </div>
+
         </article>
       </Reveal>
     </section>
@@ -243,11 +258,18 @@ export function Philosophy() {
   return (
     <section id="philosophy" className="scroll-mt-24 py-20 md:py-28">
       <Reveal className="section-shell">
-        <div className="rounded-4xl bg-ink px-7 py-16 text-background md:px-16 md:py-24">
-          <h2 className="max-w-3xl text-[1.75rem] font-extrabold leading-tight md:text-[2.75rem]">
+        <div className="relative overflow-hidden rounded-4xl bg-ink px-7 py-16 text-background md:px-16 md:py-24">
+          <img
+            src={flowArt.url}
+            alt=""
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 size-full object-cover opacity-60 mix-blend-screen"
+          />
+          <h2 className="relative max-w-3xl text-[1.75rem] font-extrabold leading-tight md:text-[2.75rem]">
             You don&apos;t need a label to use a useful method.
           </h2>
-          <div className="mt-8 max-w-2xl space-y-4 text-base leading-relaxed opacity-80 md:text-lg">
+          <div className="relative mt-8 max-w-2xl space-y-4 text-base leading-relaxed opacity-80 md:text-lg">
+
             <p>NEOMETO starts with what you want to handle better — not what somebody calls it.</p>
             <p>
               Methods can be useful whether you&apos;re neurotypical, neurodivergent, diagnosed,
