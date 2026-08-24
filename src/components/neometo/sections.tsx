@@ -63,6 +63,11 @@ export function Hero() {
           <h1 className="mt-5 text-[2.75rem] font-bold leading-[1.02] sm:text-6xl lg:text-[4rem]">
             New Methods for Modern Minds.
           </h1>
+          <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-background/70 md:text-lg">
+            Practical methods for focus, sleep, and overthinking — for the moments when your mind
+            needs another way.
+          </p>
+
 
           <form
             onSubmit={(e) => {
