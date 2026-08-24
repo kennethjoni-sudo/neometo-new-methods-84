@@ -40,7 +40,9 @@ function SpinPhase({ reduced, onDone }: { reduced: boolean; onDone: () => void }
   );
 
   return (
-    <div className="flex flex-col items-center gap-12">
+    <div className="flex flex-col items-center gap-10">
+      <Instruction>Watch the center. Let your thoughts move with it.</Instruction>
+
       <div className="relative size-72 md:size-96">
         <ProgressRing progress={p} />
         <div className="absolute inset-0" style={{ transform: `rotate(${angle}deg)` }}>
