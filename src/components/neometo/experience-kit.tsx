@@ -147,14 +147,15 @@ export function BreathingCircle({
   let acc = 0;
   let stepIndex = 0;
   for (let i = 0; i < pattern.length; i++) {
-    if (inCycle < acc + pattern[i].ms) {
+    const ms = pattern[i]?.ms ?? 0;
+    if (inCycle < acc + ms) {
       stepIndex = i;
       break;
     }
-    acc += pattern[i].ms;
+    acc += ms;
     stepIndex = i;
   }
-  const step = pattern[stepIndex];
+  const step = pattern[stepIndex] ?? { label: "", ms: 1 };
   const t = Math.min(1, (inCycle - acc) / step.ms);
   const ease = 0.5 - Math.cos(Math.PI * t) / 2;
 
