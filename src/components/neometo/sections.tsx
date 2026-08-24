@@ -168,9 +168,26 @@ export function Manifesto() {
   return (
     <section className="py-20 md:py-28">
       <Reveal className="section-shell grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:items-center">
-        <h2 className="text-[1.75rem] font-bold leading-tight text-ink md:text-[2.5rem]">
-          You don&apos;t always need another explanation. Sometimes you need a method.
-        </h2>
+        <div>
+          <svg
+            viewBox="0 0 320 40"
+            role="presentation"
+            aria-hidden="true"
+            className="mb-6 h-6 w-full max-w-[160px] text-brand opacity-70"
+          >
+            <path
+              d={WAVE_PATH}
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+          <h2 className="text-[1.75rem] font-bold leading-tight text-ink md:text-[2.5rem]">
+            You don&apos;t always need another explanation. Sometimes you need a method.
+          </h2>
+        </div>
         <div className="space-y-5 text-base leading-relaxed text-muted-foreground md:text-lg">
           <p>
             Useful methods already exist across psychology, research, coaching, neuroscience and
@@ -185,6 +202,7 @@ export function Manifesto() {
     </section>
   );
 }
+
 
 /* ------------------------------- How it works ------------------------------ */
 
