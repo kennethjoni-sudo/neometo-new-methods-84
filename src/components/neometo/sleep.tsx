@@ -49,7 +49,7 @@ const WORDS = [
   "cotton thread",
   "harbour rope",
 ];
-const WORD_MS = 4500;
+const WORD_MS = 3500;
 
 function ShufflePhase({ onDone }: { onDone: () => void }) {
   const total = WORDS.length * WORD_MS;
