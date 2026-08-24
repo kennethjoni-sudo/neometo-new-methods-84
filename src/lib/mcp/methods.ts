@@ -106,3 +106,18 @@ export function findMethods(query: string): Method[] {
   const hits = scored.filter((s) => s.score > 0).sort((a, b) => b.score - a.score);
   return hits.length > 0 ? hits.map((h) => h.method) : methods;
 }
+
+import { z } from "zod";
+
+export const methodSummarySchema = z.object({
+  slug: z.string(),
+  name: z.string(),
+  area: z.string(),
+  duration: z.string(),
+  promise: z.string(),
+});
+
+export const methodSchema = methodSummarySchema.extend({
+  description: z.string(),
+  steps: z.array(z.string()),
+});
