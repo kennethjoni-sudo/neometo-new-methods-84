@@ -266,9 +266,10 @@ export function Philosophy() {
             className="pointer-events-none absolute inset-0 size-full object-cover opacity-60 mix-blend-screen"
           />
           <h2 className="relative max-w-3xl text-[1.75rem] font-extrabold leading-tight md:text-[2.75rem]">
-
+            You don&apos;t need a label to use a useful method.
           </h2>
-          <div className="mt-8 max-w-2xl space-y-4 text-base leading-relaxed opacity-80 md:text-lg">
+          <div className="relative mt-8 max-w-2xl space-y-4 text-base leading-relaxed opacity-80 md:text-lg">
+
             <p>NEOMETO starts with what you want to handle better — not what somebody calls it.</p>
             <p>
               Methods can be useful whether you&apos;re neurotypical, neurodivergent, diagnosed,
