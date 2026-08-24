@@ -5,6 +5,7 @@ import flowArt from "@/assets/neometo-flow.png.asset.json";
 import { Button } from "@/components/ui/button";
 import { MethodGlyph, ParticleField } from "@/components/neometo/particle-field";
 import { Reveal } from "@/components/neometo/reveal";
+import { ThoughtSpinExperience } from "@/components/neometo/thought-spin";
 
 /* ---------------------------------- Hero --------------------------------- */
 
@@ -252,8 +253,11 @@ export function HowItWorks() {
 /* ----------------------------- Featured method ----------------------------- */
 
 export function FeaturedMethod() {
+  const [open, setOpen] = useState(false);
+
   return (
     <section className="py-20 md:py-28">
+      {open && <ThoughtSpinExperience onClose={() => setOpen(false)} />}
       <Reveal className="section-shell">
         <article className="group grid gap-10 overflow-hidden rounded-4xl border border-border bg-surface p-8 shadow-soft transition-shadow duration-700 hover:shadow-lift md:grid-cols-[1fr_0.8fr] md:items-center md:p-14">
           <div>
@@ -276,8 +280,12 @@ export function FeaturedMethod() {
               automatic loop of repetitive thinking, creating enough distance to respond instead
               of react.
             </p>
-            <Button asChild size="lg" className="mt-9 rounded-full px-8 text-base">
-              <a href="#advisor">Try Thought Spin</a>
+            <Button
+              size="lg"
+              className="mt-9 rounded-full px-8 text-base"
+              onClick={() => setOpen(true)}
+            >
+              Try Thought Spin
             </Button>
           </div>
           <div className="relative aspect-square w-full max-w-sm justify-self-center overflow-hidden rounded-3xl bg-background transition-all duration-500 motion-safe:group-hover:scale-[1.02] motion-safe:group-hover:shadow-[0_0_40px_rgba(79,110,247,0.18)] motion-safe:group-active:scale-[1.02]">
