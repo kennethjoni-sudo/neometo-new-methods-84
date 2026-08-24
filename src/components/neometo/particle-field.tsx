@@ -64,7 +64,8 @@ export function ParticleField({ className, mode = "chaos-to-order" }: ParticleFi
           ))}
         </div>
         <div className="absolute left-1/2 top-1/2 size-16 -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-soft animate-pulse-soft" />
-        <div className="absolute left-1/2 top-1/2 size-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand" />
+        <div className="absolute left-1/2 top-1/2 size-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand transition-transform duration-500 motion-safe:group-hover:scale-150" />
+
       </div>
     );
   }

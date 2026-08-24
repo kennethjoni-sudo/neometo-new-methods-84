@@ -245,8 +245,11 @@ export function FeaturedMethod() {
   return (
     <section className="py-20 md:py-28">
       <Reveal className="section-shell">
-        <article className="grid gap-10 overflow-hidden rounded-4xl border border-border bg-surface p-8 shadow-soft transition-shadow duration-700 hover:shadow-lift md:grid-cols-[1fr_0.8fr] md:items-center md:p-14">
+        <article className="group grid gap-10 overflow-hidden rounded-4xl border border-border bg-surface p-8 shadow-soft transition-shadow duration-700 hover:shadow-lift md:grid-cols-[1fr_0.8fr] md:items-center md:p-14">
           <div>
+            <p className="mb-3 text-xs font-semibold tracking-wide text-brand uppercase">
+              Don&apos;t trust our words. Trust the result.
+            </p>
             <p className="eyebrow">Featured method</p>
             <h2 className="mt-5 text-[1.75rem] font-bold text-ink md:text-[2.5rem]">
               Thought Spin
@@ -259,11 +262,16 @@ export function FeaturedMethod() {
               A short guided visualization designed to interrupt repetitive thinking and create
               mental distance.
             </p>
+            <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">
+              Why it works: shifting attention to a simple visual pattern interrupts the
+              automatic loop of repetitive thinking, creating enough distance to respond instead
+              of react.
+            </p>
             <Button asChild size="lg" className="mt-9 rounded-full px-8 text-base">
               <a href="#advisor">Try Thought Spin</a>
             </Button>
           </div>
-          <div className="relative aspect-square w-full max-w-sm justify-self-center overflow-hidden rounded-3xl bg-background">
+          <div className="relative aspect-square w-full max-w-sm justify-self-center overflow-hidden rounded-3xl bg-background transition-all duration-500 motion-safe:group-hover:scale-[1.02] motion-safe:group-hover:shadow-[0_0_40px_rgba(79,110,247,0.18)] motion-safe:group-active:scale-[1.02]">
             <img
               src={flowArt.url}
               alt=""
@@ -278,6 +286,7 @@ export function FeaturedMethod() {
     </section>
   );
 }
+
 
 /* -------------------------------- AI advisor ------------------------------- */
 
