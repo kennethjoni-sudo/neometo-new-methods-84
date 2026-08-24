@@ -1,5 +1,6 @@
 import { ArrowRight, Sparkles } from "lucide-react";
 
+import flowArt from "@/assets/neometo-flow.png.asset.json";
 import { Button } from "@/components/ui/button";
 import { MethodGlyph, ParticleField } from "@/components/neometo/particle-field";
 import { Reveal } from "@/components/neometo/reveal";
@@ -10,7 +11,13 @@ export function Hero() {
   return (
     <section id="top" className="relative overflow-hidden pb-20 pt-16 md:pb-32 md:pt-28">
       <div className="grid-fade absolute inset-0" aria-hidden="true" />
-      <ParticleField className="absolute inset-x-0 top-8 mx-auto hidden h-[380px] max-w-5xl opacity-70 md:block" />
+      <img
+        src={flowArt.url}
+        alt=""
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-[62%] w-full select-none object-cover opacity-70 [mask-image:linear-gradient(to_top,black,transparent_92%)] md:h-[70%]"
+      />
+      <ParticleField className="absolute inset-x-0 top-8 mx-auto hidden h-[380px] max-w-5xl opacity-40 md:block" />
       <div className="section-shell relative">
         <div className="max-w-3xl animate-rise">
           <p className="eyebrow">NEOMETO — New Method</p>
@@ -41,6 +48,7 @@ export function Hero() {
     </section>
   );
 }
+
 
 /* -------------------------------- Problems -------------------------------- */
 
