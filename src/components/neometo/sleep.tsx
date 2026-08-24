@@ -132,18 +132,18 @@ function BodyScanPhase({ reduced, onDone }: { reduced: boolean; onDone: () => vo
           })}
       </div>
 
-      <div className="flex min-h-[6rem] max-w-md items-center justify-center" aria-live="polite">
+      <div className="flex min-h-[7rem] max-w-md items-center justify-center" aria-live="polite">
         <p
           key={line}
-          className="animate-fade-in text-2xl font-medium leading-snug md:text-3xl"
+          className="animate-fade-in font-display text-2xl font-bold leading-snug tracking-tight md:text-3xl"
         >
           {line}
         </p>
       </div>
 
-      <p className="text-sm text-background/50">
+      <ProgressLabel>
         Step {index + 1} of {BODY_STEPS.length}
-      </p>
+      </ProgressLabel>
     </div>
   );
 }
