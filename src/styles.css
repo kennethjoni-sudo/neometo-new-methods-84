@@ -39,6 +39,8 @@
   --color-ring: var(--ring);
   --color-ring-offset-background: var(--background);
   --color-ink: var(--ink);
+  --color-ink-raised: var(--ink-raised);
+  --color-ink-line: var(--ink-line);
   --color-surface: var(--surface);
   --color-brand: var(--brand);
   --color-brand-soft: var(--brand-soft);
@@ -55,6 +57,7 @@
   --animate-orbit-slow: orbit 34s linear infinite reverse;
   --animate-rise: rise 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
   --animate-pulse-soft: pulseSoft 4s ease-in-out infinite;
+  --animate-wave-glow: waveGlow 3s ease-in-out infinite;
 }
 
 :root {
@@ -62,6 +65,8 @@
   --background: oklch(0.972 0.008 100);
   --foreground: oklch(0.213 0.032 265);
   --ink: oklch(0.213 0.032 265);
+  --ink-raised: oklch(0.253 0.029 264);
+  --ink-line: oklch(0.347 0.037 264);
   --surface: oklch(1 0 0);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.213 0.032 265);
@@ -112,6 +117,16 @@
   to {
     opacity: 1;
     transform: none;
+  }
+}
+
+@keyframes waveGlow {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
   }
 }
 
