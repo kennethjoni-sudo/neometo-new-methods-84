@@ -5,6 +5,7 @@ import flowArt from "@/assets/neometo-flow.png.asset.json";
 import { Button } from "@/components/ui/button";
 import { MethodGlyph, ParticleField } from "@/components/neometo/particle-field";
 import { Reveal } from "@/components/neometo/reveal";
+import { ThoughtSpinExperience } from "@/components/neometo/thought-spin";
 
 /* ---------------------------------- Hero --------------------------------- */
 
