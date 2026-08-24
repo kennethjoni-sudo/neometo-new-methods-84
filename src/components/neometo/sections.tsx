@@ -7,6 +7,8 @@ import { MethodGlyph, ParticleField } from "@/components/neometo/particle-field"
 import { Reveal } from "@/components/neometo/reveal";
 import { ThoughtSpinExperience } from "@/components/neometo/thought-spin";
 import { SleepExperience } from "@/components/neometo/sleep";
+import { FocusExperience } from "@/components/neometo/focus";
+
 
 /* ---------------------------------- Hero --------------------------------- */
 
