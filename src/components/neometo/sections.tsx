@@ -105,7 +105,7 @@ export function Hero() {
               href="#methods"
               className="rounded-[14px] bg-brand px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90"
             >
-              + 40 more
+              + more coming soon
             </a>
           </div>
         </div>
@@ -118,12 +118,12 @@ export function Hero() {
 /* -------------------------------- Problems -------------------------------- */
 
 const problems = [
-  { title: "Thoughts won't stop spinning?", hint: "Get a method to slow them down." },
-  { title: "Mind still running at 2am?", hint: "Fall asleep faster, tonight." },
-  { title: "Can't hold focus for more than a minute?", hint: "Sharpen it, fast." },
-  { title: "Everything hitting at once?", hint: "Bring it down to one thing at a time." },
-  { title: "Replaying every conversation afterward?", hint: "Prepare beforehand, recover faster after." },
-  { title: "Something big coming up?", hint: "Walk in steadier." },
+  { title: "Thoughts won't stop spinning?", hint: "Get a method to slow them down.", available: true },
+  { title: "Mind still running at 2am?", hint: "Fall asleep faster, tonight.", available: false },
+  { title: "Can't hold focus for more than a minute?", hint: "Sharpen it, fast.", available: false },
+  { title: "Everything hitting at once?", hint: "Bring it down to one thing at a time.", available: false },
+  { title: "Replaying every conversation afterward?", hint: "Prepare beforehand, recover faster after.", available: false },
+  { title: "Something big coming up?", hint: "Walk in steadier.", available: false },
 ];
 
 export function Problems() {
@@ -132,7 +132,7 @@ export function Problems() {
       <div className="section-shell">
         <Reveal>
           <h2 className="max-w-2xl text-[1.75rem] font-bold leading-tight text-ink md:text-[2.5rem]">
-            Methods for your mind.
+            What do you want to get better at?
           </h2>
         </Reveal>
         <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -143,6 +143,11 @@ export function Problems() {
                 className="group relative flex h-full min-h-[260px] w-full flex-col items-start overflow-hidden rounded-3xl border border-border bg-surface p-7 text-left shadow-soft transition-all duration-500 hover:-translate-y-1 hover:border-brand/40 hover:shadow-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
                 <span className="absolute -right-10 -top-10 size-28 rounded-full bg-brand-soft opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                {!problem.available && (
+                  <span className="absolute right-4 top-4 rounded-full bg-muted px-2.5 py-1 text-xs font-medium text-muted-foreground">
+                    Coming soon
+                  </span>
+                )}
                 <span className="relative">
                   <MethodGlyph variant={i} />
                 </span>
@@ -152,8 +157,12 @@ export function Problems() {
                 <span className="relative mt-2 text-sm leading-relaxed text-muted-foreground">
                   {problem.hint}
                 </span>
-                <span className="relative mt-auto inline-flex items-center gap-2 text-sm font-semibold text-brand">
-                  Find a method
+                <span
+                  className={`relative mt-auto inline-flex items-center gap-2 text-sm font-semibold ${
+                    problem.available ? "text-brand" : "text-muted-foreground"
+                  }`}
+                >
+                  {problem.available ? "Find a method" : "Notify me"}
                   <ArrowRight className="size-4 transition-transform duration-500 group-hover:translate-x-1" />
                 </span>
               </button>
