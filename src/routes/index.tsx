@@ -7,6 +7,7 @@ import { SiteFooter } from "@/components/neometo/site-footer";
 import {
   Advisor,
   Coming,
+  Faq,
   FeaturedMethod,
   FinalCta,
   Hero,
@@ -14,11 +15,42 @@ import {
   Manifesto,
   Philosophy,
   Problems,
+  faq,
 } from "@/components/neometo/sections";
 
 const title = "NEOMETO | Practical Methods for Focus, Sleep & Overthinking";
 const description =
   "Explore practical, research-informed methods for focus, sleep, and overthinking. Find the method that fits what you're experiencing right now — no diagnosis required.";
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "NEOMETO",
+  slogan: "New Methods for Modern Minds.",
+  description,
+  url: "/",
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "NEOMETO",
+  url: "/",
+  description,
+};
+
+const faqPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faq.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.answer,
+    },
+  })),
+};
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -37,13 +69,15 @@ export const Route = createFileRoute("/")({
     scripts: [
       {
         type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          name: "NEOMETO",
-          slogan: "New Methods for Modern Minds.",
-          description,
-        }),
+        children: JSON.stringify(organizationSchema),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(websiteSchema),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(faqPageSchema),
       },
     ],
   }),
@@ -63,6 +97,7 @@ function Index() {
         <FeaturedMethod />
         <Advisor />
         <Philosophy />
+        <Faq />
         <Coming />
         <FinalCta />
       </main>
