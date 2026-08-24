@@ -105,7 +105,7 @@ export function Hero() {
               href="#methods"
               className="rounded-[14px] bg-brand px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90"
             >
-              + 40 more
+              + more coming soon
             </a>
           </div>
         </div>
@@ -132,7 +132,7 @@ export function Problems() {
       <div className="section-shell">
         <Reveal>
           <h2 className="max-w-2xl text-[1.75rem] font-bold leading-tight text-ink md:text-[2.5rem]">
-            Methods for your mind.
+            What do you want to get better at?
           </h2>
         </Reveal>
         <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
