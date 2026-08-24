@@ -184,7 +184,9 @@ export function BreathingCircle({
   else if (stepIndex === pattern.length - 1) scale = 1 - 0.4 * ease;
 
   return (
-    <div className="flex flex-col items-center gap-12">
+    <div className="flex flex-col items-center gap-10">
+      <Instruction>{instruction}</Instruction>
+
       <div className="relative size-64 md:size-80">
         <ProgressRing progress={Math.min(1, elapsed / totalMs)} />
         <div
