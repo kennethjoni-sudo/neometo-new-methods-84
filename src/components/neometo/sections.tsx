@@ -1,4 +1,5 @@
-import { ArrowRight, Sparkles } from "lucide-react";
+import { useState } from "react";
+import { ArrowRight, ArrowUp, Sparkles } from "lucide-react";
 
 import flowArt from "@/assets/neometo-flow.png.asset.json";
 import { Button } from "@/components/ui/button";
@@ -7,40 +8,95 @@ import { Reveal } from "@/components/neometo/reveal";
 
 /* ---------------------------------- Hero --------------------------------- */
 
+const chips = ["Overthinking", "Sleep", "Focus", "Overload"];
+
+/** Erratic on the left, settling to nearly flat on the right. */
+const WAVE_PATH =
+  "M0 20 L14 6 L22 33 L34 3 L44 30 L56 9 L68 27 L82 13 L96 25 L112 15 L128 23 L146 18 L166 21 L188 19.5 L214 20.3 L244 20 L280 20 L320 20";
+
+function goToAdvisor() {
+  document.getElementById("advisor")?.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
 export function Hero() {
+  const [value, setValue] = useState("");
+
   return (
     <section
       id="top"
-      className="relative overflow-hidden border-b border-border bg-background pb-20 pt-16 md:pb-32 md:pt-28"
+      className="relative overflow-hidden bg-ink pb-20 pt-20 text-background md:pb-28 md:pt-28"
     >
-      <div className="grid-fade absolute inset-0" aria-hidden="true" />
-      <div className="dot-scatter pointer-events-none absolute inset-0" aria-hidden="true" />
-      <ParticleField className="absolute inset-x-0 top-8 mx-auto hidden h-[380px] max-w-5xl opacity-40 md:block" />
       <div className="section-shell relative">
-        <div className="max-w-3xl animate-rise">
-          <p className="eyebrow">NEOMETO — New Method</p>
-          <h1 className="mt-6 text-[2.75rem] font-bold leading-[1.02] text-ink sm:text-6xl lg:text-[4rem]">
+        <div className="mx-auto max-w-3xl animate-rise text-center">
+          <svg
+            viewBox="0 0 320 40"
+            role="presentation"
+            aria-hidden="true"
+            className="mx-auto h-10 w-full max-w-md text-brand motion-safe:animate-wave-glow"
+          >
+            <path
+              d={WAVE_PATH}
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+          <p className="mt-8 text-sm font-semibold tracking-[0.14em] text-brand uppercase">
+            A personality hack, not a diagnosis.
+          </p>
+          <h1 className="mt-5 text-[2.75rem] font-bold leading-[1.02] sm:text-6xl lg:text-[4rem]">
             New Methods for Modern Minds.
           </h1>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground md:text-xl">
+          <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-background/70 md:text-xl">
             Practical methods for the moments when your mind needs another way.
           </p>
-          <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-            <Button asChild size="lg" className="rounded-full px-8 text-base shadow-soft">
-              <a href="#methods">Find a method</a>
-            </Button>
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="rounded-full border-ink/15 bg-surface px-8 text-base hover:bg-accent"
+
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              goToAdvisor();
+            }}
+            className="mx-auto mt-10 flex w-full max-w-xl items-center gap-3 rounded-2xl border-[0.5px] border-ink-line bg-ink-raised p-2 pl-5 shadow-lift"
+          >
+            <label htmlFor="hero-input" className="sr-only">
+              What&apos;s going on right now?
+            </label>
+            <input
+              id="hero-input"
+              value={value}
+              onChange={(e) => setValue(e.target.value)}
+              placeholder="What's going on right now?"
+              className="h-11 flex-1 bg-transparent text-base text-background outline-none placeholder:text-background/45"
+            />
+            <button
+              type="submit"
+              aria-label="Ask NEOMETO"
+              className="grid size-11 shrink-0 place-items-center rounded-full bg-brand text-white transition-transform duration-300 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
             >
-              <a href="#how-it-works">Explore NEOMETO</a>
-            </Button>
+              <ArrowUp className="size-5" />
+            </button>
+          </form>
+
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
+            {chips.map((chip) => (
+              <button
+                key={chip}
+                type="button"
+                onClick={goToAdvisor}
+                className="rounded-[14px] border-[0.5px] border-ink-line bg-ink-raised px-4 py-2 text-sm font-medium text-accent transition-colors hover:border-brand"
+              >
+                {chip}
+              </button>
+            ))}
+            <a
+              href="#methods"
+              className="rounded-[14px] bg-brand px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+            >
+              + 40 more
+            </a>
           </div>
-          <p className="mt-10 text-base font-medium text-ink/70">
-            A better method might be all you need.
-          </p>
         </div>
       </div>
     </section>
