@@ -121,6 +121,23 @@ export function StillRing({ className = "size-56 md:size-64" }: { className?: st
   );
 }
 
+/**
+ * Standard guidance line for every method phase.
+ * Rhythm: instruction (clear) → main content (dominant) → progress (quiet).
+ */
+export function Instruction({ children }: { children: ReactNode }) {
+  return (
+    <p className="max-w-md text-balance text-center text-lg font-medium leading-relaxed text-background/85 md:text-xl">
+      {children}
+    </p>
+  );
+}
+
+/** Quiet, secondary progress text. */
+export function ProgressLabel({ children }: { children: ReactNode }) {
+  return <p className="text-sm text-background/45">{children}</p>;
+}
+
 export type BreathStep = { label: string; ms: number };
 
 /** Generic breathing circle driven by an arbitrary step pattern. */
