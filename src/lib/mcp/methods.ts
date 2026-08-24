@@ -1,3 +1,5 @@
+import { z } from "zod";
+
 export type Method = {
   slug: string;
   name: string;
@@ -107,7 +109,6 @@ export function findMethods(query: string): Method[] {
   return hits.length > 0 ? hits.map((h) => h.method) : methods;
 }
 
-import { z } from "zod";
 
 export const methodSummarySchema = z.object({
   slug: z.string(),
