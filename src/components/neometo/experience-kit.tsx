@@ -147,12 +147,14 @@ export function BreathingCircle({
   cycles,
   onDone,
   cycleNoun = "Breath",
+  instruction = "Follow the circle. Let your breath match its pace.",
 }: {
   reduced: boolean;
   pattern: BreathStep[];
   cycles: number;
   onDone: () => void;
   cycleNoun?: string;
+  instruction?: string;
 }) {
   const cycleMs = pattern.reduce((s, p) => s + p.ms, 0);
   const totalMs = cycleMs * cycles;
