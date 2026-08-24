@@ -103,21 +103,21 @@ export function ParticleField({ className, mode = "chaos-to-order" }: ParticleFi
 /** Small abstract chaos-to-order glyphs used on the problem cards. */
 export function MethodGlyph({ variant }: { variant: number }) {
   const common = "size-9 text-brand";
-  const stroke = { fill: "none", stroke: "currentColor", strokeWidth: 1.5, strokeLinecap: "round" as const };
+  const stroke = { fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round" as const };
 
   switch (variant % 6) {
     case 0: // overthinking — tangled line resolving
       return (
         <svg viewBox="0 0 36 36" className={common} aria-hidden="true">
           <path d="M4 10c6-8 12 8 18 0s8 2 10 4" {...stroke} />
-          <path d="M4 24h28" {...stroke} opacity={0.45} />
+          <path d="M4 24h28" {...stroke} opacity={0.75} />
         </svg>
       );
     case 1: // sleep — descending steps
       return (
         <svg viewBox="0 0 36 36" className={common} aria-hidden="true">
           <path d="M4 10h8v8h8v8h12" {...stroke} />
-          <circle cx="30" cy="8" r="2.5" fill="currentColor" opacity={0.5} />
+          <circle cx="30" cy="8" r="2.5" fill="currentColor" opacity={0.75} />
         </svg>
       );
     case 2: // focus — converging lines
@@ -131,7 +131,7 @@ export function MethodGlyph({ variant }: { variant: number }) {
       return (
         <svg viewBox="0 0 36 36" className={common} aria-hidden="true">
           {[6, 11, 16, 21, 26, 31].map((x, i) => (
-            <circle key={x} cx={x} cy={18} r={2.5 - i * 0.3} fill="currentColor" opacity={1 - i * 0.13} />
+            <circle key={x} cx={x} cy={18} r={2.5 - i * 0.3} fill="currentColor" opacity={1 - i * 0.1} />
           ))}
         </svg>
       );
@@ -139,7 +139,7 @@ export function MethodGlyph({ variant }: { variant: number }) {
       return (
         <svg viewBox="0 0 36 36" className={common} aria-hidden="true">
           <path d="M6 26a8 8 0 0 1 8-12" {...stroke} />
-          <path d="M30 26a8 8 0 0 0-8-12" {...stroke} opacity={0.55} />
+          <path d="M30 26a8 8 0 0 0-8-12" {...stroke} opacity={0.75} />
           <circle cx="18" cy="20" r="2.5" fill="currentColor" />
         </svg>
       );
@@ -151,3 +151,4 @@ export function MethodGlyph({ variant }: { variant: number }) {
       );
   }
 }
+
