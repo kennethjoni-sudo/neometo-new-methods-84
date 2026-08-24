@@ -136,10 +136,10 @@ export function Problems() {
         </Reveal>
         <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {problems.map((problem, i) => (
-            <Reveal as="li" key={problem.title} delay={i * 70}>
+            <Reveal as="li" key={problem.title} delay={i * 70} className="h-full">
               <button
                 type="button"
-                className="group relative flex h-full w-full flex-col items-start overflow-hidden rounded-3xl border border-border bg-surface p-7 text-left shadow-soft transition-all duration-500 hover:-translate-y-1 hover:border-brand/40 hover:shadow-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                className="group relative flex h-full min-h-[260px] w-full flex-col items-start overflow-hidden rounded-3xl border border-border bg-surface p-7 text-left shadow-soft transition-all duration-500 hover:-translate-y-1 hover:border-brand/40 hover:shadow-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
                 <span className="absolute -right-10 -top-10 size-28 rounded-full bg-brand-soft opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                 <span className="relative">
@@ -151,7 +151,7 @@ export function Problems() {
                 <span className="relative mt-2 text-sm leading-relaxed text-muted-foreground">
                   {problem.hint}
                 </span>
-                <span className="relative mt-8 inline-flex items-center gap-2 text-sm font-semibold text-brand">
+                <span className="relative mt-auto inline-flex items-center gap-2 text-sm font-semibold text-brand">
                   Find a method
                   <ArrowRight className="size-4 transition-transform duration-500 group-hover:translate-x-1" />
                 </span>
@@ -183,13 +183,13 @@ export function Manifesto() {
             viewBox="0 0 320 40"
             role="presentation"
             aria-hidden="true"
-            className="mb-6 h-6 w-full max-w-[160px] text-brand opacity-70"
+            className="mb-6 h-8 w-full max-w-[208px] text-brand opacity-90"
           >
             <path
               d={WAVE_PATH}
               fill="none"
               stroke="currentColor"
-              strokeWidth="1.5"
+              strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
@@ -260,7 +260,6 @@ export function FeaturedMethod() {
             <p className="mb-3 text-xs font-semibold tracking-wide text-brand uppercase">
               Don&apos;t trust our words. Trust the result.
             </p>
-            <p className="eyebrow">Featured method</p>
             <h2 className="mt-5 text-[1.75rem] font-bold text-ink md:text-[2.5rem]">
               Thought Spin
             </h2>
