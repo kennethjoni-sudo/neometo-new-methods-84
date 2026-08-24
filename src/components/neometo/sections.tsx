@@ -415,6 +415,55 @@ export function Philosophy() {
   );
 }
 
+/* -------------------------------- FAQ -------------------------------------- */
+
+const faq = [
+  {
+    question: "What is Thought Spin?",
+    answer:
+      "A short guided visualization that interrupts repetitive thinking by shifting your attention to a simple rotating visual pattern, giving you distance from the thought instead of getting pulled deeper into it.",
+  },
+  {
+    question: "How does the Racing Thoughts Shuffle work for sleep?",
+    answer:
+      "It uses a technique called cognitive shuffling — your mind struggles to spiral on one repetitive thought while being fed a slow stream of unrelated, neutral images. NEOMETO guides you through this before bed.",
+  },
+  {
+    question: "Do I need a diagnosis to use NEOMETO?",
+    answer:
+      "No. NEOMETO is built around patterns you've noticed in your own thinking, not a clinical diagnosis. It's a self-help and educational tool, not medical treatment.",
+  },
+];
+
+export function Faq() {
+  return (
+    <section id="faq" className="scroll-mt-24 py-20 md:py-28">
+      <div className="section-shell">
+        <Reveal>
+          <h2 className="text-[1.75rem] font-bold text-ink md:text-[2.5rem]">Questions</h2>
+          <p className="mt-3 text-base text-muted-foreground">
+            Honest answers about the methods that are live right now.
+          </p>
+        </Reveal>
+        <dl className="mt-12 grid gap-4 md:grid-cols-3">
+          {faq.map((item, i) => (
+            <Reveal as="div" key={item.question} delay={i * 80}>
+              <div className="h-full rounded-3xl border border-border bg-surface p-8 shadow-soft">
+                <dt className="text-lg font-bold text-ink md:text-xl">{item.question}</dt>
+                <dd className="mt-3 text-sm leading-relaxed text-muted-foreground md:text-base">
+                  {item.answer}
+                </dd>
+              </div>
+            </Reveal>
+          ))}
+        </dl>
+      </div>
+    </section>
+  );
+}
+
+export { faq };
+
 /* -------------------------------- Coming next ------------------------------ */
 
 const areas = ["Thoughts", "Focus", "Sleep", "Communication", "Preparation", "Overload"];
@@ -427,6 +476,7 @@ export function Coming() {
           <h2 className="text-[1.75rem] font-bold text-ink md:text-[2.5rem]">
             One method becomes many.
           </h2>
+          <p className="mt-3 text-base text-muted-foreground">Tools for focus, sleep, and overthinking.</p>
         </Reveal>
         <ul className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6">
           {areas.map((area, i) => (
