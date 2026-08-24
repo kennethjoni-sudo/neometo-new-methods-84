@@ -197,6 +197,7 @@ export function SleepExperience({ onClose }: { onClose: () => void }) {
           reduced={reduced}
           cycles={4}
           onDone={toClose}
+          instruction="Breathe with the circle. Out longer than in — that's what settles you."
           pattern={[
             { label: "Breathe in", ms: 4000 },
             { label: "Hold", ms: 7000 },
