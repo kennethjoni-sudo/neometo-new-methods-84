@@ -214,12 +214,17 @@ export function BreathingCircle({
       </div>
 
       <div className="text-center" aria-live="polite">
-        <p key={step.label} className="animate-fade-in text-3xl font-bold tracking-tight md:text-4xl">
+        <p
+          key={step.label}
+          className="animate-fade-in font-display text-4xl font-bold tracking-tight md:text-5xl"
+        >
           {step.label}
         </p>
-        <p className="mt-4 text-sm text-background/60">
-          {cycleNoun} {cycleIndex + 1} of {cycles}
-        </p>
+        <div className="mt-6">
+          <ProgressLabel>
+            {cycleNoun} {cycleIndex + 1} of {cycles}
+          </ProgressLabel>
+        </div>
       </div>
     </div>
   );
