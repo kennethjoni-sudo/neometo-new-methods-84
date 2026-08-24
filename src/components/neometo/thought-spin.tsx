@@ -4,7 +4,9 @@ import { Button } from "@/components/ui/button";
 import {
   BreathingCircle,
   ExperienceShell,
+  Instruction,
   PARTICLES,
+  ProgressLabel,
   ProgressRing,
   StillRing,
   useElapsed,
