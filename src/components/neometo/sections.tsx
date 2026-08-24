@@ -183,13 +183,13 @@ export function Manifesto() {
             viewBox="0 0 320 40"
             role="presentation"
             aria-hidden="true"
-            className="mb-6 h-6 w-full max-w-[160px] text-brand opacity-70"
+            className="mb-6 h-8 w-full max-w-[208px] text-brand opacity-90"
           >
             <path
               d={WAVE_PATH}
               fill="none"
               stroke="currentColor"
-              strokeWidth="1.5"
+              strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
@@ -260,7 +260,6 @@ export function FeaturedMethod() {
             <p className="mb-3 text-xs font-semibold tracking-wide text-brand uppercase">
               Don&apos;t trust our words. Trust the result.
             </p>
-            <p className="eyebrow">Featured method</p>
             <h2 className="mt-5 text-[1.75rem] font-bold text-ink md:text-[2.5rem]">
               Thought Spin
             </h2>
