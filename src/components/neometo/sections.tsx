@@ -280,8 +280,12 @@ export function FeaturedMethod() {
               automatic loop of repetitive thinking, creating enough distance to respond instead
               of react.
             </p>
-            <Button asChild size="lg" className="mt-9 rounded-full px-8 text-base">
-              <a href="#advisor">Try Thought Spin</a>
+            <Button
+              size="lg"
+              className="mt-9 rounded-full px-8 text-base"
+              onClick={() => setOpen(true)}
+            >
+              Try Thought Spin
             </Button>
           </div>
           <div className="relative aspect-square w-full max-w-sm justify-self-center overflow-hidden rounded-3xl bg-background transition-all duration-500 motion-safe:group-hover:scale-[1.02] motion-safe:group-hover:shadow-[0_0_40px_rgba(79,110,247,0.18)] motion-safe:group-active:scale-[1.02]">
