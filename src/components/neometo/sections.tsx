@@ -63,6 +63,11 @@ export function Hero() {
           <h1 className="mt-5 text-[2.75rem] font-bold leading-[1.02] sm:text-6xl lg:text-[4rem]">
             New Methods for Modern Minds.
           </h1>
+          <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-background/70 md:text-lg">
+            Practical methods for focus, sleep, and overthinking — for the moments when your mind
+            needs another way.
+          </p>
+
 
           <form
             onSubmit={(e) => {
@@ -210,6 +215,11 @@ export function Manifesto() {
         </div>
         <div className="space-y-5 text-base leading-relaxed text-muted-foreground md:text-lg">
           <p>
+            NEOMETO explores practical methods for improving focus, sleep, and mental clarity —
+            from cognitive and behavioral techniques to guided visualization. We explain how each
+            method works and when it may be worth trying.
+          </p>
+          <p>
             Useful methods already exist across psychology, research, coaching, neuroscience and
             lived experience.
           </p>
@@ -218,6 +228,7 @@ export function Manifesto() {
             NEOMETO brings practical methods together and makes them simple to find and use.
           </p>
         </div>
+
       </Reveal>
     </section>
   );
@@ -300,10 +311,11 @@ export function FeaturedMethod() {
           <div className="relative aspect-square w-full max-w-sm justify-self-center overflow-hidden rounded-3xl bg-background transition-all duration-500 motion-safe:group-hover:scale-[1.02] motion-safe:group-hover:shadow-[0_0_40px_rgba(79,110,247,0.18)] motion-safe:group-active:scale-[1.02]">
             <img
               src={flowArt.url}
-              alt=""
-              aria-hidden="true"
+              alt="Abstract blue particle streams spiralling from a chaotic tangle into a calm, ordered ring — the Thought Spin method visual."
+              loading="lazy"
               className="absolute inset-0 size-full object-cover opacity-80"
             />
+
             <ParticleField mode="orbit" className="absolute inset-6" />
           </div>
 
