@@ -14,19 +14,24 @@ import {
   Problems,
 } from "@/components/neometo/sections";
 
+const title = "NEOMETO | Practical Methods for Focus, Sleep & Overthinking";
 const description =
-  "NEOMETO brings practical methods together for overthinking, sleep, focus and overload. Start with what you want to get better at, find a method, try it now. No label required.";
+  "Explore practical, research-informed methods for focus, sleep, and overthinking. Find the method that fits what you're experiencing right now — no diagnosis required.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "NEOMETO — New Methods for Modern Minds" },
+      { title },
       { name: "description", content: description },
-      { property: "og:title", content: "NEOMETO — New Methods for Modern Minds" },
+      { property: "og:title", content: title },
       { property: "og:description", content: description },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "/" },
+      { property: "og:image", content: flowArt.url },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: flowArt.url },
     ],
+    links: [{ rel: "canonical", href: "/" }],
     scripts: [
       {
         type: "application/ld+json",
@@ -40,6 +45,7 @@ export const Route = createFileRoute("/")({
       },
     ],
   }),
+
   component: Index,
 });
 
