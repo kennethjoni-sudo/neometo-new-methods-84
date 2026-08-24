@@ -394,7 +394,6 @@ export function FinalCta() {
   return (
     <section id="final-cta" className="scroll-mt-24 py-24 md:py-36">
       <div className="section-shell relative text-center">
-        <ParticleField className="absolute inset-x-0 -top-6 mx-auto h-56 max-w-2xl opacity-50" />
         <Reveal className="relative">
           <h2 className="text-[1.75rem] font-bold text-ink md:text-[3.25rem]">
             What will you train today?
