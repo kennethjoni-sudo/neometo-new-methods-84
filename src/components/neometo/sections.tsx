@@ -189,9 +189,16 @@ export function FeaturedMethod() {
               <a href="#advisor">Try Thought Spin</a>
             </Button>
           </div>
-          <div className="relative aspect-square w-full max-w-sm justify-self-center rounded-3xl bg-background">
+          <div className="relative aspect-square w-full max-w-sm justify-self-center overflow-hidden rounded-3xl bg-background">
+            <img
+              src={flowArt.url}
+              alt=""
+              aria-hidden="true"
+              className="absolute inset-0 size-full object-cover opacity-80"
+            />
             <ParticleField mode="orbit" className="absolute inset-6" />
           </div>
+
         </article>
       </Reveal>
     </section>
