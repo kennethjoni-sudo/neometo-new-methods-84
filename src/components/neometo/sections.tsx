@@ -65,7 +65,7 @@ export function Problems() {
       <div className="section-shell">
         <Reveal>
           <h2 className="max-w-2xl text-[1.75rem] font-bold leading-tight text-ink md:text-[2.5rem]">
-            What do you want to handle better?
+            What do you want a strategy for?
           </h2>
         </Reveal>
         <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -315,10 +315,10 @@ export function FinalCta() {
         <ParticleField className="absolute inset-x-0 -top-6 mx-auto h-56 max-w-2xl opacity-50" />
         <Reveal className="relative">
           <h2 className="text-[1.75rem] font-bold text-ink md:text-[3.25rem]">
-            What could you handle better today?
+            Get your strategy today.
           </h2>
           <Button asChild size="lg" className="mt-10 rounded-full px-10 text-base">
-            <a href="#methods">Find your method</a>
+            <a href="#methods">Get your strategy</a>
           </Button>
         </Reveal>
       </div>
