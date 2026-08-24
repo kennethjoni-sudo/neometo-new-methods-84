@@ -26,32 +26,42 @@ export function Hero() {
       id="top"
       className="relative overflow-hidden bg-ink pb-20 pt-20 text-background md:pb-28 md:pt-28"
     >
+      {/* Edge dot motif — subtle, never centered. */}
+      <div className="pointer-events-none absolute inset-0 dot-scatter opacity-30" aria-hidden="true" />
+
       <div className="section-shell relative">
         <div className="mx-auto max-w-3xl animate-rise text-center">
-          <svg
-            viewBox="0 0 320 40"
-            role="presentation"
-            aria-hidden="true"
-            className="mx-auto h-10 w-full max-w-md text-brand motion-safe:animate-wave-glow"
-          >
-            <path
-              d={WAVE_PATH}
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+          <div className="relative mx-auto h-12 w-full max-w-md md:h-14">
+            <svg
+              viewBox="0 0 320 40"
+              role="presentation"
+              aria-hidden="true"
+              className="absolute inset-0 size-full text-brand motion-safe:animate-wave-glow"
+              style={{ filter: "drop-shadow(0 0 18px color-mix(in oklab, var(--brand) 55%, transparent))" }}
+            >
+              <defs>
+                <linearGradient id="waveGradient" x1="0" y1="0" x2="100%" y2="0">
+                  <stop offset="0%" stopColor="currentColor" stopOpacity="0.7" />
+                  <stop offset="55%" stopColor="currentColor" stopOpacity="1" />
+                  <stop offset="100%" stopColor="currentColor" stopOpacity="0.5" />
+                </linearGradient>
+              </defs>
+              <path
+                d={WAVE_PATH}
+                fill="none"
+                stroke="url(#waveGradient)"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </div>
           <p className="mt-8 text-sm font-semibold tracking-[0.14em] text-brand uppercase">
             A personality hack, not a diagnosis.
           </p>
           <h1 className="mt-5 text-[2.75rem] font-bold leading-[1.02] sm:text-6xl lg:text-[4rem]">
             New Methods for Modern Minds.
           </h1>
-          <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-background/70 md:text-xl">
-            Practical methods for the moments when your mind needs another way.
-          </p>
 
           <form
             onSubmit={(e) => {
@@ -121,7 +131,7 @@ export function Problems() {
       <div className="section-shell">
         <Reveal>
           <h2 className="max-w-2xl text-[1.75rem] font-bold leading-tight text-ink md:text-[2.5rem]">
-            What do you want to get better at?
+            Methods for your mind.
           </h2>
         </Reveal>
         <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
