@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 
+import flowArt from "@/assets/neometo-flow.png.asset.json";
 import { SiteHeader } from "@/components/neometo/site-header";
+
 import { SiteFooter } from "@/components/neometo/site-footer";
 import {
   Advisor,
