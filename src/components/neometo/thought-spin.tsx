@@ -184,12 +184,8 @@ function BreathePhase({ reduced, onDone }: { reduced: boolean; onDone: () => voi
 }
 
 function SpinPhase({ reduced, onDone }: { reduced: boolean; onDone: () => void }) {
-  const elapsed = useElapsed(!reduced, "spin");
+  const elapsed = useElapsed(!reduced, "spin", SPIN_MS, onDone);
 
-  useEffect(() => {
-    const t = setTimeout(onDone, SPIN_MS);
-    return () => clearTimeout(t);
-  }, [onDone]);
 
   const p = Math.min(1, elapsed / SPIN_MS);
   // Angle: fast start, easing to a stop (integral of a decaying speed).
