@@ -58,13 +58,13 @@ function ShufflePhase({ onDone }: { onDone: () => void }) {
   const word = WORDS[index] ?? "";
 
   return (
-    <div className="flex flex-col items-center gap-14 text-center">
-      <p className="max-w-md text-sm leading-relaxed text-background/60">
+    <div className="flex flex-col items-center gap-10 text-center">
+      <Instruction>
         Just picture each word for a moment. Don&apos;t force it — let your mind drift to the next
         one.
-      </p>
+      </Instruction>
 
-      <div className="flex min-h-[7rem] items-center justify-center" aria-live="polite">
+      <div className="flex min-h-[8rem] items-center justify-center" aria-live="polite">
         <p
           key={word}
           className="animate-fade-in font-display text-4xl font-bold tracking-tight md:text-6xl"
@@ -74,9 +74,9 @@ function ShufflePhase({ onDone }: { onDone: () => void }) {
         </p>
       </div>
 
-      <p className="text-sm text-background/50">
+      <ProgressLabel>
         {index + 1} of {WORDS.length}
-      </p>
+      </ProgressLabel>
     </div>
   );
 }
