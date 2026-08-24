@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button";
 import {
   BreathingCircle,
   ExperienceShell,
+  Instruction,
+  ProgressLabel,
   ProgressRing,
   StillRing,
   useElapsed,
