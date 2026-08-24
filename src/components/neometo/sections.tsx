@@ -15,7 +15,7 @@ export function Hero() {
         src={flowArt.url}
         alt=""
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-[62%] w-full select-none object-cover opacity-70 [mask-image:linear-gradient(to_top,black,transparent_92%)] md:h-[70%]"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-[42%] w-full select-none object-cover opacity-60 [mask-image:linear-gradient(to_top,black,transparent_95%)] md:h-[52%]"
       />
       <ParticleField className="absolute inset-x-0 top-8 mx-auto hidden h-[380px] max-w-5xl opacity-40 md:block" />
       <div className="section-shell relative">
