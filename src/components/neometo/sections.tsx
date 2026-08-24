@@ -311,10 +311,11 @@ export function FeaturedMethod() {
           <div className="relative aspect-square w-full max-w-sm justify-self-center overflow-hidden rounded-3xl bg-background transition-all duration-500 motion-safe:group-hover:scale-[1.02] motion-safe:group-hover:shadow-[0_0_40px_rgba(79,110,247,0.18)] motion-safe:group-active:scale-[1.02]">
             <img
               src={flowArt.url}
-              alt=""
-              aria-hidden="true"
+              alt="Abstract blue particle streams spiralling from a chaotic tangle into a calm, ordered ring — the Thought Spin method visual."
+              loading="lazy"
               className="absolute inset-0 size-full object-cover opacity-80"
             />
+
             <ParticleField mode="orbit" className="absolute inset-6" />
           </div>
 
