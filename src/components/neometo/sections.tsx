@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { MethodGlyph, ParticleField } from "@/components/neometo/particle-field";
 import { Reveal } from "@/components/neometo/reveal";
 import { ThoughtSpinExperience } from "@/components/neometo/thought-spin";
+import { SleepExperience } from "@/components/neometo/sleep";
 
 /* ---------------------------------- Hero --------------------------------- */
 
