@@ -1,0 +1,83 @@
+{
+  "version": 1,
+  "sdk_version": "0.28.0",
+  "path": "/mcp",
+  "auth": {
+    "type": "none"
+  },
+  "mcp": {
+    "server": {
+      "name": "neometo-new-methods-84",
+      "version": "0.1.0",
+      "title": "NEOMETO: New Methods (84)"
+    },
+    "tools": [
+      {
+        "name": "find_method",
+        "title": "Find a method",
+        "description": "Describe what someone wants to handle better (racing thoughts, sleep, focus, overload, conversations, preparing for something) and get the NEOMETO methods that fit, best match first.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "situation": {
+              "type": "string",
+              "minLength": 1,
+              "description": "What is happening, in the person's own words."
+            }
+          },
+          "required": [
+            "situation"
+          ]
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "list_methods",
+        "title": "List methods",
+        "description": "List every NEOMETO method with its area, duration and what it is for. Use this to see what is available before recommending one.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_method",
+        "title": "Get a method",
+        "description": "Get the full NEOMETO method — duration, what it is for, and the steps to try it now — by its slug.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "slug": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Method slug, e.g. \"thought-spin\". Use list_methods to see valid slugs."
+            }
+          },
+          "required": [
+            "slug"
+          ]
+        },
+        "outputSchema": null
+      }
+    ]
+  }
+}
