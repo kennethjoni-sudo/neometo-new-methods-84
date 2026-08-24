@@ -215,6 +215,11 @@ export function Manifesto() {
         </div>
         <div className="space-y-5 text-base leading-relaxed text-muted-foreground md:text-lg">
           <p>
+            NEOMETO explores practical methods for improving focus, sleep, and mental clarity —
+            from cognitive and behavioral techniques to guided visualization. We explain how each
+            method works and when it may be worth trying.
+          </p>
+          <p>
             Useful methods already exist across psychology, research, coaching, neuroscience and
             lived experience.
           </p>
@@ -223,6 +228,7 @@ export function Manifesto() {
             NEOMETO brings practical methods together and makes them simple to find and use.
           </p>
         </div>
+
       </Reveal>
     </section>
   );
