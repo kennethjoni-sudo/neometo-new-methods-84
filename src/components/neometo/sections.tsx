@@ -9,19 +9,17 @@ import { Reveal } from "@/components/neometo/reveal";
 
 export function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden pb-20 pt-16 md:pb-32 md:pt-28">
+    <section
+      id="top"
+      className="relative overflow-hidden border-b border-border bg-background pb-20 pt-16 md:pb-32 md:pt-28"
+    >
       <div className="grid-fade absolute inset-0" aria-hidden="true" />
-      <img
-        src={flowArt.url}
-        alt=""
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-[42%] w-full select-none object-cover opacity-60 [mask-image:linear-gradient(to_top,black,transparent_95%)] md:h-[52%]"
-      />
+      <div className="dot-scatter pointer-events-none absolute inset-0" aria-hidden="true" />
       <ParticleField className="absolute inset-x-0 top-8 mx-auto hidden h-[380px] max-w-5xl opacity-40 md:block" />
       <div className="section-shell relative">
         <div className="max-w-3xl animate-rise">
           <p className="eyebrow">NEOMETO — New Method</p>
-          <h1 className="mt-6 text-[2.75rem] font-extrabold leading-[1.02] text-ink sm:text-6xl lg:text-[4rem]">
+          <h1 className="mt-6 text-[2.75rem] font-bold leading-[1.02] text-ink sm:text-6xl lg:text-[4rem]">
             New Methods for Modern Minds.
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground md:text-xl">
@@ -53,12 +51,12 @@ export function Hero() {
 /* -------------------------------- Problems -------------------------------- */
 
 const problems = [
-  { title: "Overthinking", hint: "Thoughts that keep looping" },
-  { title: "Sleep", hint: "A mind that won't switch off" },
-  { title: "Focus", hint: "Starting and staying with it" },
-  { title: "Overload", hint: "Too much, all at once" },
-  { title: "Social situations", hint: "Before, during and after" },
-  { title: "Prepare for something", hint: "When it matters tomorrow" },
+  { title: "Thoughts won't stop spinning?", hint: "Get a method to slow them down." },
+  { title: "Mind still running at 2am?", hint: "Fall asleep faster, tonight." },
+  { title: "Can't hold focus for more than a minute?", hint: "Sharpen it, fast." },
+  { title: "Everything hitting at once?", hint: "Bring it down to one thing at a time." },
+  { title: "Replaying every conversation afterward?", hint: "Prepare beforehand, recover faster after." },
+  { title: "Something big coming up?", hint: "Walk in steadier." },
 ];
 
 export function Problems() {
