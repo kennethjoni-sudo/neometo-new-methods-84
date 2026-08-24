@@ -7,6 +7,8 @@ import { MethodGlyph, ParticleField } from "@/components/neometo/particle-field"
 import { Reveal } from "@/components/neometo/reveal";
 import { ThoughtSpinExperience } from "@/components/neometo/thought-spin";
 import { SleepExperience } from "@/components/neometo/sleep";
+import { FocusExperience } from "@/components/neometo/focus";
+
 
 /* ---------------------------------- Hero --------------------------------- */
 
@@ -126,7 +128,7 @@ export function Hero() {
 const problems = [
   { title: "Thoughts won't stop spinning?", hint: "Get a method to slow them down.", available: true },
   { title: "Mind still running at 2am?", hint: "Fall asleep faster, tonight.", available: true, method: "sleep" as const },
-  { title: "Can't hold focus for more than a minute?", hint: "Sharpen it, fast.", available: false },
+  { title: "Can't hold focus for more than a minute?", hint: "Sharpen it, fast.", available: true, method: "focus" as const },
   { title: "Everything hitting at once?", hint: "Bring it down to one thing at a time.", available: false },
   { title: "Replaying every conversation afterward?", hint: "Prepare beforehand, recover faster after.", available: false },
   { title: "Something big coming up?", hint: "Walk in steadier.", available: false },
@@ -134,10 +136,12 @@ const problems = [
 
 export function Problems() {
   const [sleepOpen, setSleepOpen] = useState(false);
+  const [focusOpen, setFocusOpen] = useState(false);
 
   return (
     <section id="methods" className="scroll-mt-24 py-20 md:py-28">
       {sleepOpen && <SleepExperience onClose={() => setSleepOpen(false)} />}
+      {focusOpen && <FocusExperience onClose={() => setFocusOpen(false)} />}
       <div className="section-shell">
         <Reveal>
           <h2 className="max-w-2xl text-[1.75rem] font-bold leading-tight text-ink md:text-[2.5rem]">
@@ -150,9 +154,11 @@ export function Problems() {
               <button
                 type="button"
                 onClick={
-                  "method" in problem && problem.method === "sleep"
+                  problem.method === "sleep"
                     ? () => setSleepOpen(true)
-                    : undefined
+                    : problem.method === "focus"
+                      ? () => setFocusOpen(true)
+                      : undefined
                 }
                 className="group relative flex h-full min-h-[260px] w-full flex-col items-start overflow-hidden rounded-3xl border border-border bg-surface p-7 text-left shadow-soft transition-all duration-500 hover:-translate-y-1 hover:border-brand/40 hover:shadow-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
@@ -195,6 +201,7 @@ export function Problems() {
     </section>
   );
 }
+
 
 /* ------------------------------- Positioning ------------------------------- */
 
