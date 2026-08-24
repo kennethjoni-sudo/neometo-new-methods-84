@@ -258,9 +258,15 @@ export function Philosophy() {
   return (
     <section id="philosophy" className="scroll-mt-24 py-20 md:py-28">
       <Reveal className="section-shell">
-        <div className="rounded-4xl bg-ink px-7 py-16 text-background md:px-16 md:py-24">
-          <h2 className="max-w-3xl text-[1.75rem] font-extrabold leading-tight md:text-[2.75rem]">
-            You don&apos;t need a label to use a useful method.
+        <div className="relative overflow-hidden rounded-4xl bg-ink px-7 py-16 text-background md:px-16 md:py-24">
+          <img
+            src={flowArt.url}
+            alt=""
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 size-full object-cover opacity-60 mix-blend-screen"
+          />
+          <h2 className="relative max-w-3xl text-[1.75rem] font-extrabold leading-tight md:text-[2.75rem]">
+
           </h2>
           <div className="mt-8 max-w-2xl space-y-4 text-base leading-relaxed opacity-80 md:text-lg">
             <p>NEOMETO starts with what you want to handle better — not what somebody calls it.</p>
