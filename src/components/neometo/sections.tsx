@@ -259,21 +259,18 @@ export function Philosophy() {
     <section id="philosophy" className="scroll-mt-24 py-20 md:py-28">
       <Reveal className="section-shell">
         <div className="relative overflow-hidden rounded-4xl bg-ink px-7 py-16 text-background md:px-16 md:py-24">
-          <img
-            src={flowArt.url}
-            alt=""
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0 size-full object-cover opacity-60 mix-blend-screen"
-          />
-          <h2 className="relative max-w-3xl text-[1.75rem] font-extrabold leading-tight md:text-[2.75rem]">
-            You don&apos;t need a label to use a useful method.
+          <h2 className="relative max-w-3xl text-[1.75rem] font-bold leading-tight md:text-[2.75rem]">
+            This isn&apos;t for people with a problem. It&apos;s for people who want more control
+            over their own mind.
           </h2>
           <div className="relative mt-8 max-w-2xl space-y-4 text-base leading-relaxed opacity-80 md:text-lg">
-
-            <p>NEOMETO starts with what you want to handle better — not what somebody calls it.</p>
             <p>
-              Methods can be useful whether you&apos;re neurotypical, neurodivergent, diagnosed,
-              undiagnosed or simply having a difficult day.
+              NEOMETO isn&apos;t built around a diagnosis. It&apos;s built around a pattern
+              you&apos;ve noticed — even if you&apos;ve never had a name for it, even if
+              you&apos;ve managed it quietly for years.
+            </p>
+            <p className="font-medium opacity-100">
+              You don&apos;t need a label to use a useful method.
             </p>
           </div>
         </div>
