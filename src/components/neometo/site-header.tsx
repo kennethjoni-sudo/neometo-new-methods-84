@@ -12,7 +12,7 @@ export function SiteHeader() {
       <div className="section-shell flex h-16 items-center justify-between md:h-20">
         <a
           href="#top"
-          className="text-base font-extrabold tracking-[0.22em] text-ink transition-opacity hover:opacity-70"
+          className="text-base font-bold tracking-[0.22em] text-ink transition-opacity hover:opacity-70"
         >
           NEOMETO
         </a>

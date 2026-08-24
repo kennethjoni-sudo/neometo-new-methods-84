@@ -9,19 +9,17 @@ import { Reveal } from "@/components/neometo/reveal";
 
 export function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden pb-20 pt-16 md:pb-32 md:pt-28">
+    <section
+      id="top"
+      className="relative overflow-hidden border-b border-border bg-background pb-20 pt-16 md:pb-32 md:pt-28"
+    >
       <div className="grid-fade absolute inset-0" aria-hidden="true" />
-      <img
-        src={flowArt.url}
-        alt=""
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-[42%] w-full select-none object-cover opacity-60 [mask-image:linear-gradient(to_top,black,transparent_95%)] md:h-[52%]"
-      />
+      <div className="dot-scatter pointer-events-none absolute inset-0" aria-hidden="true" />
       <ParticleField className="absolute inset-x-0 top-8 mx-auto hidden h-[380px] max-w-5xl opacity-40 md:block" />
       <div className="section-shell relative">
         <div className="max-w-3xl animate-rise">
           <p className="eyebrow">NEOMETO — New Method</p>
-          <h1 className="mt-6 text-[2.75rem] font-extrabold leading-[1.02] text-ink sm:text-6xl lg:text-[4rem]">
+          <h1 className="mt-6 text-[2.75rem] font-bold leading-[1.02] text-ink sm:text-6xl lg:text-[4rem]">
             New Methods for Modern Minds.
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground md:text-xl">
@@ -53,12 +51,12 @@ export function Hero() {
 /* -------------------------------- Problems -------------------------------- */
 
 const problems = [
-  { title: "Overthinking", hint: "Thoughts that keep looping" },
-  { title: "Sleep", hint: "A mind that won't switch off" },
-  { title: "Focus", hint: "Starting and staying with it" },
-  { title: "Overload", hint: "Too much, all at once" },
-  { title: "Social situations", hint: "Before, during and after" },
-  { title: "Prepare for something", hint: "When it matters tomorrow" },
+  { title: "Thoughts won't stop spinning?", hint: "Get a method to slow them down." },
+  { title: "Mind still running at 2am?", hint: "Fall asleep faster, tonight." },
+  { title: "Can't hold focus for more than a minute?", hint: "Sharpen it, fast." },
+  { title: "Everything hitting at once?", hint: "Bring it down to one thing at a time." },
+  { title: "Replaying every conversation afterward?", hint: "Prepare beforehand, recover faster after." },
+  { title: "Something big coming up?", hint: "Walk in steadier." },
 ];
 
 export function Problems() {
@@ -66,7 +64,7 @@ export function Problems() {
     <section id="methods" className="scroll-mt-24 py-20 md:py-28">
       <div className="section-shell">
         <Reveal>
-          <h2 className="max-w-2xl text-[1.75rem] font-extrabold leading-tight text-ink md:text-[2.5rem]">
+          <h2 className="max-w-2xl text-[1.75rem] font-bold leading-tight text-ink md:text-[2.5rem]">
             What do you want to handle better?
           </h2>
         </Reveal>
@@ -81,7 +79,9 @@ export function Problems() {
                 <span className="relative">
                   <MethodGlyph variant={i} />
                 </span>
-                <span className="relative mt-6 text-xl font-bold text-ink">{problem.title}</span>
+                <span className="relative mt-6 font-display text-xl font-bold leading-snug tracking-[-0.015em] text-ink">
+                  {problem.title}
+                </span>
                 <span className="relative mt-2 text-sm leading-relaxed text-muted-foreground">
                   {problem.hint}
                 </span>
@@ -112,7 +112,7 @@ export function Manifesto() {
   return (
     <section className="py-20 md:py-28">
       <Reveal className="section-shell grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:items-center">
-        <h2 className="text-[1.75rem] font-extrabold leading-tight text-ink md:text-[2.5rem]">
+        <h2 className="text-[1.75rem] font-bold leading-tight text-ink md:text-[2.5rem]">
           You don&apos;t always need another explanation. Sometimes you need a method.
         </h2>
         <div className="space-y-5 text-base leading-relaxed text-muted-foreground md:text-lg">
@@ -149,7 +149,7 @@ export function HowItWorks() {
           {steps.map((step, i) => (
             <Reveal as="li" key={step.number} delay={i * 120}>
               <div className="h-full rounded-3xl border border-border bg-surface p-8 shadow-soft transition-transform duration-500 hover:-translate-y-1">
-                <span className="block text-5xl font-extrabold tracking-tight text-brand-soft">
+                <span className="block text-5xl font-bold tracking-tight text-brand-soft">
                   {step.number}
                 </span>
                 <h3 className="mt-6 text-xl font-bold text-ink md:text-[1.75rem]">{step.title}</h3>
@@ -174,7 +174,7 @@ export function FeaturedMethod() {
         <article className="grid gap-10 overflow-hidden rounded-4xl border border-border bg-surface p-8 shadow-soft transition-shadow duration-700 hover:shadow-lift md:grid-cols-[1fr_0.8fr] md:items-center md:p-14">
           <div>
             <p className="eyebrow">Featured method</p>
-            <h2 className="mt-5 text-[1.75rem] font-extrabold text-ink md:text-[2.5rem]">
+            <h2 className="mt-5 text-[1.75rem] font-bold text-ink md:text-[2.5rem]">
               Thought Spin
             </h2>
             <p className="mt-3 text-sm font-semibold text-brand">2–3 minutes</p>
@@ -212,7 +212,7 @@ export function Advisor() {
     <section id="advisor" className="scroll-mt-24 py-20 md:py-28">
       <Reveal className="section-shell grid gap-12 lg:grid-cols-2 lg:items-center">
         <div>
-          <h2 className="text-[1.75rem] font-extrabold leading-tight text-ink md:text-[2.5rem]">
+          <h2 className="text-[1.75rem] font-bold leading-tight text-ink md:text-[2.5rem]">
             Not sure what method you need?
           </h2>
           <Button asChild size="lg" className="mt-8 rounded-full px-8 text-base">
@@ -259,21 +259,18 @@ export function Philosophy() {
     <section id="philosophy" className="scroll-mt-24 py-20 md:py-28">
       <Reveal className="section-shell">
         <div className="relative overflow-hidden rounded-4xl bg-ink px-7 py-16 text-background md:px-16 md:py-24">
-          <img
-            src={flowArt.url}
-            alt=""
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0 size-full object-cover opacity-60 mix-blend-screen"
-          />
-          <h2 className="relative max-w-3xl text-[1.75rem] font-extrabold leading-tight md:text-[2.75rem]">
-            You don&apos;t need a label to use a useful method.
+          <h2 className="relative max-w-3xl text-[1.75rem] font-bold leading-tight md:text-[2.75rem]">
+            This isn&apos;t for people with a problem. It&apos;s for people who want more control
+            over their own mind.
           </h2>
           <div className="relative mt-8 max-w-2xl space-y-4 text-base leading-relaxed opacity-80 md:text-lg">
-
-            <p>NEOMETO starts with what you want to handle better — not what somebody calls it.</p>
             <p>
-              Methods can be useful whether you&apos;re neurotypical, neurodivergent, diagnosed,
-              undiagnosed or simply having a difficult day.
+              NEOMETO isn&apos;t built around a diagnosis. It&apos;s built around a pattern
+              you&apos;ve noticed — even if you&apos;ve never had a name for it, even if
+              you&apos;ve managed it quietly for years.
+            </p>
+            <p className="font-medium opacity-100">
+              You don&apos;t need a label to use a useful method.
             </p>
           </div>
         </div>
@@ -291,7 +288,7 @@ export function Coming() {
     <section id="coming" className="scroll-mt-24 py-20 md:py-28">
       <div className="section-shell">
         <Reveal>
-          <h2 className="text-[1.75rem] font-extrabold text-ink md:text-[2.5rem]">
+          <h2 className="text-[1.75rem] font-bold text-ink md:text-[2.5rem]">
             One method becomes many.
           </h2>
         </Reveal>
@@ -317,7 +314,7 @@ export function FinalCta() {
       <div className="section-shell relative text-center">
         <ParticleField className="absolute inset-x-0 -top-6 mx-auto h-56 max-w-2xl opacity-50" />
         <Reveal className="relative">
-          <h2 className="text-[1.75rem] font-extrabold text-ink md:text-[3.25rem]">
+          <h2 className="text-[1.75rem] font-bold text-ink md:text-[3.25rem]">
             What could you handle better today?
           </h2>
           <Button asChild size="lg" className="mt-10 rounded-full px-10 text-base">
