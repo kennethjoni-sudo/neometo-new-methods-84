@@ -118,12 +118,12 @@ export function Hero() {
 /* -------------------------------- Problems -------------------------------- */
 
 const problems = [
-  { title: "Thoughts won't stop spinning?", hint: "Get a method to slow them down." },
-  { title: "Mind still running at 2am?", hint: "Fall asleep faster, tonight." },
-  { title: "Can't hold focus for more than a minute?", hint: "Sharpen it, fast." },
-  { title: "Everything hitting at once?", hint: "Bring it down to one thing at a time." },
-  { title: "Replaying every conversation afterward?", hint: "Prepare beforehand, recover faster after." },
-  { title: "Something big coming up?", hint: "Walk in steadier." },
+  { title: "Thoughts won't stop spinning?", hint: "Get a method to slow them down.", available: true },
+  { title: "Mind still running at 2am?", hint: "Fall asleep faster, tonight.", available: false },
+  { title: "Can't hold focus for more than a minute?", hint: "Sharpen it, fast.", available: false },
+  { title: "Everything hitting at once?", hint: "Bring it down to one thing at a time.", available: false },
+  { title: "Replaying every conversation afterward?", hint: "Prepare beforehand, recover faster after.", available: false },
+  { title: "Something big coming up?", hint: "Walk in steadier.", available: false },
 ];
 
 export function Problems() {
