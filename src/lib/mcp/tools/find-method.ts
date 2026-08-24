@@ -1,7 +1,7 @@
 import { defineTool } from "@lovable.dev/mcp-js";
 import { z } from "zod";
 
-import { findMethods } from "../methods";
+import { findMethods, methodSchema } from "../methods";
 
 export default defineTool({
   name: "find_method",
@@ -9,12 +9,9 @@ export default defineTool({
   description:
     "Describe what someone wants to handle better (racing thoughts, sleep, focus, overload, conversations, preparing for something) and get the NEOMETO methods that fit, best match first.",
   inputSchema: {
-    situation: z
-      .string()
-      .trim()
-      .min(1)
-      .describe("What is happening, in the person's own words."),
+    situation: z.string().trim().min(1).describe("What is happening, in the person's own words."),
   },
+  outputSchema: { matches: z.array(methodSchema) },
   annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false },
   handler: ({ situation }) => {
     const matches = findMethods(situation).slice(0, 3);

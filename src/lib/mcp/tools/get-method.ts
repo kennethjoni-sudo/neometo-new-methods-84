@@ -1,7 +1,7 @@
 import { ToolError, defineTool } from "@lovable.dev/mcp-js";
 import { z } from "zod";
 
-import { methods } from "../methods";
+import { methodSchema, methods } from "../methods";
 
 export default defineTool({
   name: "get_method",
@@ -13,8 +13,9 @@ export default defineTool({
       .string()
       .trim()
       .min(1)
-      .describe("Method slug, e.g. \"thought-spin\". Use list_methods to see valid slugs."),
+      .describe('Method slug, e.g. "thought-spin". Use list_methods to see valid slugs.'),
   },
+  outputSchema: { method: methodSchema },
   annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false },
   handler: ({ slug }) => {
     const method = methods.find((m) => m.slug === slug.toLowerCase());
