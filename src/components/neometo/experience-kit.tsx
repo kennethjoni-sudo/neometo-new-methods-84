@@ -214,7 +214,7 @@ export function ExperienceShell({
 }: {
   label: string;
   onClose: () => void;
-  onBack?: () => void;
+  onBack?: (() => void) | undefined;
   backLabel?: string;
   children: ReactNode;
 }) {
