@@ -15,7 +15,7 @@ import {
 } from "@/components/neometo/sections";
 
 const description =
-  "NEOMETO brings practical methods together for overthinking, sleep, focus and overload. Start with the problem, find a method, try it now. No diagnosis required.";
+  "NEOMETO brings practical methods together for overthinking, sleep, focus and overload. Start with what you want to get better at, find a method, try it now. No label required.";
 
 export const Route = createFileRoute("/")({
   head: () => ({

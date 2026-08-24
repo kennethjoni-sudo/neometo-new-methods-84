@@ -121,7 +121,7 @@ export function Problems() {
       <div className="section-shell">
         <Reveal>
           <h2 className="max-w-2xl text-[1.75rem] font-bold leading-tight text-ink md:text-[2.5rem]">
-            What do you want a strategy for?
+            What do you want to get better at?
           </h2>
         </Reveal>
         <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -176,7 +176,7 @@ export function Manifesto() {
             Useful methods already exist across psychology, research, coaching, neuroscience and
             lived experience.
           </p>
-          <p>The problem is finding the right one when you actually need it.</p>
+          <p>The hard part is finding the right one when you actually need it.</p>
           <p className="font-medium text-ink">
             NEOMETO brings practical methods together and makes them simple to find and use.
           </p>
@@ -214,7 +214,7 @@ export function HowItWorks() {
           ))}
         </ol>
         <Reveal>
-          <p className="mt-10 text-lg font-semibold text-success">No diagnosis required.</p>
+          <p className="mt-10 text-lg font-semibold text-success">No label required.</p>
         </Reveal>
       </div>
     </section>
@@ -316,8 +316,7 @@ export function Philosophy() {
       <Reveal className="section-shell">
         <div className="relative overflow-hidden rounded-4xl bg-ink px-7 py-16 text-background md:px-16 md:py-24">
           <h2 className="relative max-w-3xl text-[1.75rem] font-bold leading-tight md:text-[2.75rem]">
-            This isn&apos;t for people with a problem. It&apos;s for people who want more control
-            over their own mind.
+            Your mind is a skill. Not a diagnosis.
           </h2>
           <div className="relative mt-8 max-w-2xl space-y-4 text-base leading-relaxed opacity-80 md:text-lg">
             <p>
@@ -326,7 +325,7 @@ export function Philosophy() {
               you&apos;ve managed it quietly for years.
             </p>
             <p className="font-medium opacity-100">
-              You don&apos;t need a label to use a useful method.
+              You don&apos;t need a label to train a skill.
             </p>
           </div>
         </div>
@@ -371,10 +370,10 @@ export function FinalCta() {
         <ParticleField className="absolute inset-x-0 -top-6 mx-auto h-56 max-w-2xl opacity-50" />
         <Reveal className="relative">
           <h2 className="text-[1.75rem] font-bold text-ink md:text-[3.25rem]">
-            Get your strategy today.
+            What will you train today?
           </h2>
           <Button asChild size="lg" className="mt-10 rounded-full px-10 text-base">
-            <a href="#methods">Get your strategy</a>
+            <a href="#methods">Start training</a>
           </Button>
         </Reveal>
       </div>
