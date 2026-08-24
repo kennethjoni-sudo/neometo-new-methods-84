@@ -143,6 +143,11 @@ export function Problems() {
                 className="group relative flex h-full min-h-[260px] w-full flex-col items-start overflow-hidden rounded-3xl border border-border bg-surface p-7 text-left shadow-soft transition-all duration-500 hover:-translate-y-1 hover:border-brand/40 hover:shadow-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
                 <span className="absolute -right-10 -top-10 size-28 rounded-full bg-brand-soft opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                {!problem.available && (
+                  <span className="absolute right-4 top-4 rounded-full bg-muted px-2.5 py-1 text-xs font-medium text-muted-foreground">
+                    Coming soon
+                  </span>
+                )}
                 <span className="relative">
                   <MethodGlyph variant={i} />
                 </span>
@@ -152,8 +157,12 @@ export function Problems() {
                 <span className="relative mt-2 text-sm leading-relaxed text-muted-foreground">
                   {problem.hint}
                 </span>
-                <span className="relative mt-auto inline-flex items-center gap-2 text-sm font-semibold text-brand">
-                  Find a method
+                <span
+                  className={`relative mt-auto inline-flex items-center gap-2 text-sm font-semibold ${
+                    problem.available ? "text-brand" : "text-muted-foreground"
+                  }`}
+                >
+                  {problem.available ? "Find a method" : "Notify me"}
                   <ArrowRight className="size-4 transition-transform duration-500 group-hover:translate-x-1" />
                 </span>
               </button>
