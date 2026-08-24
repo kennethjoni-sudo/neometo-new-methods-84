@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button";
 import {
   BreathingCircle,
   ExperienceShell,
+  Instruction,
+  ProgressLabel,
   ProgressRing,
   StillRing,
   useElapsed,
@@ -49,7 +51,7 @@ const WORDS = [
   "cotton thread",
   "harbour rope",
 ];
-const WORD_MS = 4500;
+const WORD_MS = 3500;
 
 function ShufflePhase({ onDone }: { onDone: () => void }) {
   const total = WORDS.length * WORD_MS;
@@ -58,13 +60,13 @@ function ShufflePhase({ onDone }: { onDone: () => void }) {
   const word = WORDS[index] ?? "";
 
   return (
-    <div className="flex flex-col items-center gap-14 text-center">
-      <p className="max-w-md text-sm leading-relaxed text-background/60">
+    <div className="flex flex-col items-center gap-10 text-center">
+      <Instruction>
         Just picture each word for a moment. Don&apos;t force it — let your mind drift to the next
         one.
-      </p>
+      </Instruction>
 
-      <div className="flex min-h-[7rem] items-center justify-center" aria-live="polite">
+      <div className="flex min-h-[8rem] items-center justify-center" aria-live="polite">
         <p
           key={word}
           className="animate-fade-in font-display text-4xl font-bold tracking-tight md:text-6xl"
@@ -74,9 +76,9 @@ function ShufflePhase({ onDone }: { onDone: () => void }) {
         </p>
       </div>
 
-      <p className="text-sm text-background/50">
+      <ProgressLabel>
         {index + 1} of {WORDS.length}
-      </p>
+      </ProgressLabel>
     </div>
   );
 }
@@ -104,7 +106,11 @@ function BodyScanPhase({ reduced, onDone }: { reduced: boolean; onDone: () => vo
   const progress = Math.min(1, elapsed / total);
 
   return (
-    <div className="flex flex-col items-center gap-12 text-center">
+    <div className="flex flex-col items-center gap-10 text-center">
+      <Instruction>
+        Move through your body one part at a time. Let each one go as you reach it.
+      </Instruction>
+
       <div className="relative size-56 md:size-64">
         <ProgressRing progress={progress} />
         <div
@@ -126,18 +132,18 @@ function BodyScanPhase({ reduced, onDone }: { reduced: boolean; onDone: () => vo
           })}
       </div>
 
-      <div className="flex min-h-[6rem] max-w-md items-center justify-center" aria-live="polite">
+      <div className="flex min-h-[7rem] max-w-md items-center justify-center" aria-live="polite">
         <p
           key={line}
-          className="animate-fade-in text-2xl font-medium leading-snug md:text-3xl"
+          className="animate-fade-in font-display text-2xl font-bold leading-snug tracking-tight md:text-3xl"
         >
           {line}
         </p>
       </div>
 
-      <p className="text-sm text-background/50">
+      <ProgressLabel>
         Step {index + 1} of {BODY_STEPS.length}
-      </p>
+      </ProgressLabel>
     </div>
   );
 }
@@ -191,6 +197,7 @@ export function SleepExperience({ onClose }: { onClose: () => void }) {
           reduced={reduced}
           cycles={4}
           onDone={toClose}
+          instruction="Breathe with the circle. Out longer than in — that's what settles you."
           pattern={[
             { label: "Breathe in", ms: 4000 },
             { label: "Hold", ms: 7000 },

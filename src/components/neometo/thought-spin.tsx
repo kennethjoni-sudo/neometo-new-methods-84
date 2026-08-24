@@ -4,7 +4,9 @@ import { Button } from "@/components/ui/button";
 import {
   BreathingCircle,
   ExperienceShell,
+  Instruction,
   PARTICLES,
+  ProgressLabel,
   ProgressRing,
   StillRing,
   useElapsed,
@@ -40,7 +42,9 @@ function SpinPhase({ reduced, onDone }: { reduced: boolean; onDone: () => void }
   );
 
   return (
-    <div className="flex flex-col items-center gap-12">
+    <div className="flex flex-col items-center gap-10">
+      <Instruction>Watch the center. Let your thoughts move with it.</Instruction>
+
       <div className="relative size-72 md:size-96">
         <ProgressRing progress={p} />
         <div className="absolute inset-0" style={{ transform: `rotate(${angle}deg)` }}>
@@ -65,16 +69,12 @@ function SpinPhase({ reduced, onDone }: { reduced: boolean; onDone: () => void }
       </div>
 
       <div className="max-w-sm text-center" aria-live="polite">
-        <p
-          className="text-lg text-background/80 transition-opacity duration-[3000ms]"
-          style={{ opacity: reduced ? 1 : elapsed > 12_000 ? 0.18 : 1 }}
-        >
-          Watch the center. Let your thoughts move with it.
-        </p>
-        {reduced && (
-          <p className="mt-4 text-sm text-background/60">
+        {reduced ? (
+          <p className="text-sm text-background/60">
             The ring is slowing and settling. Stay with it until it&apos;s still.
           </p>
+        ) : (
+          <ProgressLabel>{Math.round(p * 100)}% settled</ProgressLabel>
         )}
       </div>
     </div>

@@ -121,6 +121,23 @@ export function StillRing({ className = "size-56 md:size-64" }: { className?: st
   );
 }
 
+/**
+ * Standard guidance line for every method phase.
+ * Rhythm: instruction (clear) → main content (dominant) → progress (quiet).
+ */
+export function Instruction({ children }: { children: ReactNode }) {
+  return (
+    <p className="max-w-md text-balance text-center text-lg font-medium leading-relaxed text-background/85 md:text-xl">
+      {children}
+    </p>
+  );
+}
+
+/** Quiet, secondary progress text. */
+export function ProgressLabel({ children }: { children: ReactNode }) {
+  return <p className="text-sm text-background/45">{children}</p>;
+}
+
 export type BreathStep = { label: string; ms: number };
 
 /** Generic breathing circle driven by an arbitrary step pattern. */
@@ -130,12 +147,14 @@ export function BreathingCircle({
   cycles,
   onDone,
   cycleNoun = "Breath",
+  instruction = "Follow the circle. Let your breath match its pace.",
 }: {
   reduced: boolean;
   pattern: BreathStep[];
   cycles: number;
   onDone: () => void;
   cycleNoun?: string;
+  instruction?: string;
 }) {
   const cycleMs = pattern.reduce((s, p) => s + p.ms, 0);
   const totalMs = cycleMs * cycles;
@@ -165,7 +184,9 @@ export function BreathingCircle({
   else if (stepIndex === pattern.length - 1) scale = 1 - 0.4 * ease;
 
   return (
-    <div className="flex flex-col items-center gap-12">
+    <div className="flex flex-col items-center gap-10">
+      <Instruction>{instruction}</Instruction>
+
       <div className="relative size-64 md:size-80">
         <ProgressRing progress={Math.min(1, elapsed / totalMs)} />
         <div
@@ -193,12 +214,17 @@ export function BreathingCircle({
       </div>
 
       <div className="text-center" aria-live="polite">
-        <p key={step.label} className="animate-fade-in text-3xl font-bold tracking-tight md:text-4xl">
+        <p
+          key={step.label}
+          className="animate-fade-in font-display text-4xl font-bold tracking-tight md:text-5xl"
+        >
           {step.label}
         </p>
-        <p className="mt-4 text-sm text-background/60">
-          {cycleNoun} {cycleIndex + 1} of {cycles}
-        </p>
+        <div className="mt-6">
+          <ProgressLabel>
+            {cycleNoun} {cycleIndex + 1} of {cycles}
+          </ProgressLabel>
+        </div>
       </div>
     </div>
   );
