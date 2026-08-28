@@ -1,3 +1,6 @@
+Here's the complete file — select all in your GitHub editor, delete, then paste this in:
+
+```tsx
 import { useState } from "react";
 import { ArrowRight, ArrowUp, Sparkles } from "lucide-react";
 
@@ -8,6 +11,10 @@ import { Reveal } from "@/components/neometo/reveal";
 import { ThoughtSpinExperience } from "@/components/neometo/thought-spin";
 import { SleepExperience } from "@/components/neometo/sleep";
 import { FocusExperience } from "@/components/neometo/focus";
+import { OverloadExperience } from "@/components/neometo/overload";
+import { SocialExperience } from "@/components/neometo/social";
+import { PrepareExperience } from "@/components/neometo/prepare";
+
 
 
 /* ---------------------------------- Hero --------------------------------- */
@@ -109,7 +116,7 @@ export function Hero() {
                 {chip}
               </button>
             ))}
-            <a
+            
               href="#methods"
               className="rounded-[14px] bg-brand px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90"
             >
@@ -129,9 +136,9 @@ const problems = [
   { title: "Thoughts won't stop spinning?", hint: "Get a method to slow them down.", available: true, method: "spin" as const },
   { title: "Mind still running at 2am?", hint: "Fall asleep faster, tonight.", available: true, method: "sleep" as const },
   { title: "Can't hold focus for more than a minute?", hint: "Sharpen it, fast.", available: true, method: "focus" as const },
-  { title: "Everything hitting at once?", hint: "Bring it down to one thing at a time.", available: false },
-  { title: "Replaying every conversation afterward?", hint: "Prepare beforehand, recover faster after.", available: false },
-  { title: "Something big coming up?", hint: "Walk in steadier.", available: false },
+  { title: "Everything hitting at once?", hint: "Bring it down to one thing at a time.", available: true, method: "overload" as const },
+  { title: "Replaying every conversation afterward?", hint: "Prepare beforehand, recover faster after.", available: true, method: "social" as const },
+  { title: "Something big coming up?", hint: "Walk in steadier.", available: true, method: "prepare" as const },
 ];
 
 export function Problems() {
@@ -139,11 +146,19 @@ export function Problems() {
   const [focusOpen, setFocusOpen] = useState(false);
   const [spinOpen, setSpinOpen] = useState(false);
 
+  const [overloadOpen, setOverloadOpen] = useState(false);
+  const [socialOpen, setSocialOpen] = useState(false);
+  const [prepareOpen, setPrepareOpen] = useState(false);
+
   return (
     <section id="methods" className="scroll-mt-24 py-20 md:py-28">
       {sleepOpen && <SleepExperience onClose={() => setSleepOpen(false)} />}
       {focusOpen && <FocusExperience onClose={() => setFocusOpen(false)} />}
       {spinOpen && <ThoughtSpinExperience onClose={() => setSpinOpen(false)} />}
+      {overloadOpen && <OverloadExperience onClose={() => setOverloadOpen(false)} />}
+      {socialOpen && <SocialExperience onClose={() => setSocialOpen(false)} />}
+      {prepareOpen && <PrepareExperience onClose={() => setPrepareOpen(false)} />}
+
       <div className="section-shell">
         <Reveal>
           <h2 className="max-w-2xl text-[1.75rem] font-bold leading-tight text-ink md:text-[2.5rem]">
@@ -159,7 +174,13 @@ export function Problems() {
                   ? () => setFocusOpen(true)
                   : problem.method === "spin"
                     ? () => setSpinOpen(true)
-                    : undefined;
+                    : problem.method === "overload"
+                      ? () => setOverloadOpen(true)
+                      : problem.method === "social"
+                        ? () => setSocialOpen(true)
+                        : problem.method === "prepare"
+                          ? () => setPrepareOpen(true)
+                          : undefined;
             const interactive = Boolean(open);
             const Tag = interactive ? "button" : "div";
             return (
@@ -206,7 +227,7 @@ export function Problems() {
 
         </ul>
         <Reveal>
-          <a
+          
             href="#advisor"
             className="mt-8 inline-flex items-center gap-2 rounded-full text-sm font-semibold text-ink transition-colors hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:ring-offset-background"
           >
