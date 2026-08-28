@@ -1,5 +1,4 @@
 tsx
-import { useState } from "react";
 import { ArrowRight, ArrowUp, Sparkles } from "lucide-react";
 
 import flowArt from "@/assets/neometo-flow.png.asset.json";
