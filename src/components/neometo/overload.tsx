@@ -52,5 +52,5 @@ export const overloadMethod: MethodConfig = {
 };
 
 export function OverloadExperience({ onClose }: { onClose: () => void }) {
-  return ;
+  return <MethodExperience config={overloadMethod} onClose={onClose} />;
 }
