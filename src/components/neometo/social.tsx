@@ -52,5 +52,5 @@ actions: [
 };
 
 export function SocialExperience({ onClose }: { onClose: () => void }) {
-return ;
+  return <MethodExperience config={socialMethod} onClose={onClose} />;
 }
