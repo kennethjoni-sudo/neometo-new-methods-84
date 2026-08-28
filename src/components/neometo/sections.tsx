@@ -1,3 +1,4 @@
+tsx
 import { useState } from "react";
 import { ArrowRight, ArrowUp, Sparkles } from "lucide-react";
 
@@ -147,4 +148,394 @@ export function Problems() {
   return (
     <section id="methods" className="scroll-mt-24 py-20 md:py-28">
       {sleepOpen && <SleepExperience onClose={() => setSleepOpen(false)} />}
-      {focusOpen && <FocusExperience onClose={() => setFocusOpen(false)}
+      {focusOpen && <FocusExperience onClose={() => setFocusOpen(false)} />}
+      {spinOpen && <ThoughtSpinExperience onClose={() => setSpinOpen(false)} />}
+      {overloadOpen && <OverloadExperience onClose={() => setOverloadOpen(false)} />}
+      {socialOpen && <SocialExperience onClose={() => setSocialOpen(false)} />}
+      {prepareOpen && <PrepareExperience onClose={() => setPrepareOpen(false)} />}
+
+      <div className="section-shell">
+        <Reveal>
+          <h2 className="max-w-2xl text-[1.75rem] font-bold leading-tight text-ink md:text-[2.5rem]">
+            What do you want to get better at?
+          </h2>
+        </Reveal>
+        <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {problems.map((problem, i) => {
+            const open =
+              problem.method === "sleep"
+                ? () => setSleepOpen(true)
+                : problem.method === "focus"
+                  ? () => setFocusOpen(true)
+                  : problem.method === "spin"
+                    ? () => setSpinOpen(true)
+                    : problem.method === "overload"
+                      ? () => setOverloadOpen(true)
+                      : problem.method === "social"
+                        ? () => setSocialOpen(true)
+                        : problem.method === "prepare"
+                          ? () => setPrepareOpen(true)
+                          : undefined;
+            const interactive = Boolean(open);
+            const Tag = interactive ? "button" : "div";
+            return (
+            <Reveal as="li" key={problem.title} delay={i * 70} className="h-full">
+              <Tag
+                {...(interactive
+                  ? { type: "button" as const, onClick: open, "aria-label": `${problem.title} Find a method` }
+                  : { "aria-disabled": true })}
+                className={`group relative flex h-full min-h-[260px] w-full flex-col items-start overflow-hidden rounded-3xl border border-border bg-surface p-7 text-left shadow-soft transition-all duration-500 ${
+                  interactive
+                    ? "cursor-pointer hover:-translate-y-1 hover:border-brand/60 hover:shadow-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                    : ""
+                }`}
+              >
+                {interactive && (
+                  <span className="absolute -right-10 -top-10 size-28 rounded-full bg-brand-soft opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                )}
+                {!problem.available && (
+                  <span className="absolute right-4 top-4 rounded-full bg-muted px-2.5 py-1 text-xs font-medium text-muted-foreground">
+                    Coming soon
+                  </span>
+                )}
+                <span className="relative">
+                  <MethodGlyph variant={i} />
+                </span>
+                <span className="relative mt-6 font-display text-xl font-bold leading-snug tracking-[-0.015em] text-ink">
+                  {problem.title}
+                </span>
+                <span className="relative mt-2 text-sm leading-relaxed text-muted-foreground">
+                  {problem.hint}
+                </span>
+                <span
+                  className={`relative mt-auto inline-flex items-center gap-2 text-sm font-semibold ${
+                    problem.available ? "text-brand" : "text-muted-foreground"
+                  }`}
+                >
+                  {problem.available ? "Find a method" : "Notify me"}
+                  <ArrowRight className="size-4 transition-transform duration-500 group-hover:translate-x-1" />
+                </span>
+              </Tag>
+            </Reveal>
+            );
+          })}
+
+        </ul>
+        <Reveal>
+          <a href="#advisor" className="mt-8 inline-flex items-center gap-2 rounded-full text-sm font-semibold text-ink transition-colors hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:ring-offset-background">
+            Something else <ArrowRight className="size-4" />
+          </a>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+
+/* ------------------------------- Positioning ------------------------------- */
+
+export function Manifesto() {
+  return (
+    <section className="py-20 md:py-28">
+      <Reveal className="section-shell grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:items-center">
+        <div>
+          <svg
+            viewBox="0 0 320 40"
+            role="presentation"
+            aria-hidden="true"
+            className="mb-6 h-8 w-full max-w-[208px] text-brand opacity-90"
+          >
+            <path
+              d={WAVE_PATH}
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+          <h2 className="text-[1.75rem] font-bold leading-tight text-ink md:text-[2.5rem]">
+            You don&apos;t always need another explanation. Sometimes you need a method.
+          </h2>
+        </div>
+        <div className="space-y-5 text-base leading-relaxed text-muted-foreground md:text-lg">
+          <p>
+            NEOMETO explores practical methods for improving focus, sleep, and mental clarity —
+            from cognitive and behavioral techniques to guided visualization. We explain how each
+            method works and when it may be worth trying.
+          </p>
+          <p>
+            Useful methods already exist across psychology, research, coaching, neuroscience and
+            lived experience.
+          </p>
+          <p>The hard part is finding the right one when you actually need it.</p>
+          <p className="font-medium text-ink">
+            NEOMETO brings practical methods together and makes them simple to find and use.
+          </p>
+        </div>
+
+      </Reveal>
+    </section>
+  );
+}
+
+
+/* ------------------------------- How it works ------------------------------ */
+
+const steps = [
+  { number: "01", title: "Tell us what's happening." },
+  { number: "02", title: "Find a method." },
+  { number: "03", title: "Try it now." },
+];
+
+export function HowItWorks() {
+  return (
+    <section id="how-it-works" className="scroll-mt-24 py-20 md:py-28">
+      <div className="section-shell">
+        <Reveal>
+          <h2 className="eyebrow">How it works</h2>
+        </Reveal>
+        <ol className="mt-12 grid gap-6 md:grid-cols-3">
+          {steps.map((step, i) => (
+            <Reveal as="li" key={step.number} delay={i * 120}>
+              <div className="h-full rounded-3xl border border-border bg-surface p-8 shadow-soft transition-transform duration-500 hover:-translate-y-1">
+                <span className="block text-5xl font-bold tracking-tight text-brand-soft">
+                  {step.number}
+                </span>
+                <h3 className="mt-6 text-xl font-bold text-ink md:text-[1.75rem]">{step.title}</h3>
+              </div>
+            </Reveal>
+          ))}
+        </ol>
+        <Reveal>
+          <p className="mt-10 text-lg font-semibold text-success">No label required.</p>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+/* ----------------------------- Featured method ----------------------------- */
+
+export function FeaturedMethod() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <section className="py-20 md:py-28">
+      {open && <ThoughtSpinExperience onClose={() => setOpen(false)} />}
+      <Reveal className="section-shell">
+        <article className="group grid gap-10 overflow-hidden rounded-4xl border border-border bg-surface p-8 shadow-soft transition-shadow duration-700 hover:shadow-lift md:grid-cols-[1fr_0.8fr] md:items-center md:p-14">
+          <div>
+            <p className="mb-3 text-xs font-semibold tracking-wide text-brand uppercase">
+              Don&apos;t trust our words. Trust the result.
+            </p>
+            <h2 className="mt-5 text-[1.75rem] font-bold text-ink md:text-[2.5rem]">
+              Thought Spin
+            </h2>
+            <p className="mt-3 text-sm font-semibold text-brand">2–3 minutes</p>
+            <p className="mt-6 text-xl font-medium leading-snug text-ink md:text-[1.75rem]">
+              &ldquo;When your thoughts won&apos;t slow down.&rdquo;
+            </p>
+            <p className="mt-4 max-w-md text-base leading-relaxed text-muted-foreground">
+              A short guided visualization designed to interrupt repetitive thinking and create
+              mental distance.
+            </p>
+            <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">
+              Why it works: shifting attention to a simple visual pattern interrupts the
+              automatic loop of repetitive thinking, creating enough distance to respond instead
+              of react.
+            </p>
+            <Button
+              size="lg"
+              className="mt-9 rounded-full px-8 text-base"
+              onClick={() => setOpen(true)}
+            >
+              Try Thought Spin
+            </Button>
+          </div>
+          <div className="relative aspect-square w-full max-w-sm justify-self-center overflow-hidden rounded-3xl bg-background transition-all duration-500 motion-safe:group-hover:scale-[1.02] motion-safe:group-hover:shadow-[0_0_40px_rgba(79,110,247,0.18)] motion-safe:group-active:scale-[1.02]">
+            <img
+              src={flowArt.url}
+              alt="Abstract blue particle streams spiralling from a chaotic tangle into a calm, ordered ring — the Thought Spin method visual."
+              loading="lazy"
+              className="absolute inset-0 size-full object-cover opacity-80"
+            />
+
+            <ParticleField mode="orbit" className="absolute inset-6" />
+          </div>
+
+        </article>
+      </Reveal>
+    </section>
+  );
+}
+
+
+/* -------------------------------- AI advisor ------------------------------- */
+
+export function Advisor() {
+  return (
+    <section id="advisor" className="scroll-mt-24 py-20 md:py-28">
+      <Reveal className="section-shell grid gap-12 lg:grid-cols-2 lg:items-center">
+        <div>
+          <h2 className="text-[1.75rem] font-bold leading-tight text-ink md:text-[2.5rem]">
+            Not sure what method you need?
+          </h2>
+          <Button asChild size="lg" className="mt-8 rounded-full px-8 text-base">
+            <a href="#final-cta">
+              <Sparkles className="size-4" />
+              Ask NEOMETO
+            </a>
+          </Button>
+          <p className="mt-6 max-w-md text-xs leading-relaxed text-muted-foreground">
+            NEOMETO provides self-help and educational tools, not medical diagnosis.
+          </p>
+        </div>
+        <div className="rounded-4xl border border-border bg-surface p-6 shadow-soft md:p-8">
+          <h3 className="sr-only">Example conversation with NEOMETO</h3>
+          <div className="flex justify-end">
+            <p className="max-w-[80%] rounded-3xl rounded-br-lg bg-ink px-5 py-4 text-sm leading-relaxed text-background md:text-base">
+              I need to sleep but my thoughts won&apos;t stop.
+            </p>
+          </div>
+          <div className="mt-4 flex justify-start">
+            <p className="max-w-[80%] rounded-3xl rounded-bl-lg bg-brand-soft px-5 py-4 text-sm leading-relaxed text-ink md:text-base">
+              Let&apos;s start with a 2-minute method.
+            </p>
+          </div>
+          <div className="mt-5 flex items-center gap-1.5 pl-2" aria-hidden="true">
+            {[0, 1, 2].map((i) => (
+              <span
+                key={i}
+                className="size-2 rounded-full bg-brand animate-pulse-soft"
+                style={{ animationDelay: `${i * 0.25}s` }}
+              />
+            ))}
+          </div>
+        </div>
+      </Reveal>
+    </section>
+  );
+}
+
+/* -------------------------------- Philosophy ------------------------------- */
+
+export function Philosophy() {
+  return (
+    <section id="philosophy" className="scroll-mt-24 py-20 md:py-28">
+      <Reveal className="section-shell">
+        <div className="relative overflow-hidden rounded-4xl bg-ink px-7 py-16 text-background md:px-16 md:py-24">
+          <h2 className="relative max-w-3xl text-[1.75rem] font-bold leading-tight md:text-[2.75rem]">
+            Your mind is a skill. Not a diagnosis.
+          </h2>
+          <div className="relative mt-8 max-w-2xl space-y-4 text-base leading-relaxed opacity-80 md:text-lg">
+            <p>
+              NEOMETO isn&apos;t built around a diagnosis. It&apos;s built around a pattern
+              you&apos;ve noticed — even if you&apos;ve never had a name for it, even if
+              you&apos;ve managed it quietly for years.
+            </p>
+            <p className="font-medium opacity-100">
+              You don&apos;t need a label to train a skill.
+            </p>
+          </div>
+        </div>
+      </Reveal>
+    </section>
+  );
+}
+
+/* -------------------------------- FAQ -------------------------------------- */
+
+const faq = [
+  {
+    question: "What is Thought Spin?",
+    answer:
+      "A short guided visualization that interrupts repetitive thinking by shifting your attention to a simple rotating visual pattern, giving you distance from the thought instead of getting pulled deeper into it.",
+  },
+  {
+    question: "How does the Racing Thoughts Shuffle work for sleep?",
+    answer:
+      "It uses a technique called cognitive shuffling — your mind struggles to spiral on one repetitive thought while being fed a slow stream of unrelated, neutral images. NEOMETO guides you through this before bed.",
+  },
+  {
+    question: "Do I need a diagnosis to use NEOMETO?",
+    answer:
+      "No. NEOMETO is built around patterns you've noticed in your own thinking, not a clinical diagnosis. It's a self-help and educational tool, not medical treatment.",
+  },
+];
+
+export function Faq() {
+  return (
+    <section id="faq" className="scroll-mt-24 py-20 md:py-28">
+      <div className="section-shell">
+        <Reveal>
+          <h2 className="text-[1.75rem] font-bold text-ink md:text-[2.5rem]">Questions</h2>
+          <p className="mt-3 text-base text-muted-foreground">
+            Honest answers about the methods that are live right now.
+          </p>
+        </Reveal>
+        <dl className="mt-12 grid gap-4 md:grid-cols-3">
+          {faq.map((item, i) => (
+            <Reveal as="div" key={item.question} delay={i * 80}>
+              <div className="h-full rounded-3xl border border-border bg-surface p-8 shadow-soft">
+                <dt className="text-lg font-bold text-ink md:text-xl">{item.question}</dt>
+                <dd className="mt-3 text-sm leading-relaxed text-muted-foreground md:text-base">
+                  {item.answer}
+                </dd>
+              </div>
+            </Reveal>
+          ))}
+        </dl>
+      </div>
+    </section>
+  );
+}
+
+export { faq };
+
+/* -------------------------------- Coming next ------------------------------ */
+
+const areas = ["Thoughts", "Focus", "Sleep", "Communication", "Preparation", "Overload"];
+
+export function Coming() {
+  return (
+    <section id="coming" className="scroll-mt-24 py-20 md:py-28">
+      <div className="section-shell">
+        <Reveal>
+          <h2 className="text-[1.75rem] font-bold text-ink md:text-[2.5rem]">
+            One method becomes many.
+          </h2>
+          <p className="mt-3 text-base text-muted-foreground">Tools for focus, sleep, and overthinking.</p>
+        </Reveal>
+        <ul className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6">
+          {areas.map((area, i) => (
+            <Reveal as="li" key={area} delay={i * 60}>
+              <div className="rounded-2xl border border-border bg-surface px-5 py-8 text-center text-sm font-semibold text-ink shadow-soft transition-transform duration-500 hover:-translate-y-1">
+                {area}
+              </div>
+            </Reveal>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
+
+/* -------------------------------- Final CTA -------------------------------- */
+
+export function FinalCta() {
+  return (
+    <section id="final-cta" className="scroll-mt-24 py-24 md:py-36">
+      <div className="section-shell relative text-center">
+        <Reveal className="relative">
+          <h2 className="text-[1.75rem] font-bold text-ink md:text-[3.25rem]">
+            What will you train today?
+          </h2>
+          <Button asChild size="lg" className="mt-10 rounded-full px-10 text-base">
+            <a href="#methods">Start training</a>
+          </Button>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
