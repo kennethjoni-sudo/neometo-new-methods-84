@@ -298,7 +298,7 @@ export function HowItWorks() {
           {steps.map((step, i) => (
             <Reveal as="li" key={step.number} delay={i * 120}>
               <div className="h-full rounded-3xl border border-border bg-surface p-8 shadow-soft transition-transform duration-500 hover:-translate-y-1">
-                <span className="block text-5xl font-bold tracking-tight text-brand-soft">
+                <span className="block text-5xl font-bold tracking-tight text-mustard">
                   {step.number}
                 </span>
                 <h3 className="mt-6 text-xl font-bold text-ink md:text-[1.75rem]">{step.title}</h3>
