@@ -75,46 +75,4 @@ function TermsPage() {
       <PageSection heading="Intellectual property">
         <PagePlaceholder>
           PLACEHOLDER — state who owns the method copy, the NEOMETO name, the wordmark and the
-          visual system, and what visitors may do with it. Note that the underlying practices are
-          not owned by anyone; the wording and the guided format are.
-        </PagePlaceholder>
-      </PageSection>
-
-      <PageSection heading="Limitation of liability">
-        <PagePlaceholder>
-          PLACEHOLDER — this is the clause most worth having reviewed properly. EU consumer
-          protection rules limit how far a disclaimer of liability can go, so a copied US-style
-          clause will not do what it looks like it does.
-        </PagePlaceholder>
-      </PageSection>
-
-      <PageSection heading="Changes to these terms">
-        <p>
-          If these terms change materially, the updated version goes up here with a new date. Using
-          the site after that means the new version applies.
-        </p>
-        <PagePlaceholder>PLACEHOLDER — date of the current version.</PagePlaceholder>
-      </PageSection>
-
-      <PageSection heading="Governing law">
-        <PagePlaceholder>
-          PLACEHOLDER — the jurisdiction whose law applies and where disputes are heard. If the
-          entity is Danish, this is normally Danish law and the Danish courts.
-        </PagePlaceholder>
-      </PageSection>
-
-      <PageSection heading="Contact">
-        <p>
-          Questions about these terms go to{" "}
-          
-            href="mailto:hello@neometo.com"
-            className="font-medium text-brand underline-offset-4 hover:underline"
-          >
-            hello@neometo.com
-          </a>
-          .
-        </p>
-      </PageSection>
-    </PageShell>
-  );
-}
+          visual system, and what visitors may do with it. Note that the underlying
