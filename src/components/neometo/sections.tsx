@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ArrowRight, ArrowUp, Sparkles } from "lucide-react";
 
 import flowArt from "@/assets/neometo-flow.png.asset.json";
@@ -11,6 +11,10 @@ import { FocusExperience } from "@/components/neometo/focus";
 import { OverloadExperience } from "@/components/neometo/overload";
 import { SocialExperience } from "@/components/neometo/social";
 import { PrepareExperience } from "@/components/neometo/prepare";
+import { findMethods } from "@/lib/mcp/methods";
+import { logEvent } from "@/lib/analytics";
+import { OPEN_METHOD_EVENT, requestMethod, type MethodSlug } from "@/lib/open-method";
+
 
 
 
