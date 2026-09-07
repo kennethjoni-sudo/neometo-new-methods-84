@@ -30,15 +30,19 @@ import {
 
 /* ---------------------------------- Hero --------------------------------- */
 
-const chips = ["Overthinking", "Sleep", "Focus", "Overload", "Social situations", "Prepare"];
+const chips: { label: string; method: MethodSlug }[] = [
+  { label: "Overthinking", method: "spin" },
+  { label: "Sleep", method: "sleep" },
+  { label: "Focus", method: "focus" },
+  { label: "Overload", method: "overload" },
+  { label: "Social situations", method: "social" },
+  { label: "Prepare", method: "prepare" },
+];
 
 /** Erratic on the left, settling to nearly flat on the right. */
 const WAVE_PATH =
   "M0 20 L14 6 L22 33 L34 3 L44 30 L56 9 L68 27 L82 13 L96 25 L112 15 L128 23 L146 18 L166 21 L188 19.5 L214 20.3 L244 20 L280 20 L320 20";
 
-function goToAdvisor() {
-  document.getElementById("advisor")?.scrollIntoView({ behavior: "smooth", block: "start" });
-}
 
 export function Hero() {
   const [value, setValue] = useState("");
@@ -187,12 +191,12 @@ export function Hero() {
           <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
             {chips.map((chip) => (
               <button
-                key={chip}
+                key={chip.label}
                 type="button"
-                onClick={goToAdvisor}
+                onClick={() => requestMethod(chip.method)}
                 className="rounded-[14px] border-[0.5px] border-ink-line bg-ink-raised px-4 py-2 text-sm font-medium text-accent transition-colors hover:border-brand"
               >
-                {chip}
+                {chip.label}
               </button>
             ))}
             <a href="#methods" className="rounded-[14px] bg-brand px-4 py-2 text-sm font-semibold text-background transition-opacity hover:opacity-90">
@@ -600,7 +604,14 @@ export { faq };
 
 /* -------------------------------- Coming next ------------------------------ */
 
-const areas = ["Thoughts", "Focus", "Sleep", "Communication", "Preparation", "Overload"];
+const areas: { label: string; method: MethodSlug }[] = [
+  { label: "Thoughts", method: "spin" },
+  { label: "Focus", method: "focus" },
+  { label: "Sleep", method: "sleep" },
+  { label: "Communication", method: "social" },
+  { label: "Preparation", method: "prepare" },
+  { label: "Overload", method: "overload" },
+];
 
 export function Coming() {
   return (
@@ -608,16 +619,20 @@ export function Coming() {
       <div className="section-shell">
         <Reveal>
           <h2 className="text-[1.75rem] font-bold text-ink md:text-[2.5rem]">
-            One method becomes many.
+            Six methods, ready now.
           </h2>
-          <p className="mt-3 text-base text-muted-foreground">Tools for focus, sleep, and overthinking.</p>
+          <p className="mt-3 text-base text-muted-foreground">Pick the one that fits the moment.</p>
         </Reveal>
         <ul className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6">
           {areas.map((area, i) => (
-            <Reveal as="li" key={area} delay={i * 60}>
-              <div className="rounded-2xl border border-border bg-surface px-5 py-8 text-center text-sm font-semibold text-ink shadow-soft transition-transform duration-500 hover:-translate-y-1">
-                {area}
-              </div>
+            <Reveal as="li" key={area.label} delay={i * 60}>
+              <button
+                type="button"
+                onClick={() => requestMethod(area.method)}
+                className="w-full rounded-2xl border border-border bg-surface px-5 py-8 text-center text-sm font-semibold text-ink shadow-soft transition-transform duration-500 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+              >
+                {area.label}
+              </button>
             </Reveal>
           ))}
         </ul>
@@ -625,6 +640,7 @@ export function Coming() {
     </section>
   );
 }
+
 
 /* -------------------------------- Final CTA -------------------------------- */
 
