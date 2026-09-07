@@ -2,8 +2,7 @@ const footerLinks = [
   { label: "Methods", href: "#methods" },
   { label: "About", href: "#philosophy" },
   { label: "For Work", href: "#coming" },
-  { label: "Privacy", href: "#footer" },
-  { label: "Contact", href: "#footer" },
+  { label: "Contact", href: "mailto:hello@neometo.com" },
 ];
 
 export function SiteFooter() {

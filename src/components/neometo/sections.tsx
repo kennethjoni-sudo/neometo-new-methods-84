@@ -16,7 +16,7 @@ import { PrepareExperience } from "@/components/neometo/prepare";
 
 /* ---------------------------------- Hero --------------------------------- */
 
-const chips = ["Overthinking", "Sleep", "Focus", "Overload"];
+const chips = ["Overthinking", "Sleep", "Focus", "Overload", "Social situations", "Prepare"];
 
 /** Erratic on the left, settling to nearly flat on the right. */
 const WAVE_PATH =
