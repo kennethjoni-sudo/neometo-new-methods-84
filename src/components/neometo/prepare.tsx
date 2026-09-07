@@ -31,7 +31,7 @@ export const prepareMethod: MethodConfig = {
         "Picture yourself steady. Not perfect. Steady.",
         "Whatever happens, you'll respond to what's actually in front of you.",
         "Not the worst-case version in your head. The real one.",
-        "You've handled hard things before this one.",
+        "You've walked into hard things before this one.",
         "You're allowed to walk in and just begin.",
       ],
       stepMs: 7500,
