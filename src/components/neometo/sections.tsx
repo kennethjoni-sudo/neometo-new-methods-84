@@ -43,9 +43,6 @@ const chips: { label: string; method: MethodSlug }[] = [
 const WAVE_PATH =
   "M0 20 L14 6 L22 33 L34 3 L44 30 L56 9 L68 27 L82 13 L96 25 L112 15 L128 23 L146 18 L166 21 L188 19.5 L214 20.3 L244 20 L280 20 L320 20";
 
-function goToAdvisor() {
-  document.getElementById("advisor")?.scrollIntoView({ behavior: "smooth", block: "start" });
-}
 
 export function Hero() {
   const [value, setValue] = useState("");
