@@ -11,7 +11,7 @@ import { FocusExperience } from "@/components/neometo/focus";
 import { OverloadExperience } from "@/components/neometo/overload";
 import { SocialExperience } from "@/components/neometo/social";
 import { PrepareExperience } from "@/components/neometo/prepare";
-import { findMethods } from "@/lib/mcp/methods";
+import { matchMethod } from "@/lib/mcp/methods";
 import { logEvent } from "@/lib/analytics";
 import { OPEN_METHOD_EVENT, requestMethod, type MethodSlug } from "@/lib/open-method";
 
