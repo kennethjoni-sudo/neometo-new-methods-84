@@ -37,7 +37,21 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      event_summary: {
+        Row: {
+          last_opened_at: string | null
+          method_slug: string | null
+          opens: number | null
+        }
+        Relationships: []
+      }
+      recent_hero_searches: {
+        Row: {
+          created_at: string | null
+          query: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       [_ in never]: never
