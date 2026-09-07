@@ -65,6 +65,7 @@ function callerIp(): string | null {
 
 /** Returns true when the call is allowed through. Fails open if the check itself errors. */
 async function withinRateLimit(): Promise<boolean> {
+  console.log("[rl] enter");
   try {
     const ip = callerIp();
     const salt = process.env["RATE_LIMIT_SALT"];
@@ -87,7 +88,8 @@ async function withinRateLimit(): Promise<boolean> {
     if (error) return true;
     const row = Array.isArray(data) ? data[0] : data;
     return row?.allowed !== false;
-  } catch {
+  } catch (e) {
+    console.log("[rl] threw", e);
     return true;
   }
 }
