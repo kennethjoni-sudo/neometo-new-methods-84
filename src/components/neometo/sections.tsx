@@ -83,8 +83,20 @@ export function Hero() {
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              goToAdvisor();
+              const query = value.trim();
+              if (!query) {
+                goToAdvisor();
+                return;
+              }
+              logEvent("hero_search", { query });
+              const [top] = findMethods(query);
+              if (top) {
+                requestMethod(top.slug as MethodSlug);
+              } else {
+                goToAdvisor();
+              }
             }}
+
             className="mx-auto mt-10 flex w-full max-w-xl items-center gap-3 rounded-2xl border-[0.5px] border-ink-line bg-ink-raised p-2 pl-5 shadow-lift"
           >
             <label htmlFor="hero-input" className="sr-only">
