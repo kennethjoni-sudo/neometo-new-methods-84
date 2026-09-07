@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { ArrowRight, ArrowUp, Sparkles } from "lucide-react";
+import { ArrowRight, ArrowUp, MessageCircle, Sparkles } from "lucide-react";
+import { useServerFn } from "@tanstack/react-start";
 
 import flowArt from "@/assets/neometo-flow.png.asset.json";
 import { Button } from "@/components/ui/button";
@@ -11,9 +12,17 @@ import { FocusExperience } from "@/components/neometo/focus";
 import { OverloadExperience } from "@/components/neometo/overload";
 import { SocialExperience } from "@/components/neometo/social";
 import { PrepareExperience } from "@/components/neometo/prepare";
+import { UnloadExperience } from "@/components/neometo/unload";
+import { advise } from "@/lib/advisor.functions";
 import { matchMethod } from "@/lib/mcp/methods";
 import { logEvent } from "@/lib/analytics";
-import { OPEN_METHOD_EVENT, requestMethod, type MethodSlug } from "@/lib/open-method";
+import {
+  OPEN_METHOD_EVENT,
+  requestMethod,
+  type ExperienceSlug,
+  type MethodSlug,
+  type OpenMethodDetail,
+} from "@/lib/open-method";
 
 
 
@@ -32,6 +41,41 @@ function goToAdvisor() {
 
 export function Hero() {
   const [value, setValue] = useState("");
+  const [thinking, setThinking] = useState(false);
+  const [instant, setInstant] = useState<{ slug: MethodSlug; name: string } | null>(null);
+  const askAdvisor = useServerFn(advise);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const query = value.trim();
+    if (!query) {
+      requestMethod("unload");
+      return;
+    }
+    if (thinking) return;
+    logEvent("hero_search", { query });
+
+    // Instant client-side guess stays visible while the AI reads the input.
+    const top = matchMethod(query);
+    setInstant(top ? { slug: top.slug as MethodSlug, name: top.name } : null);
+    setThinking(true);
+
+    try {
+      const result = await askAdvisor({ data: { text: query, mode: "auto" as const, history: [] } });
+      if (result.intent === "specific_method" && result.method) {
+        requestMethod(result.method);
+      } else {
+        requestMethod("unload", query);
+      }
+    } catch {
+      if (top) requestMethod(top.slug as MethodSlug);
+      else requestMethod("unload", query);
+    } finally {
+      setThinking(false);
+      setInstant(null);
+    }
+  };
+
 
   return (
     <section
@@ -81,24 +125,7 @@ export function Hero() {
 
 
           <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              const query = value.trim();
-              if (!query) {
-                goToAdvisor();
-                return;
-              }
-              logEvent("hero_search", { query });
-              const top = matchMethod(query);
-              if (top) {
-                requestMethod(top.slug as MethodSlug);
-              } else {
-                goToAdvisor();
-              }
-            }}
-
-
-
+            onSubmit={handleSubmit}
             className="mx-auto mt-10 flex w-full max-w-xl items-center gap-3 rounded-2xl border-[0.5px] border-ink-line bg-ink-raised p-2 pl-5 shadow-lift"
           >
             <label htmlFor="hero-input" className="sr-only">
@@ -114,11 +141,43 @@ export function Hero() {
             <button
               type="submit"
               aria-label="Ask NEOMETO"
-              className="grid size-11 shrink-0 place-items-center rounded-full bg-brand text-background transition-transform duration-300 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
+              disabled={thinking}
+              className="grid size-11 shrink-0 place-items-center rounded-full bg-brand text-background transition-transform duration-300 hover:scale-105 disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
             >
               <ArrowUp className="size-5" />
             </button>
           </form>
+
+          {thinking && (
+            <div className="mt-4 flex flex-wrap items-center justify-center gap-3 text-sm text-background/60" aria-live="polite">
+              <span>Reading that…</span>
+              {instant && (
+                <button
+                  type="button"
+                  onClick={() => requestMethod(instant.slug)}
+                  className="rounded-full border-[0.5px] border-ink-line bg-ink-raised px-4 py-2 text-sm font-medium text-accent transition-colors hover:border-brand"
+                >
+                  Start {instant.name} now
+                </button>
+              )}
+            </div>
+          )}
+
+          <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
+            <span className="text-sm text-background/50">Nothing specific to say?</span>
+            <button
+              type="button"
+              onClick={() => {
+                logEvent("unload_opened", { source: "hero" });
+                requestMethod("unload");
+              }}
+              className="inline-flex items-center gap-2 rounded-full border-[0.5px] border-ink-line bg-ink-raised px-5 py-2.5 text-sm font-semibold text-background transition-colors hover:border-brand"
+            >
+              <MessageCircle className="size-4 text-brand" />
+              Just talk it out
+            </button>
+          </div>
+
 
           <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
             {chips.map((chip) => (
@@ -151,26 +210,32 @@ const problems = [
   { title: "Everything hitting at once?", hint: "Bring it down to one thing at a time.", available: true, method: "overload" as const },
   { title: "Replaying every conversation afterward?", hint: "Prepare beforehand, recover faster after.", available: true, method: "social" as const },
   { title: "Something big coming up?", hint: "Walk in steadier.", available: true, method: "prepare" as const },
+  { title: "Just need to say it out loud?", hint: "Talk it out. NEOMETO listens.", available: true, method: "unload" as const },
 ];
 
 export function Problems() {
-  const [active, setActive] = useState<MethodSlug | null>(null);
+  const [active, setActive] = useState<ExperienceSlug | null>(null);
+  const [seed, setSeed] = useState<string | undefined>(undefined);
 
-  const openMethod = (slug: MethodSlug) => {
-    logEvent("method_opened", { method: slug });
+  const openMethod = (slug: ExperienceSlug, seedText?: string) => {
+    logEvent(slug === "unload" ? "unload_opened" : "method_opened", { method: slug });
+    setSeed(seedText);
     setActive(slug);
   };
 
   useEffect(() => {
     const handler = (e: Event) => {
-      const slug = (e as CustomEvent<MethodSlug>).detail;
-      if (slug) openMethod(slug);
+      const detail = (e as CustomEvent<OpenMethodDetail>).detail;
+      if (detail?.slug) openMethod(detail.slug, detail.seed);
     };
     window.addEventListener(OPEN_METHOD_EVENT, handler);
     return () => window.removeEventListener(OPEN_METHOD_EVENT, handler);
   }, []);
 
-  const close = () => setActive(null);
+  const close = () => {
+    setActive(null);
+    setSeed(undefined);
+  };
 
   return (
     <section id="methods" className="scroll-mt-24 py-20 md:py-28">
@@ -180,6 +245,8 @@ export function Problems() {
       {active === "overload" && <OverloadExperience onClose={close} />}
       {active === "social" && <SocialExperience onClose={close} />}
       {active === "prepare" && <PrepareExperience onClose={close} />}
+      {active === "unload" && <UnloadExperience onClose={close} seed={seed} />}
+
 
       <div className="section-shell">
         <Reveal>

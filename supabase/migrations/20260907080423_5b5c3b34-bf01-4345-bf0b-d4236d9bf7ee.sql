@@ -1,0 +1,2 @@
+ALTER TABLE public.events DROP CONSTRAINT IF EXISTS events_event_name_check;
+ALTER TABLE public.events ADD CONSTRAINT events_event_name_check CHECK (event_name IN ('method_opened','hero_search','unload_opened','unload_turn'));
