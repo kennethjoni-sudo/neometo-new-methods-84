@@ -72,7 +72,12 @@ async function withinRateLimit(): Promise<boolean> {
 
     const keyHash = await hashCaller(ip, salt);
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-    const { data, error } = await supabaseAdmin.rpc("consume_ai_rate_limit", {
+    // The generated Database types don't include this server-only helper.
+    const rpc = supabaseAdmin.rpc as unknown as (
+      fn: string,
+      args: Record<string, unknown>,
+    ) => Promise<{ data: { allowed: boolean }[] | null; error: unknown }>;
+    const { data, error } = await rpc("consume_ai_rate_limit", {
       _key_hash: keyHash,
       _limit: RATE_LIMIT_CALLS,
       _window_seconds: RATE_LIMIT_WINDOW_SECONDS,
