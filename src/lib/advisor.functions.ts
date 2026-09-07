@@ -65,17 +65,15 @@ function callerIp(): string | null {
 
 /** Returns true when the call is allowed through. Fails open if the check itself errors. */
 async function withinRateLimit(): Promise<boolean> {
-  console.log("[rl] enter");
   try {
     const ip = callerIp();
     const salt = process.env["RATE_LIMIT_SALT"];
-    console.log("[rl] ip=", ip, "salt?", Boolean(salt));
     if (!ip || !salt) return true;
 
     const keyHash = await hashCaller(ip, salt);
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     // The generated Database types don't include this server-only helper.
-    const rpc = supabaseAdmin.rpc as unknown as (
+    const rpc = supabaseAdmin.rpc.bind(supabaseAdmin) as unknown as (
       fn: string,
       args: Record<string, unknown>,
     ) => Promise<{ data: { allowed: boolean }[] | null; error: unknown }>;
@@ -84,12 +82,10 @@ async function withinRateLimit(): Promise<boolean> {
       _limit: RATE_LIMIT_CALLS,
       _window_seconds: RATE_LIMIT_WINDOW_SECONDS,
     });
-    console.log("[rl] rpc", JSON.stringify(data), JSON.stringify(error));
     if (error) return true;
     const row = Array.isArray(data) ? data[0] : data;
     return row?.allowed !== false;
-  } catch (e) {
-    console.log("[rl] threw", e);
+  } catch {
     return true;
   }
 }
