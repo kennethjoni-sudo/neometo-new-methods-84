@@ -26,14 +26,14 @@ function PrivacyPage() {
     <PageShell
       eyebrow="Privacy"
       title="What we log, and what we never touch."
-      lead="NEOMETO logs which methods people open and what they type into the “what's going on right now” box. Nothing is tied to a person. That's the whole of it — the rest of this page is the detail GDPR entitles you to."
+      lead="NEOMETO logs which methods people open and what they type into the box on the front page. Nothing is tied to a person. That's the whole of it — the rest of this page is the detail GDPR entitles you to."
       closingLine="You don't need to give anything up to use a useful method."
     >
       <PageSection heading="Who we are">
         <PagePlaceholder>
           PLACEHOLDER — legal entity name, registered address, and CVR number if registered. GDPR
-          requires an identifiable data controller; “NEOMETO” alone isn't enough once you're
-          operating as a company.
+          requires an identifiable data controller; NEOMETO alone isn't enough once you're operating
+          as a company.
         </PagePlaceholder>
       </PageSection>
 
@@ -93,9 +93,8 @@ function PrivacyPage() {
 
       <PageSection heading="How long we keep it">
         <PagePlaceholder>
-          PLACEHOLDER — a concrete retention period for the method logs and the advisor inputs. “As
-          long as necessary” is not sufficient on its own. Twelve or twenty-four months is typical
-          for product analytics.
+          PLACEHOLDER — a concrete retention period for the method logs and the advisor inputs.
+          Twelve or twenty-four months is typical for product analytics.
         </PagePlaceholder>
       </PageSection>
 
@@ -106,9 +105,9 @@ function PrivacyPage() {
           format. You can also lodge a complaint with your national data protection authority.
         </p>
         <p>
-          One practical note: because nothing we store is linked to you, we usually can't find
-          “your” data to return or delete it — there's no identifier to search by. That's a
-          consequence of collecting as little as possible, not a way of avoiding the request.
+          One practical note: because nothing we store is linked to you, we usually can't find your
+          data to return or delete it — there's no identifier to search by. That's a consequence of
+          collecting as little as possible, not a way of avoiding the request.
         </p>
         <PagePlaceholder>
           PLACEHOLDER — name your supervisory authority. In Denmark that's Datatilsynet. Confirm the
@@ -118,14 +117,8 @@ function PrivacyPage() {
 
       <PageSection heading="Questions, or want it removed">
         <p>
-          Write to{" "}
-          
-            href="mailto:hello@neometo.com"
-            className="font-medium text-brand underline-offset-4 hover:underline"
-          >
-            hello@neometo.com
-          </a>{" "}
-          and we'll tell you what we hold and delete anything you ask us to.
+          Write to hello@neometo.com and we'll tell you what we hold and delete anything you ask us
+          to.
         </p>
         <PagePlaceholder>PLACEHOLDER — date this policy was last updated.</PagePlaceholder>
       </PageSection>
