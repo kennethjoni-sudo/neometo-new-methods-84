@@ -1,21 +1,19 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 
 import flowArt from "@/assets/neometo-flow.png.asset.json";
 import { SiteHeader } from "@/components/neometo/site-header";
+import { Button } from "@/components/ui/button";
 
 import { SiteFooter } from "@/components/neometo/site-footer";
 import {
   Advisor,
   Coming,
-  Faq,
   FeaturedMethod,
   FinalCta,
   Hero,
   HowItWorks,
   Manifesto,
-  Philosophy,
   Problems,
-  faq,
 } from "@/components/neometo/sections";
 
 const title = "NEOMETO | Practical Methods for Focus, Sleep & Overthinking";
@@ -37,19 +35,6 @@ const websiteSchema = {
   name: "NEOMETO",
   url: "/",
   description,
-};
-
-const faqPageSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faq.map((item) => ({
-    "@type": "Question",
-    name: item.question,
-    acceptedAnswer: {
-      "@type": "Answer",
-      text: item.answer,
-    },
-  })),
 };
 
 export const Route = createFileRoute("/")({
@@ -75,15 +60,32 @@ export const Route = createFileRoute("/")({
         type: "application/ld+json",
         children: JSON.stringify(websiteSchema),
       },
-      {
-        type: "application/ld+json",
-        children: JSON.stringify(faqPageSchema),
-      },
     ],
   }),
 
   component: Index,
 });
+
+function PhilosophyTeaser() {
+  return (
+    <section id="philosophy" className="bg-ink py-24 text-background md:py-32">
+      <div className="section-shell">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="text-[2rem] font-bold leading-[1.1] sm:text-4xl">
+            Your mind is a skill. Not a diagnosis.
+          </h2>
+          <p className="mt-6 text-lg leading-relaxed text-background/70">
+            You train a skill. You don't diagnose it. Every method here is short enough to run in
+            the moment it's built for, and ends pointing at something you can actually do next.
+          </p>
+          <Button asChild variant="secondary" className="mt-10 rounded-full px-6">
+            <Link to="/philosophy">Read the philosophy</Link>
+          </Button>
+        </div>
+      </div>
+    </section>
+  );
+}
 
 function Index() {
   return (
@@ -96,8 +98,7 @@ function Index() {
         <HowItWorks />
         <FeaturedMethod />
         <Advisor />
-        <Philosophy />
-        <Faq />
+        <PhilosophyTeaser />
         <Coming />
         <FinalCta />
       </main>
