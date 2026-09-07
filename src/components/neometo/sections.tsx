@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ArrowRight, ArrowUp, Sparkles } from "lucide-react";
 
 import flowArt from "@/assets/neometo-flow.png.asset.json";
@@ -11,6 +11,10 @@ import { FocusExperience } from "@/components/neometo/focus";
 import { OverloadExperience } from "@/components/neometo/overload";
 import { SocialExperience } from "@/components/neometo/social";
 import { PrepareExperience } from "@/components/neometo/prepare";
+import { findMethods } from "@/lib/mcp/methods";
+import { logEvent } from "@/lib/analytics";
+import { OPEN_METHOD_EVENT, requestMethod, type MethodSlug } from "@/lib/open-method";
+
 
 
 
@@ -79,8 +83,20 @@ export function Hero() {
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              goToAdvisor();
+              const query = value.trim();
+              if (!query) {
+                goToAdvisor();
+                return;
+              }
+              logEvent("hero_search", { query });
+              const [top] = findMethods(query);
+              if (top) {
+                requestMethod(top.slug as MethodSlug);
+              } else {
+                goToAdvisor();
+              }
             }}
+
             className="mx-auto mt-10 flex w-full max-w-xl items-center gap-3 rounded-2xl border-[0.5px] border-ink-line bg-ink-raised p-2 pl-5 shadow-lift"
           >
             <label htmlFor="hero-input" className="sr-only">
@@ -136,22 +152,32 @@ const problems = [
 ];
 
 export function Problems() {
-  const [sleepOpen, setSleepOpen] = useState(false);
-  const [focusOpen, setFocusOpen] = useState(false);
-  const [spinOpen, setSpinOpen] = useState(false);
+  const [active, setActive] = useState<MethodSlug | null>(null);
 
-  const [overloadOpen, setOverloadOpen] = useState(false);
-  const [socialOpen, setSocialOpen] = useState(false);
-  const [prepareOpen, setPrepareOpen] = useState(false);
+  const openMethod = (slug: MethodSlug) => {
+    logEvent("method_opened", { method: slug });
+    setActive(slug);
+  };
+
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const slug = (e as CustomEvent<MethodSlug>).detail;
+      if (slug) openMethod(slug);
+    };
+    window.addEventListener(OPEN_METHOD_EVENT, handler);
+    return () => window.removeEventListener(OPEN_METHOD_EVENT, handler);
+  }, []);
+
+  const close = () => setActive(null);
 
   return (
     <section id="methods" className="scroll-mt-24 py-20 md:py-28">
-      {sleepOpen && <SleepExperience onClose={() => setSleepOpen(false)} />}
-      {focusOpen && <FocusExperience onClose={() => setFocusOpen(false)} />}
-      {spinOpen && <ThoughtSpinExperience onClose={() => setSpinOpen(false)} />}
-      {overloadOpen && <OverloadExperience onClose={() => setOverloadOpen(false)} />}
-      {socialOpen && <SocialExperience onClose={() => setSocialOpen(false)} />}
-      {prepareOpen && <PrepareExperience onClose={() => setPrepareOpen(false)} />}
+      {active === "sleep" && <SleepExperience onClose={close} />}
+      {active === "focus" && <FocusExperience onClose={close} />}
+      {active === "spin" && <ThoughtSpinExperience onClose={close} />}
+      {active === "overload" && <OverloadExperience onClose={close} />}
+      {active === "social" && <SocialExperience onClose={close} />}
+      {active === "prepare" && <PrepareExperience onClose={close} />}
 
       <div className="section-shell">
         <Reveal>
@@ -161,20 +187,8 @@ export function Problems() {
         </Reveal>
         <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {problems.map((problem, i) => {
-            const open =
-              problem.method === "sleep"
-                ? () => setSleepOpen(true)
-                : problem.method === "focus"
-                  ? () => setFocusOpen(true)
-                  : problem.method === "spin"
-                    ? () => setSpinOpen(true)
-                    : problem.method === "overload"
-                      ? () => setOverloadOpen(true)
-                      : problem.method === "social"
-                        ? () => setSocialOpen(true)
-                        : problem.method === "prepare"
-                          ? () => setPrepareOpen(true)
-                          : undefined;
+            const open = () => openMethod(problem.method);
+
             const interactive = Boolean(open);
             const Tag = interactive ? "button" : "div";
             return (
