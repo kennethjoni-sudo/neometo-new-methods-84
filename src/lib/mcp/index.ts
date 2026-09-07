@@ -4,8 +4,8 @@ import findMethodTool from "./tools/find-method";
 import getMethodTool from "./tools/get-method";
 import listMethodsTool from "./tools/list-methods";
 
-const supabaseUrl = (process.env.SUPABASE_URL ?? process.env.VITE_SUPABASE_URL ?? "").replace(
-  /\/+$/,
+const supabaseUrl = (process.env["SUPABASE_URL"] ?? process.env["VITE_SUPABASE_URL"] ?? "").replace(
+  /\/+$/, 
   "",
 );
 
