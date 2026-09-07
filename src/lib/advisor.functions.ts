@@ -68,6 +68,7 @@ async function withinRateLimit(): Promise<boolean> {
   try {
     const ip = callerIp();
     const salt = process.env["RATE_LIMIT_SALT"];
+    console.log("[rl] ip=", ip, "salt?", Boolean(salt));
     if (!ip || !salt) return true;
 
     const keyHash = await hashCaller(ip, salt);
@@ -82,6 +83,7 @@ async function withinRateLimit(): Promise<boolean> {
       _limit: RATE_LIMIT_CALLS,
       _window_seconds: RATE_LIMIT_WINDOW_SECONDS,
     });
+    console.log("[rl] rpc", JSON.stringify(data), JSON.stringify(error));
     if (error) return true;
     const row = Array.isArray(data) ? data[0] : data;
     return row?.allowed !== false;
