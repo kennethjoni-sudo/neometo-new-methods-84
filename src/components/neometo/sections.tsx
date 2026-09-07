@@ -600,7 +600,14 @@ export { faq };
 
 /* -------------------------------- Coming next ------------------------------ */
 
-const areas = ["Thoughts", "Focus", "Sleep", "Communication", "Preparation", "Overload"];
+const areas: { label: string; method: MethodSlug }[] = [
+  { label: "Thoughts", method: "spin" },
+  { label: "Focus", method: "focus" },
+  { label: "Sleep", method: "sleep" },
+  { label: "Communication", method: "social" },
+  { label: "Preparation", method: "prepare" },
+  { label: "Overload", method: "overload" },
+];
 
 export function Coming() {
   return (
@@ -608,16 +615,20 @@ export function Coming() {
       <div className="section-shell">
         <Reveal>
           <h2 className="text-[1.75rem] font-bold text-ink md:text-[2.5rem]">
-            One method becomes many.
+            Six methods, ready now.
           </h2>
-          <p className="mt-3 text-base text-muted-foreground">Tools for focus, sleep, and overthinking.</p>
+          <p className="mt-3 text-base text-muted-foreground">Pick the one that fits the moment.</p>
         </Reveal>
         <ul className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6">
           {areas.map((area, i) => (
-            <Reveal as="li" key={area} delay={i * 60}>
-              <div className="rounded-2xl border border-border bg-surface px-5 py-8 text-center text-sm font-semibold text-ink shadow-soft transition-transform duration-500 hover:-translate-y-1">
-                {area}
-              </div>
+            <Reveal as="li" key={area.label} delay={i * 60}>
+              <button
+                type="button"
+                onClick={() => requestMethod(area.method)}
+                className="w-full rounded-2xl border border-border bg-surface px-5 py-8 text-center text-sm font-semibold text-ink shadow-soft transition-transform duration-500 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+              >
+                {area.label}
+              </button>
             </Reveal>
           ))}
         </ul>
@@ -625,6 +636,7 @@ export function Coming() {
     </section>
   );
 }
+
 
 /* -------------------------------- Final CTA -------------------------------- */
 
