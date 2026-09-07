@@ -48,6 +48,7 @@ export function Hero() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const query = value.trim();
+    console.info("SUBMIT", JSON.stringify(query));
     if (!query) {
       requestMethod("unload");
       return;
