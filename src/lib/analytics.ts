@@ -1,7 +1,7 @@
 import { supabase } from "@/integrations/supabase/client";
 import type { Json } from "@/integrations/supabase/types";
 
-type EventName = "method_opened" | "hero_search";
+type EventName = "method_opened" | "hero_search" | "unload_opened" | "unload_turn";
 
 /** Values are trimmed so a payload can never exceed the database size limit. */
 const MAX_VALUE_LENGTH = 300;
