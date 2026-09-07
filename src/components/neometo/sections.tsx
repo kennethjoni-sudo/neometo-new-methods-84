@@ -89,13 +89,13 @@ export function Hero() {
                 return;
               }
               logEvent("hero_search", { query });
-              const [top] = findMethods(query);
+              const top = matchMethod(query);
               if (top) {
                 requestMethod(top.slug as MethodSlug);
               } else {
                 goToAdvisor();
               }
-            }}
+
 
             className="mx-auto mt-10 flex w-full max-w-xl items-center gap-3 rounded-2xl border-[0.5px] border-ink-line bg-ink-raised p-2 pl-5 shadow-lift"
           >
