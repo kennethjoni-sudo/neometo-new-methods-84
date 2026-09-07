@@ -129,7 +129,8 @@ export const advise = createServerFn({ method: "POST" })
         return {
           intent: "crisis",
           method: null,
-          reply: CRISIS_REPLY,
+          reply:
+            "I can't respond to that here. If something serious is going on, please reach a real person — a crisis line is free and answers around the clock: call or text 988 in the US and Canada, or find your local line at findahelpline.com.",
         };
       }
       throw error;
