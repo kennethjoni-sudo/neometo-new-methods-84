@@ -461,6 +461,21 @@ const faq = [
     answer:
       "No. NEOMETO is built around patterns you've noticed in your own thinking, not a clinical diagnosis. It's a self-help and educational tool, not medical treatment.",
   },
+  {
+    question: "What does the Overload method do?",
+    answer:
+      "A short breathing and text-guided exercise that helps you narrow racing priorities down to one clear next step, instead of trying to hold everything at once.",
+  },
+  {
+    question: "How does NEOMETO help with replaying conversations?",
+    answer:
+      "It uses a distancing technique — picturing the moment on a screen a few feet away instead of reliving it — to help a looping memory settle instead of replaying.",
+  },
+  {
+    question: "What is the Prepare method for?",
+    answer:
+      "A short breathing and visualization sequence for steadying yourself before something big — a meeting, event, or conversation — without needing a script.",
+  },
 ];
 
 export function Faq() {
