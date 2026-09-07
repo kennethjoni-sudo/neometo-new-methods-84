@@ -30,7 +30,14 @@ import {
 
 /* ---------------------------------- Hero --------------------------------- */
 
-const chips = ["Overthinking", "Sleep", "Focus", "Overload", "Social situations", "Prepare"];
+const chips: { label: string; method: MethodSlug }[] = [
+  { label: "Overthinking", method: "spin" },
+  { label: "Sleep", method: "sleep" },
+  { label: "Focus", method: "focus" },
+  { label: "Overload", method: "overload" },
+  { label: "Social situations", method: "social" },
+  { label: "Prepare", method: "prepare" },
+];
 
 /** Erratic on the left, settling to nearly flat on the right. */
 const WAVE_PATH =
