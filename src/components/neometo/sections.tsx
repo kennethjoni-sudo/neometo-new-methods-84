@@ -62,12 +62,14 @@ export function Hero() {
 
     try {
       const result = await askAdvisor({ data: { text: query, mode: "auto" as const, history: [] } });
+      console.info("ADVISOR", JSON.stringify(result));
       if (result.intent === "specific_method" && result.method) {
         requestMethod(result.method);
       } else {
         requestMethod("unload", query);
       }
-    } catch {
+    } catch (err) {
+      console.info("ADVISOR_ERR", String(err));
       if (top) requestMethod(top.slug as MethodSlug);
       else requestMethod("unload", query);
     } finally {
