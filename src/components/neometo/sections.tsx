@@ -96,7 +96,7 @@ export function Hero() {
             <button
               type="submit"
               aria-label="Ask NEOMETO"
-              className="grid size-11 shrink-0 place-items-center rounded-full bg-brand text-white transition-transform duration-300 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
+              className="grid size-11 shrink-0 place-items-center rounded-full bg-brand text-background transition-transform duration-300 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
             >
               <ArrowUp className="size-5" />
             </button>
@@ -113,7 +113,7 @@ export function Hero() {
                 {chip}
               </button>
             ))}
-            <a href="#methods" className="rounded-[14px] bg-brand px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90">
+            <a href="#methods" className="rounded-[14px] bg-brand px-4 py-2 text-sm font-semibold text-background transition-opacity hover:opacity-90">
               + more coming soon
             </a>
           </div>
@@ -454,7 +454,7 @@ const faq = [
   {
     question: "How does the Racing Thoughts Shuffle work for sleep?",
     answer:
-      "It uses a technique called cognitive shuffling — your mind struggles to spiral on one repetitive thought while being fed a slow stream of unrelated, neutral images. NEOMETO guides you through this before bed.",
+      "It uses a technique called cognitive shuffling — your mind can't easily spiral on one repetitive thought while being fed a slow stream of unrelated, neutral images. NEOMETO guides you through this before bed.",
   },
   {
     question: "Do I need a diagnosis to use NEOMETO?",
