@@ -103,9 +103,9 @@ export const methods: Method[] = [
   },
 ];
 
-export function findMethods(query: string): Method[] {
+function rankMethods(query: string): Method[] {
   const q = query.toLowerCase().trim();
-  if (!q) return methods;
+  if (!q) return [];
   const terms = q.split(/\s+/).filter((t) => t.length > 2);
   const scored = methods.map((method) => {
     const haystack =
@@ -113,9 +113,22 @@ export function findMethods(query: string): Method[] {
     const score = terms.reduce((acc, term) => acc + (haystack.includes(term) ? 1 : 0), 0);
     return { method, score };
   });
-  const hits = scored.filter((s) => s.score > 0).sort((a, b) => b.score - a.score);
-  return hits.length > 0 ? hits.map((h) => h.method) : methods;
+  return scored
+    .filter((s) => s.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .map((h) => h.method);
 }
+
+export function findMethods(query: string): Method[] {
+  const hits = rankMethods(query);
+  return hits.length > 0 ? hits : methods;
+}
+
+/** Returns a method only when the query genuinely scored a match — never a blind fallback. */
+export function matchMethod(query: string): Method | null {
+  return rankMethods(query)[0] ?? null;
+}
+
 
 
 export const methodSummarySchema = z.object({

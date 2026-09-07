@@ -1,3 +1,5 @@
+import { Link } from "@tanstack/react-router";
+
 const footerLinks = [
   { label: "Methods", href: "#methods" },
   { label: "About", href: "#philosophy" },
@@ -23,6 +25,12 @@ export function SiteFooter() {
               {link.label}
             </a>
           ))}
+          <Link
+            to="/privacy"
+            className="text-sm font-medium text-muted-foreground transition-colors hover:text-ink"
+          >
+            Privacy
+          </Link>
         </nav>
       </div>
     </footer>

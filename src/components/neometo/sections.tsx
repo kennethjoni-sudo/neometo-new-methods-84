@@ -11,7 +11,7 @@ import { FocusExperience } from "@/components/neometo/focus";
 import { OverloadExperience } from "@/components/neometo/overload";
 import { SocialExperience } from "@/components/neometo/social";
 import { PrepareExperience } from "@/components/neometo/prepare";
-import { findMethods } from "@/lib/mcp/methods";
+import { matchMethod } from "@/lib/mcp/methods";
 import { logEvent } from "@/lib/analytics";
 import { OPEN_METHOD_EVENT, requestMethod, type MethodSlug } from "@/lib/open-method";
 
@@ -89,13 +89,15 @@ export function Hero() {
                 return;
               }
               logEvent("hero_search", { query });
-              const [top] = findMethods(query);
+              const top = matchMethod(query);
               if (top) {
                 requestMethod(top.slug as MethodSlug);
               } else {
                 goToAdvisor();
               }
             }}
+
+
 
             className="mx-auto mt-10 flex w-full max-w-xl items-center gap-3 rounded-2xl border-[0.5px] border-ink-line bg-ink-raised p-2 pl-5 shadow-lift"
           >
