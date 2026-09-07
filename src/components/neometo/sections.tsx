@@ -194,12 +194,12 @@ export function Hero() {
           <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
             {chips.map((chip) => (
               <button
-                key={chip}
+                key={chip.label}
                 type="button"
-                onClick={goToAdvisor}
+                onClick={() => requestMethod(chip.method)}
                 className="rounded-[14px] border-[0.5px] border-ink-line bg-ink-raised px-4 py-2 text-sm font-medium text-accent transition-colors hover:border-brand"
               >
-                {chip}
+                {chip.label}
               </button>
             ))}
             <a href="#methods" className="rounded-[14px] bg-brand px-4 py-2 text-sm font-semibold text-background transition-opacity hover:opacity-90">
