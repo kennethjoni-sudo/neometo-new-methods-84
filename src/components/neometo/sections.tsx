@@ -95,6 +95,8 @@ export function Hero() {
               } else {
                 goToAdvisor();
               }
+            }}
+
 
 
             className="mx-auto mt-10 flex w-full max-w-xl items-center gap-3 rounded-2xl border-[0.5px] border-ink-line bg-ink-raised p-2 pl-5 shadow-lift"
