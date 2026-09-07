@@ -64,11 +64,38 @@ Otherwise:
 - intent "specific_method": they described a clear situation and want something that helps. Pick the best-fitting slug and write 1-2 natural sentences saying why it fits.
 - intent "unload": they are rambling, venting, have no clear ask, or explicitly want to talk. Reply in LISTENING mode only — 1-2 short sentences of warm acknowledgment. Never advice, never analysis, never questions stacked up. Set method to a slug ONLY if something specific enough came up to genuinely warrant a gentle suggestion; otherwise "none".`;
 
+/** Deterministic safety net: the redirect must fire even if the model refuses or errors. */
+const CRISIS_PATTERNS = [
+  /\bkill(ing)? myself\b/i,
+  /\bsuicid/i,
+  /\bend (it|my life|things) (all|tonight|now)?\b/i,
+  /\bdon'?t want to (be alive|live|exist)\b/i,
+  /\bwant to die\b/i,
+  /\bself[- ]harm\b/i,
+  /\bcut(ting)? myself\b/i,
+  /\bhurt (myself|someone|somebody|them|him|her)\b/i,
+  /\bno reason to (live|go on)\b/i,
+  /\bbetter off (dead|without me)\b/i,
+  /\boverdose\b/i,
+  /\bbeing (hurt|beaten|abused)\b/i,
+];
+
+export const CRISIS_REPLY =
+  "This is bigger than a method, and you shouldn't be alone with it right now. Please reach a real person today — a crisis line is free, answers around the clock, and you can call or text 988 in the US and Canada, or find your local line at findahelpline.com. If you are in immediate danger, call emergency services.";
+
+export function looksLikeCrisis(text: string): boolean {
+  return CRISIS_PATTERNS.some((re) => re.test(text));
+}
+
 export const advise = createServerFn({ method: "POST" })
   .inputValidator((input: unknown) => AdviseInput.parse(input))
   .handler(async ({ data }): Promise<AdviseResult> => {
     const apiKey = process.env["LOVABLE_API_KEY"];
     if (!apiKey) throw new Error("AI is not configured.");
+
+    if (looksLikeCrisis(data.text)) {
+      return { intent: "crisis", method: null, reply: CRISIS_REPLY };
+    }
 
     const { createLovableAiGatewayProvider } = await import("@/lib/ai-gateway.server");
     const gateway = createLovableAiGatewayProvider(apiKey);
@@ -98,10 +125,11 @@ export const advise = createServerFn({ method: "POST" })
       };
     } catch (error) {
       if (NoObjectGeneratedError.isInstance(error)) {
+        // A refusal here usually means the input was heavy. Fail safe, not silent.
         return {
-          intent: "unload",
+          intent: "crisis",
           method: null,
-          reply: "I'm here. Keep going.",
+          reply: CRISIS_REPLY,
         };
       }
       throw error;
