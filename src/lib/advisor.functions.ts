@@ -33,10 +33,58 @@ const AdviseOutput = z.object({
 });
 
 export type AdviseResult = {
-  intent: "specific_method" | "unload" | "crisis";
+  intent: "specific_method" | "unload" | "crisis" | "rate_limited";
   method: (typeof METHOD_SLUGS)[number] | null;
   reply: string;
 };
+
+/** Call frequency guard. Generous for real use, tight enough to stop scripted abuse. */
+const RATE_LIMIT_CALLS = 15;
+const RATE_LIMIT_WINDOW_SECONDS = 600;
+
+export const RATE_LIMITED_REPLY =
+  "That's a lot of thinking out loud in a short stretch. Give it a moment and try again shortly.";
+
+/** One-way hash of the caller's IP with a server-side salt — the raw IP is never stored. */
+async function hashCaller(ip: string, salt: string): Promise<string> {
+  const bytes = new TextEncoder().encode(`${salt}:${ip}`);
+  const digest = await crypto.subtle.digest("SHA-256", bytes);
+  return Array.from(new Uint8Array(digest))
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
+}
+
+function callerIp(): string | null {
+  const headers = getRequest().headers;
+  const direct = headers.get("cf-connecting-ip") ?? headers.get("x-real-ip");
+  if (direct) return direct.trim();
+  const forwarded = headers.get("x-forwarded-for");
+  const first = forwarded?.split(",")[0]?.trim();
+  return first || null;
+}
+
+/** Returns true when the call is allowed through. Fails open if the check itself errors. */
+async function withinRateLimit(): Promise<boolean> {
+  try {
+    const ip = callerIp();
+    const salt = process.env["RATE_LIMIT_SALT"];
+    if (!ip || !salt) return true;
+
+    const keyHash = await hashCaller(ip, salt);
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const { data, error } = await supabaseAdmin.rpc("consume_ai_rate_limit", {
+      _key_hash: keyHash,
+      _limit: RATE_LIMIT_CALLS,
+      _window_seconds: RATE_LIMIT_WINDOW_SECONDS,
+    });
+    if (error) return true;
+    const row = Array.isArray(data) ? data[0] : data;
+    return row?.allowed !== false;
+  } catch {
+    return true;
+  }
+}
+
 
 const METHOD_GUIDE = `The only six methods that exist:
 - spin (Thought Spin): thoughts looping, won't slow down, overthinking.
