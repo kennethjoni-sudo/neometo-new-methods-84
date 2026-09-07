@@ -118,14 +118,7 @@ function ContactPage() {
         </Button>
 
         <p className="text-sm text-muted-foreground">
-          Or write directly to{" "}
-          
-            href={`mailto:${CONTACT_EMAIL}`}
-            className="font-medium text-brand underline-offset-4 hover:underline"
-          >
-            {CONTACT_EMAIL}
-          </a>
-          .
+          Or write directly to {CONTACT_EMAIL}.
         </p>
       </div>
     </PageShell>
