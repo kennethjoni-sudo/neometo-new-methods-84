@@ -1,0 +1,1 @@
+REVOKE ALL ON FUNCTION public.consume_ai_rate_limit(TEXT, INTEGER, INTEGER) FROM anon, authenticated;

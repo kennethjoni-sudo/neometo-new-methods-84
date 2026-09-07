@@ -1,4 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
+import { getRequest } from "@tanstack/react-start/server";
 import { NoObjectGeneratedError, Output, streamText } from "ai";
 import { z } from "zod";
 
@@ -32,10 +33,63 @@ const AdviseOutput = z.object({
 });
 
 export type AdviseResult = {
-  intent: "specific_method" | "unload" | "crisis";
+  intent: "specific_method" | "unload" | "crisis" | "rate_limited";
   method: (typeof METHOD_SLUGS)[number] | null;
   reply: string;
 };
+
+/** Call frequency guard. Generous for real use, tight enough to stop scripted abuse. */
+const RATE_LIMIT_CALLS = 15;
+const RATE_LIMIT_WINDOW_SECONDS = 600;
+
+export const RATE_LIMITED_REPLY =
+  "That's a lot of thinking out loud in a short stretch. Give it a moment and try again shortly.";
+
+/** One-way hash of the caller's IP with a server-side salt — the raw IP is never stored. */
+async function hashCaller(ip: string, salt: string): Promise<string> {
+  const bytes = new TextEncoder().encode(`${salt}:${ip}`);
+  const digest = await crypto.subtle.digest("SHA-256", bytes);
+  return Array.from(new Uint8Array(digest))
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
+}
+
+function callerIp(): string | null {
+  const headers = getRequest().headers;
+  const direct = headers.get("cf-connecting-ip") ?? headers.get("x-real-ip");
+  if (direct) return direct.trim();
+  const forwarded = headers.get("x-forwarded-for");
+  const first = forwarded?.split(",")[0]?.trim();
+  return first || null;
+}
+
+/** Returns true when the call is allowed through. Fails open if the check itself errors. */
+async function withinRateLimit(): Promise<boolean> {
+  try {
+    const ip = callerIp();
+    const salt = process.env["RATE_LIMIT_SALT"];
+    if (!ip || !salt) return true;
+
+    const keyHash = await hashCaller(ip, salt);
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    // The generated Database types don't include this server-only helper.
+    const rpc = supabaseAdmin.rpc.bind(supabaseAdmin) as unknown as (
+      fn: string,
+      args: Record<string, unknown>,
+    ) => Promise<{ data: { allowed: boolean }[] | null; error: unknown }>;
+    const { data, error } = await rpc("consume_ai_rate_limit", {
+      _key_hash: keyHash,
+      _limit: RATE_LIMIT_CALLS,
+      _window_seconds: RATE_LIMIT_WINDOW_SECONDS,
+    });
+    if (error) return true;
+    const row = Array.isArray(data) ? data[0] : data;
+    return row?.allowed !== false;
+  } catch {
+    return true;
+  }
+}
+
 
 const METHOD_GUIDE = `The only six methods that exist:
 - spin (Thought Spin): thoughts looping, won't slow down, overthinking.
@@ -93,9 +147,16 @@ export const advise = createServerFn({ method: "POST" })
     const apiKey = process.env["LOVABLE_API_KEY"];
     if (!apiKey) throw new Error("AI is not configured.");
 
+    // Crisis wording always gets the real-help redirect, limit or not — it costs nothing.
     if (looksLikeCrisis(data.text)) {
       return { intent: "crisis", method: null, reply: CRISIS_REPLY };
     }
+
+    if (!(await withinRateLimit())) {
+      return { intent: "rate_limited", method: null, reply: RATE_LIMITED_REPLY };
+    }
+
+
 
     const { createLovableAiGatewayProvider } = await import("@/lib/ai-gateway.server");
     const gateway = createLovableAiGatewayProvider(apiKey);

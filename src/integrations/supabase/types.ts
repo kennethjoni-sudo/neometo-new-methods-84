@@ -14,6 +14,24 @@ export type Database = {
   }
   public: {
     Tables: {
+      ai_rate_limits: {
+        Row: {
+          count: number
+          key_hash: string
+          window_start: string
+        }
+        Insert: {
+          count?: number
+          key_hash: string
+          window_start?: string
+        }
+        Update: {
+          count?: number
+          key_hash?: string
+          window_start?: string
+        }
+        Relationships: []
+      }
       events: {
         Row: {
           created_at: string
@@ -54,7 +72,13 @@ export type Database = {
       }
     }
     Functions: {
-      [_ in never]: never
+      consume_ai_rate_limit: {
+        Args: { _key_hash: string; _limit: number; _window_seconds: number }
+        Returns: {
+          allowed: boolean
+          retry_after_seconds: number
+        }[]
+      }
     }
     Enums: {
       [_ in never]: never

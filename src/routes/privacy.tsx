@@ -24,7 +24,8 @@ export const Route = createFileRoute("/privacy")({
 const sections = [
   {
     heading: "What we log",
-    body: "Two things: the method you open, and the text you type into the input on the front page. Both are stored anonymously. There is no account, no email, no name, and nothing that links an entry back to you.",
+    body: "Two things: the method you open, and the text you type into the input on the front page. Both are stored anonymously. There is no account, no email, no name, and nothing that links an entry back to you. To keep the advisor from being spammed, your network address is turned into an unreadable one-way code the moment a request arrives, used only to count recent requests, and cleared automatically — the address itself is never stored.",
+
   },
   {
     heading: "Why",
