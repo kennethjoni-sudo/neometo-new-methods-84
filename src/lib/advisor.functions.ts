@@ -147,9 +147,16 @@ export const advise = createServerFn({ method: "POST" })
     const apiKey = process.env["LOVABLE_API_KEY"];
     if (!apiKey) throw new Error("AI is not configured.");
 
+    // Crisis wording always gets the real-help redirect, limit or not — it costs nothing.
     if (looksLikeCrisis(data.text)) {
       return { intent: "crisis", method: null, reply: CRISIS_REPLY };
     }
+
+    if (!(await withinRateLimit())) {
+      return { intent: "rate_limited", method: null, reply: RATE_LIMITED_REPLY };
+    }
+
+
 
     const { createLovableAiGatewayProvider } = await import("@/lib/ai-gateway.server");
     const gateway = createLovableAiGatewayProvider(apiKey);
