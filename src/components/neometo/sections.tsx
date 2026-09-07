@@ -48,7 +48,6 @@ export function Hero() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const query = value.trim();
-    console.info("SUBMIT", JSON.stringify(query));
     if (!query) {
       requestMethod("unload");
       return;
@@ -63,14 +62,12 @@ export function Hero() {
 
     try {
       const result = await askAdvisor({ data: { text: query, mode: "auto" as const, history: [] } });
-      console.info("ADVISOR", JSON.stringify(result));
       if (result.intent === "specific_method" && result.method) {
         requestMethod(result.method);
       } else {
         requestMethod("unload", query);
       }
-    } catch (err) {
-      console.info("ADVISOR_ERR", String(err));
+    } catch {
       if (top) requestMethod(top.slug as MethodSlug);
       else requestMethod("unload", query);
     } finally {
