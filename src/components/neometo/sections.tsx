@@ -22,6 +22,7 @@ import {
   type ExperienceSlug,
   type MethodSlug,
   type OpenMethodDetail,
+  type SeedReply,
 } from "@/lib/open-method";
 
 
@@ -65,7 +66,11 @@ export function Hero() {
       if (result.intent === "specific_method" && result.method) {
         requestMethod(result.method);
       } else {
-        requestMethod("unload", query);
+        requestMethod("unload", query, {
+          content: result.reply,
+          method: result.method,
+          crisis: result.intent === "crisis",
+        });
       }
     } catch {
       if (top) requestMethod(top.slug as MethodSlug);
@@ -216,17 +221,19 @@ const problems = [
 export function Problems() {
   const [active, setActive] = useState<ExperienceSlug | null>(null);
   const [seed, setSeed] = useState<string | undefined>(undefined);
+  const [seedReply, setSeedReply] = useState<SeedReply | undefined>(undefined);
 
-  const openMethod = (slug: ExperienceSlug, seedText?: string) => {
+  const openMethod = (slug: ExperienceSlug, seedText?: string, reply?: SeedReply) => {
     logEvent(slug === "unload" ? "unload_opened" : "method_opened", { method: slug });
     setSeed(seedText);
+    setSeedReply(reply);
     setActive(slug);
   };
 
   useEffect(() => {
     const handler = (e: Event) => {
       const detail = (e as CustomEvent<OpenMethodDetail>).detail;
-      if (detail?.slug) openMethod(detail.slug, detail.seed);
+      if (detail?.slug) openMethod(detail.slug, detail.seed, detail.seedReply);
     };
     window.addEventListener(OPEN_METHOD_EVENT, handler);
     return () => window.removeEventListener(OPEN_METHOD_EVENT, handler);
@@ -235,6 +242,7 @@ export function Problems() {
   const close = () => {
     setActive(null);
     setSeed(undefined);
+    setSeedReply(undefined);
   };
 
   return (
@@ -245,7 +253,7 @@ export function Problems() {
       {active === "overload" && <OverloadExperience onClose={close} />}
       {active === "social" && <SocialExperience onClose={close} />}
       {active === "prepare" && <PrepareExperience onClose={close} />}
-      {active === "unload" && <UnloadExperience onClose={close} seed={seed} />}
+      {active === "unload" && <UnloadExperience onClose={close} seed={seed} seedReply={seedReply} />}
 
 
       <div className="section-shell">
