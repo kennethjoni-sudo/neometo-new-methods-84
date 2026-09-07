@@ -5,9 +5,14 @@ import { useServerFn } from "@tanstack/react-start";
 import { ExperienceShell } from "@/components/neometo/experience-kit";
 import { advise } from "@/lib/advisor.functions";
 import { logEvent } from "@/lib/analytics";
-import { requestMethod, type MethodSlug } from "@/lib/open-method";
+import { requestMethod, type MethodSlug, type SeedReply } from "@/lib/open-method";
 
-type Turn = { role: "person" | "neometo"; content: string; method?: MethodSlug | null };
+type Turn = {
+  role: "person" | "neometo";
+  content: string;
+  method?: MethodSlug | null;
+  crisis?: boolean;
+};
 
 const METHOD_LABELS: Record<MethodSlug, string> = {
   spin: "Thought Spin",
@@ -21,9 +26,11 @@ const METHOD_LABELS: Record<MethodSlug, string> = {
 export function UnloadExperience({
   onClose,
   seed,
+  seedReply,
 }: {
   onClose: () => void;
   seed?: string | undefined;
+  seedReply?: SeedReply | undefined;
 }) {
   const [started, setStarted] = useState(Boolean(seed));
   const [turns, setTurns] = useState<Turn[]>([]);
@@ -48,7 +55,12 @@ export function UnloadExperience({
       });
       setTurns((prev) => [
         ...prev,
-        { role: "neometo", content: result.reply, method: result.method },
+        {
+          role: "neometo",
+          content: result.reply,
+          method: result.intent === "crisis" ? null : result.method,
+          crisis: result.intent === "crisis",
+        },
       ]);
     } catch {
       setFailed(true);
@@ -62,6 +74,18 @@ export function UnloadExperience({
     if (!seed || seededRef.current) return;
     seededRef.current = true;
     const first: Turn = { role: "person", content: seed };
+    if (seedReply) {
+      setTurns([
+        first,
+        {
+          role: "neometo",
+          content: seedReply.content,
+          method: seedReply.crisis ? null : seedReply.method,
+          crisis: seedReply.crisis,
+        },
+      ]);
+      return;
+    }
     setTurns([first]);
     void send(seed, []);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -120,7 +144,9 @@ export function UnloadExperience({
                     className={`rounded-3xl px-5 py-4 text-sm leading-relaxed md:text-base ${
                       turn.role === "person"
                         ? "rounded-br-lg bg-background/10 text-background"
-                        : "rounded-bl-lg bg-brand/20 text-background"
+                        : turn.crisis
+                          ? "rounded-bl-lg border border-brand/60 bg-brand/10 text-background"
+                          : "rounded-bl-lg bg-brand/20 text-background"
                     }`}
                   >
                     {turn.content}
