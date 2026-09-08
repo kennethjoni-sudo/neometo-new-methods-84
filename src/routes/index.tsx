@@ -63,9 +63,38 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
+const trustItems = [
+  "No account. Nothing to sign up for.",
+  "Nothing stored that identifies you.",
+  "Free. No subscription, no upsell.",
+  "Not therapy, not a medical product.",
+];
+
+function TrustStrip() {
+  return (
+    <section className="bg-background pb-4 pt-2 md:pb-8 md:pt-6">
+      <div className="section-shell">
+        <ul className="grid grid-cols-2 gap-x-6 gap-y-3 text-sm text-ink md:flex md:items-center md:justify-between md:gap-8">
+          {trustItems.map((item) => (
+            <li key={item} className="leading-snug">
+              {item}
+            </li>
+          ))}
+        </ul>
+        <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
+          <Link to="/sources" className="underline underline-offset-4 hover:text-brand">
+            How each method was made
+          </Link>
+          , and what we don&apos;t claim.
+        </p>
+      </div>
+    </section>
+  );
+}
+
 function PhilosophyTeaser() {
   return (
-    <section id="philosophy" className="bg-ink py-24 text-background md:py-32">
+    <section id="philosophy" className="bg-ink py-16 text-background md:py-32">
       <div className="section-shell">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-[2rem] font-bold leading-[1.1] sm:text-4xl">
@@ -91,6 +120,7 @@ function Index() {
       <main>
         <Hero />
         <Problems />
+        <TrustStrip />
         <HowItWorks />
         <FeaturedMethod />
         <PhilosophyTeaser />
@@ -100,3 +130,4 @@ function Index() {
     </div>
   );
 }
+

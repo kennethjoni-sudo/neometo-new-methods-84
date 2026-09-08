@@ -4,6 +4,7 @@ const pageLinks = [
   { label: "Philosophy", to: "/philosophy" },
   { label: "About", to: "/about" },
   { label: "FAQ", to: "/faq" },
+  { label: "Sources", to: "/sources" },
   { label: "Contact", to: "/contact" },
 ] as const;
 
