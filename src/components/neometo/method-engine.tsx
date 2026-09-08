@@ -17,6 +17,7 @@ import {
   TextSequencePhase,
   WordsPhase,
   type CloseAction,
+  type ShrinkStage,
   type TapRound,
 } from "@/components/neometo/method-phases";
 
@@ -34,8 +35,8 @@ export type PhaseConfig =
       size?: "md" | "lg";
     }
   | { type: "breathe"; pattern: BreathStep[]; cycles: number; instruction?: string; cycleNoun?: string }
-  | { type: "spin"; durationMs: number; instruction?: string }
-  | { type: "shrink"; durationMs: number; captions: string[] }
+  | { type: "spin"; durationMs: number; instruction?: string; reverseAt?: number }
+  | { type: "shrink"; durationMs: number; captions?: string[]; stages?: ShrinkStage[] }
   | { type: "words"; lines: string[]; stepMs: number }
   | { type: "tap-count"; rounds: TapRound[] }
   | { type: "point"; durationMs: number; instruction: string }
@@ -177,6 +178,7 @@ export function MethodExperience({
           key={`${techniqueId ?? "linear"}-${index}`}
           durationMs={phase.durationMs}
           {...(phase.instruction ? { instruction: phase.instruction } : {})}
+          {...(phase.reverseAt !== undefined ? { reverseAt: phase.reverseAt } : {})}
           reduced={reduced}
           onDone={next}
         />
@@ -186,7 +188,8 @@ export function MethodExperience({
         <ShrinkPhase
           key={`${techniqueId ?? "linear"}-${index}`}
           durationMs={phase.durationMs}
-          captions={phase.captions}
+          {...(phase.captions ? { captions: phase.captions } : {})}
+          {...(phase.stages ? { stages: phase.stages } : {})}
           reduced={reduced}
           onDone={next}
         />

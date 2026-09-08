@@ -32,9 +32,12 @@ function SourcesPage() {
     >
       <PageSection heading="Thoughts">
         <p>
-          <Link to="/methods/$slug" params={{ slug: "spin" }} className="font-semibold text-ink hover:text-brand hover:underline">Thought Spin</Link>: our own construction. A
-          simple moving visual gives attention something to hold, which makes it harder for a loop
-          to keep running. Not a named technique from anywhere.
+          <Link to="/methods/$slug" params={{ slug: "spin" }} className="font-semibold text-ink hover:text-brand hover:underline">Spin it out</Link>: adapted from a practice of
+          locating a feeling in the body, noticing its direction of movement, and deliberately
+          reversing it. It comes from neuro-linguistic programming, where techniques like this are
+          widely taught. Worth knowing: the research base for NLP is thin, and we&apos;re not
+          claiming otherwise. We include it because it&apos;s short, harmless and some people find
+          it does something.
         </p>
         <p>
           <Link to="/methods/$slug" params={{ slug: "spin" }} className="font-semibold text-ink hover:text-brand hover:underline">Name the thought</Link>: cognitive defusion,
@@ -46,9 +49,11 @@ function SourcesPage() {
           worry and giving it a scheduled time rather than arguing with it now.
         </p>
         <p>
-          <Link to="/methods/$slug" params={{ slug: "spin" }} className="font-semibold text-ink hover:text-brand hover:underline">Shrink it</Link>: adapted from changing the
-          size, distance and colour of a mental image so it takes up less room.
+          <Link to="/methods/$slug" params={{ slug: "spin" }} className="font-semibold text-ink hover:text-brand hover:underline">Step back</Link>: adapted from changing the
+          size, colour and texture of a mental image, and from taking a wider and wider viewing
+          position on it.
         </p>
+
 
       </PageSection>
 
