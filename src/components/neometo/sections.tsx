@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { ArrowRight, ArrowUp, MessageCircle, Sparkles } from "lucide-react";
 import { useServerFn } from "@tanstack/react-start";
 
@@ -602,6 +601,7 @@ const areas: { label: string; method: MethodSlug }[] = [
   { label: "Communication", method: "social" },
   { label: "Preparation", method: "prepare" },
   { label: "Overload", method: "overload" },
+  { label: "Getting started", method: "friction" },
 ];
 
 export function Coming() {
@@ -610,7 +610,7 @@ export function Coming() {
       <div className="section-shell">
         <Reveal>
           <h2 className="text-[1.75rem] font-bold text-ink md:text-[2.5rem]">
-            Six methods, ready now.
+            ALL METHODS LIBRARY
           </h2>
           <p className="mt-3 text-base text-muted-foreground">Pick the one that fits the moment.</p>
         </Reveal>
