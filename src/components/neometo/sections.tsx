@@ -202,14 +202,14 @@ export function Hero() {
 /* -------------------------------- Problems -------------------------------- */
 
 const problems = [
-  { title: "Thoughts won't stop spinning?", hint: "Get a method to slow them down.", available: true, method: "spin" as const },
-  { title: "Mind still running at 2am?", hint: "Fall asleep faster, tonight.", available: true, method: "sleep" as const },
-  { title: "Can't hold focus for more than a minute?", hint: "Sharpen it, fast.", available: true, method: "focus" as const },
-  { title: "Everything hitting at once?", hint: "Bring it down to one thing at a time.", available: true, method: "overload" as const },
-  { title: "Replaying every conversation afterward?", hint: "Prepare beforehand, recover faster after.", available: true, method: "social" as const },
-  { title: "Something big coming up?", hint: "Walk in steadier.", available: true, method: "prepare" as const },
-  { title: "Can't seem to get started?", hint: "Break the friction with one small move.", available: true, method: "friction" as const },
-  { title: "Just need to say it out loud?", hint: "Talk it out. NEOMETO listens.", available: true, method: "unload" as const },
+  { title: "Thoughts won't stop spinning?", hint: "Get a method to slow them down.", duration: "2 min", method: "spin" as const },
+  { title: "Mind still running at 2am?", hint: "Fall asleep faster, tonight.", duration: "2–3 min", method: "sleep" as const },
+  { title: "Can't hold focus for more than a minute?", hint: "Sharpen it, fast.", duration: "90 sec", method: "focus" as const },
+  { title: "Everything hitting at once?", hint: "Bring it down to one thing at a time.", duration: "90 sec", method: "overload" as const },
+  { title: "Replaying every conversation afterward?", hint: "Prepare beforehand, recover faster after.", duration: "2 min", method: "social" as const },
+  { title: "Something big coming up?", hint: "Walk in steadier.", duration: "2 min", method: "prepare" as const },
+  { title: "Can't seem to get started?", hint: "Break the friction with one small move.", duration: "2 min", method: "friction" as const },
+  { title: "Just need to say it out loud?", hint: "Talk it out. NEOMETO listens.", duration: "as long as you like", method: "unload" as const },
 ];
 
 export function Problems() {
@@ -253,55 +253,43 @@ export function Problems() {
 
       <div className="section-shell">
         <Reveal>
-          <h2 className="max-w-2xl text-[1.75rem] font-bold leading-tight text-ink md:text-[2.5rem]">
+          <h2 className="max-w-3xl text-3xl font-bold leading-tight text-ink md:text-5xl">
             What do you want to get better at?
           </h2>
         </Reveal>
-        <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="mt-14 grid gap-6 lg:grid-cols-2 lg:gap-8">
           {problems.map((problem, i) => {
             const open = () => openMethod(problem.method);
-
-            const interactive = Boolean(open);
-            const Tag = interactive ? "button" : "div";
             return (
-            <Reveal as="li" key={problem.title} delay={i * 70} className="h-full">
-              <Tag
-                {...(interactive
-                  ? { type: "button" as const, onClick: open, "aria-label": `${problem.title} Find a method` }
-                  : { "aria-disabled": true })}
-                className={`group relative flex h-full min-h-[200px] w-full flex-col items-start overflow-hidden rounded-3xl border border-border bg-surface p-6 text-left shadow-soft transition-all duration-500 sm:min-h-[260px] sm:p-7 ${
-                  interactive
-                    ? "cursor-pointer hover:-translate-y-1 hover:border-brand/60 hover:shadow-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-                    : ""
-                }`}
-              >
-                {interactive && (
-                  <span className="absolute -right-10 -top-10 size-28 rounded-full bg-brand-soft opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                )}
-                {!problem.available && (
-                  <span className="absolute right-4 top-4 rounded-full bg-muted px-2.5 py-1 text-xs font-medium text-muted-foreground">
-                    Coming soon
-                  </span>
-                )}
-                <span className="relative">
-                  <MethodGlyph variant={i} />
-                </span>
-                <span className="relative mt-6 font-display text-xl font-bold leading-snug tracking-[-0.015em] text-ink">
-                  {problem.title}
-                </span>
-                <span className="relative mt-2 text-sm leading-relaxed text-muted-foreground">
-                  {problem.hint}
-                </span>
-                <span
-                  className={`relative mt-auto inline-flex items-center gap-2 text-sm font-semibold ${
-                    problem.available ? "text-brand" : "text-muted-foreground"
-                  }`}
+              <Reveal as="li" key={problem.title} delay={i * 70} className="h-full">
+                <div
+                  onClick={open}
+                  className="group relative flex h-full min-h-[380px] w-full cursor-pointer flex-col items-start overflow-hidden rounded-3xl border border-border bg-surface p-8 text-left shadow-soft transition-all duration-500 hover:-translate-y-1 hover:border-brand/60 hover:shadow-lift md:min-h-[390px] md:p-10"
                 >
-                  {problem.available ? "Find a method" : "Notify me"}
-                  <ArrowRight className="size-4 transition-transform duration-500 group-hover:translate-x-1" />
-                </span>
-              </Tag>
-            </Reveal>
+                  <span className="absolute -right-10 -top-10 size-28 rounded-full bg-brand-soft opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                  <span className="relative flex w-full items-start justify-between gap-6">
+                    <MethodGlyph method={problem.method} />
+                    <span className="pt-1 text-sm font-medium text-muted-foreground">{problem.duration}</span>
+                  </span>
+                  <span className="relative mt-12 min-h-[5.625rem] font-display text-2xl font-bold leading-tight text-ink md:min-h-[4.5rem] md:text-3xl">
+                    {problem.title}
+                  </span>
+                  <span className="relative mt-3 min-h-[3rem] text-base leading-relaxed text-muted-foreground md:text-lg">
+                    {problem.hint}
+                  </span>
+                  <Button
+                    type="button"
+                    size="lg"
+                    className="relative mt-auto rounded-full px-8"
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      open();
+                    }}
+                  >
+                    Start
+                  </Button>
+                </div>
+              </Reveal>
             );
           })}
 
@@ -368,9 +356,9 @@ export function Manifesto() {
 /* ------------------------------- How it works ------------------------------ */
 
 const steps = [
-  { number: "01", title: "Tell us what's happening." },
-  { number: "02", title: "Find a method." },
-  { number: "03", title: "Try it now." },
+  { number: "01", title: "Say what's going on." },
+  { number: "02", title: "Get a method that fits." },
+  { number: "03", title: "Run it. Two minutes." },
 ];
 
 export function HowItWorks() {
@@ -378,23 +366,20 @@ export function HowItWorks() {
     <section id="how-it-works" className="scroll-mt-24 py-14 md:py-28">
       <div className="section-shell">
         <Reveal>
-          <h2 className="eyebrow">How it works</h2>
+          <h2 className="text-3xl font-bold leading-tight text-ink md:text-5xl">How it works</h2>
         </Reveal>
-        <ol className="mt-12 grid gap-6 md:grid-cols-3">
+        <ol className="mt-14 grid gap-8 md:grid-cols-3 lg:gap-10">
           {steps.map((step, i) => (
             <Reveal as="li" key={step.number} delay={i * 120}>
-              <div className="h-full rounded-3xl border border-border bg-surface p-8 shadow-soft transition-transform duration-500 hover:-translate-y-1">
-                <span className="block text-5xl font-bold tracking-tight text-brand">
+              <div className="h-full min-h-[250px] rounded-3xl border border-border bg-surface p-8 shadow-soft transition-transform duration-500 hover:-translate-y-1 md:p-10">
+                <span className="block font-display text-6xl font-bold text-brand md:text-7xl">
                   {step.number}
                 </span>
-                <h3 className="mt-6 text-xl font-bold text-ink md:text-[1.75rem]">{step.title}</h3>
+                <h3 className="mt-10 text-2xl font-bold leading-tight text-ink md:text-3xl">{step.title}</h3>
               </div>
             </Reveal>
           ))}
         </ol>
-        <Reveal>
-          <p className="mt-10 text-lg font-semibold text-success">No label required.</p>
-        </Reveal>
       </div>
     </section>
   );
@@ -411,10 +396,7 @@ export function FeaturedMethod() {
       <Reveal className="section-shell">
         <article className="group grid gap-10 overflow-hidden rounded-4xl border border-border bg-surface p-8 shadow-soft transition-shadow duration-700 hover:shadow-lift md:grid-cols-[1fr_0.8fr] md:items-center md:p-14">
           <div>
-            <p className="mb-3 text-xs font-semibold tracking-wide text-brand uppercase">
-              Don&apos;t trust our words. Trust the result.
-            </p>
-            <h2 className="mt-5 text-[1.75rem] font-bold text-ink md:text-[2.5rem]">
+            <h2 className="text-3xl font-bold text-ink md:text-5xl">
               Thought Spin
             </h2>
             <p className="mt-3 text-sm font-semibold text-brand">2–3 minutes</p>

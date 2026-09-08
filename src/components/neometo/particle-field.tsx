@@ -100,53 +100,77 @@ export function ParticleField({ className, mode = "chaos-to-order" }: ParticleFi
   );
 }
 
-/** Small abstract chaos-to-order glyphs used on the problem cards. */
-export function MethodGlyph({ variant }: { variant: number }) {
-  const common = "size-9 text-brand";
+type MethodGlyphName = "spin" | "sleep" | "focus" | "overload" | "social" | "prepare" | "friction" | "unload";
+
+/** Distinct, stable abstract glyphs used on the method cards. */
+export function MethodGlyph({ method }: { method: MethodGlyphName }) {
+  const common = "size-14 text-brand";
   const stroke = { fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round" as const };
 
-  switch (variant % 6) {
-    case 0: // overthinking — tangled line resolving
+  switch (method) {
+    case "spin": // tangled line resolving
       return (
         <svg viewBox="0 0 36 36" className={common} aria-hidden="true">
           <path d="M4 10c6-8 12 8 18 0s8 2 10 4" {...stroke} />
           <path d="M4 24h28" {...stroke} opacity={0.75} />
         </svg>
       );
-    case 1: // sleep — descending steps
+    case "sleep": // crescent and settling line
       return (
         <svg viewBox="0 0 36 36" className={common} aria-hidden="true">
-          <path d="M4 10h8v8h8v8h12" {...stroke} />
-          <circle cx="30" cy="8" r="2.5" fill="currentColor" opacity={0.75} />
+          <path d="M24 5a13 13 0 1 0 7 22 11 11 0 0 1-7-22Z" {...stroke} />
+          <path d="M5 30h17" {...stroke} opacity={0.65} />
         </svg>
       );
-    case 2: // focus — converging lines
+    case "focus": // concentric target
       return (
         <svg viewBox="0 0 36 36" className={common} aria-hidden="true">
-          <path d="M4 6h28M8 14h20M12 22h12" {...stroke} />
-          <circle cx="18" cy="30" r="2.5" fill="currentColor" />
+          <circle cx="18" cy="18" r="13" {...stroke} opacity={0.45} />
+          <circle cx="18" cy="18" r="7" {...stroke} opacity={0.75} />
+          <circle cx="18" cy="18" r="2.5" fill="currentColor" />
         </svg>
       );
-    case 3: // overload — dense to sparse dots
+    case "overload": // many points narrowing to one
       return (
         <svg viewBox="0 0 36 36" className={common} aria-hidden="true">
-          {[6, 11, 16, 21, 26, 31].map((x, i) => (
-            <circle key={x} cx={x} cy={18} r={2.5 - i * 0.3} fill="currentColor" opacity={1 - i * 0.1} />
-          ))}
+          <circle cx="7" cy="7" r="2" fill="currentColor" opacity={0.45} />
+          <circle cx="17" cy="6" r="2" fill="currentColor" opacity={0.55} />
+          <circle cx="28" cy="9" r="2" fill="currentColor" opacity={0.65} />
+          <circle cx="9" cy="17" r="2" fill="currentColor" opacity={0.55} />
+          <circle cx="26" cy="19" r="2" fill="currentColor" opacity={0.75} />
+          <path d="M7 25 18 31l11-6" {...stroke} />
+          <circle cx="18" cy="31" r="2.5" fill="currentColor" />
         </svg>
       );
-    case 4: // social — two arcs meeting
+    case "social": // two speech lines meeting
       return (
         <svg viewBox="0 0 36 36" className={common} aria-hidden="true">
-          <path d="M6 26a8 8 0 0 1 8-12" {...stroke} />
-          <path d="M30 26a8 8 0 0 0-8-12" {...stroke} opacity={0.75} />
-          <circle cx="18" cy="20" r="2.5" fill="currentColor" />
+          <path d="M4 7h18v12H11l-5 5V19H4Z" {...stroke} />
+          <path d="M17 23h8l5 5v-5h2V12h-6" {...stroke} opacity={0.7} />
         </svg>
       );
-    default: // prepare — rising bars
+    case "prepare": // path toward a marker
       return (
         <svg viewBox="0 0 36 36" className={common} aria-hidden="true">
-          <path d="M6 28V22M14 28V16M22 28V12M30 28V6" {...stroke} />
+          <path d="M5 30c8 0 5-10 13-10s5-10 13-10" {...stroke} />
+          <path d="M25 5h6v10" {...stroke} />
+          <circle cx="5" cy="30" r="2.5" fill="currentColor" />
+        </svg>
+      );
+    case "friction": // first move through a threshold
+      return (
+        <svg viewBox="0 0 36 36" className={common} aria-hidden="true">
+          <path d="M6 18h20" {...stroke} />
+          <path d="m20 12 6 6-6 6" {...stroke} />
+          <path d="M30 7v22" {...stroke} opacity={0.55} />
+          <circle cx="6" cy="18" r="2.5" fill="currentColor" />
+        </svg>
+      );
+    case "unload": // open container receiving a thought
+      return (
+        <svg viewBox="0 0 36 36" className={common} aria-hidden="true">
+          <path d="M7 19v11h22V19" {...stroke} />
+          <path d="M18 5v17m0 0-6-6m6 6 6-6" {...stroke} />
         </svg>
       );
   }
