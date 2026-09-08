@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -9,6 +9,7 @@ import {
   StillRing,
   useElapsed,
 } from "@/components/neometo/experience-kit";
+
 
 /* --------------------------------- Begin ---------------------------------- */
 
@@ -191,7 +192,264 @@ export function SpinPhase({
   );
 }
 
+/* --------------------------------- Shrink --------------------------------- */
+
+/**
+ * One soft abstract shape starts large, close and saturated, then scales down,
+ * drifts back, desaturates and softens. Captions fade through beneath it.
+ */
+export function ShrinkPhase({
+  durationMs,
+  captions,
+  reduced,
+  onDone,
+}: {
+  durationMs: number;
+  captions: string[];
+  reduced: boolean;
+  onDone: () => void;
+}) {
+  const elapsed = useElapsed(!reduced, "shrink", durationMs, onDone);
+  const p = Math.min(1, elapsed / durationMs);
+  const stepMs = durationMs / Math.max(1, captions.length);
+  const index = Math.min(captions.length - 1, Math.floor(elapsed / stepMs));
+  const line = captions[index] ?? "";
+
+  // Held end-states rather than continuous motion for reduced motion.
+  const eased = reduced ? (index + 1) / captions.length : 1 - Math.pow(1 - p, 2);
+  const scale = 1 - 0.78 * eased;
+  const shift = -18 * eased;
+  const opacity = 0.95 - 0.7 * eased;
+  const blur = 0.4 + 5 * eased;
+
+  return (
+    <div className="flex flex-col items-center gap-8 text-center">
+      <div className="relative grid h-56 w-full place-items-center sm:h-64 md:h-72">
+        <div
+          className="rounded-[42%] bg-brand"
+          style={{
+            width: "13rem",
+            height: "13rem",
+            maxWidth: "60vw",
+            maxHeight: "60vw",
+            opacity,
+            filter: `blur(${blur}px) saturate(${Math.round(100 - 80 * eased)}%)`,
+            transform: `translateY(${shift}%) scale(${Math.max(0.12, scale)})`,
+            transition: reduced ? "all 900ms ease-out" : "filter 200ms linear",
+          }}
+          aria-hidden="true"
+        />
+      </div>
+
+      <div className="flex min-h-[6rem] max-w-md items-center justify-center px-2" aria-live="polite">
+        <p
+          key={line}
+          className="animate-fade-in font-display text-xl font-bold leading-snug tracking-tight sm:text-2xl md:text-3xl"
+        >
+          {line}
+        </p>
+      </div>
+
+      <ProgressLabel>
+        {index + 1} of {captions.length}
+      </ProgressLabel>
+    </div>
+  );
+}
+
+/* ---------------------------------- Words --------------------------------- */
+
+/** One line at a time, loosening — spacing widens, weight drops, it dissolves. */
+export function WordsPhase({
+  lines,
+  stepMs,
+  reduced,
+  onDone,
+}: {
+  lines: string[];
+  stepMs: number;
+  reduced: boolean;
+  onDone: () => void;
+}) {
+  const total = lines.length * stepMs;
+  const elapsed = useElapsed(true, "words", total, onDone);
+  const index = Math.min(lines.length - 1, Math.floor(elapsed / stepMs));
+  const line = lines[index] ?? "";
+  const t = reduced ? 0 : Math.min(1, (elapsed % stepMs) / stepMs);
+  // Hold solid for the first third, then loosen.
+  const loosen = Math.max(0, (t - 0.34) / 0.66);
+
+  return (
+    <div className="flex flex-col items-center gap-10 text-center">
+      <div className="flex min-h-[9rem] w-full items-center justify-center px-2" aria-live="polite">
+        <p
+          key={line}
+          className="font-display leading-snug text-2xl sm:text-3xl md:text-4xl"
+          style={{
+            letterSpacing: `${(-0.02 + 0.34 * loosen).toFixed(3)}em`,
+            fontWeight: Math.round(700 - 400 * loosen),
+            opacity: 1 - 0.85 * loosen,
+            filter: `blur(${(2.5 * loosen).toFixed(2)}px)`,
+          }}
+        >
+          {line}
+        </p>
+      </div>
+
+      <ProgressLabel>
+        {index + 1} of {lines.length}
+      </ProgressLabel>
+    </div>
+  );
+}
+
+/* -------------------------------- Tap count -------------------------------- */
+
+export type TapRound = { prompt: string; count: number };
+
+/** The one interactive phase: tap (or Enter/Space) a circle per thing noticed. */
+export function TapCountPhase({
+  rounds,
+  onDone,
+}: {
+  rounds: TapRound[];
+  onDone: () => void;
+}) {
+  const [round, setRound] = useState(0);
+  const [filled, setFilled] = useState(0);
+  const current = rounds[round] ?? { prompt: "", count: 0 };
+  const complete = filled >= current.count;
+
+  useEffect(() => {
+    if (!complete) return;
+    const id = setTimeout(() => {
+      if (round >= rounds.length - 1) onDone();
+      else {
+        setRound((r) => r + 1);
+        setFilled(0);
+      }
+    }, 900);
+    return () => clearTimeout(id);
+  }, [complete, round, rounds.length, onDone]);
+
+  const skip = () => {
+    if (round >= rounds.length - 1) onDone();
+    else {
+      setRound((r) => r + 1);
+      setFilled(0);
+    }
+  };
+
+  return (
+    <div className="flex flex-col items-center gap-10 text-center">
+      <div className="flex min-h-[6rem] items-center justify-center px-2" aria-live="polite">
+        <h3
+          key={current.prompt}
+          className="animate-fade-in font-display text-2xl font-bold leading-snug tracking-tight sm:text-3xl md:text-4xl"
+        >
+          {current.prompt}
+        </h3>
+      </div>
+
+      <div className="flex flex-wrap items-center justify-center gap-3">
+        {Array.from({ length: current.count }).map((_, i) => {
+          const isFilled = i < filled;
+          return (
+            <button
+              key={i}
+              type="button"
+              onClick={() => setFilled((f) => Math.max(f, i + 1))}
+              aria-label={`Mark ${i + 1} of ${current.count}`}
+              aria-pressed={isFilled}
+              className={`size-12 rounded-full border transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand sm:size-14 ${
+                isFilled
+                  ? "border-brand bg-brand"
+                  : "border-background/30 bg-background/5 hover:bg-background/15"
+              }`}
+            />
+          );
+        })}
+      </div>
+
+      <div className="flex flex-col items-center gap-4">
+        <ProgressLabel>
+          {Math.min(filled, current.count)} of {current.count} · step {round + 1} of {rounds.length}
+        </ProgressLabel>
+        <button
+          type="button"
+          onClick={skip}
+          className="min-h-11 rounded-full px-4 text-sm text-background/50 transition-colors hover:text-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+        >
+          Skip this one
+        </button>
+      </div>
+    </div>
+  );
+}
+
+/* ---------------------------------- Point --------------------------------- */
+
+/** One sharp still dot; everything else drifts and blurs around it. */
+export function PointPhase({
+  durationMs,
+  instruction,
+  reduced,
+  onDone,
+}: {
+  durationMs: number;
+  instruction: string;
+  reduced: boolean;
+  onDone: () => void;
+}) {
+  const elapsed = useElapsed(!reduced, "point", durationMs, onDone);
+  const p = Math.min(1, elapsed / durationMs);
+
+  const dots = useMemo(
+    () =>
+      Array.from({ length: 22 }, (_, i) => ({
+        radius: 16 + ((i * 31) % 30),
+        base: (i / 22) * Math.PI * 2,
+        speed: 0.6 + ((i * 17) % 9) / 12,
+        size: 1 + ((i * 13) % 3) * 0.5,
+      })),
+    [],
+  );
+
+  return (
+    <div className="flex flex-col items-center gap-10">
+      <div className="relative size-72 md:size-96">
+        <ProgressRing progress={p} />
+        <div className="absolute inset-0" style={{ filter: "blur(2.5px)" }} aria-hidden="true">
+          {dots.map((d, i) => {
+            const a = d.base + (reduced ? 0 : (elapsed / 26_000) * d.speed);
+            return (
+              <span
+                key={i}
+                className="absolute rounded-full bg-brand/40"
+                style={{
+                  width: `${d.size * 4}px`,
+                  height: `${d.size * 4}px`,
+                  left: `${50 + d.radius * Math.cos(a)}%`,
+                  top: `${50 + d.radius * Math.sin(a)}%`,
+                }}
+              />
+            );
+          })}
+        </div>
+        <span className="absolute left-1/2 top-1/2 size-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand" />
+      </div>
+
+      <Instruction>{instruction}</Instruction>
+
+      <div aria-live="polite">
+        <ProgressLabel>{Math.round(p * 100)}% through</ProgressLabel>
+      </div>
+    </div>
+  );
+}
+
 /* ---------------------------------- Close --------------------------------- */
+
 
 export type CloseAction = {
   label: string;

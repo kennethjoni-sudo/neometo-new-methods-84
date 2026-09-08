@@ -68,19 +68,14 @@ const ANCHOR_PHASES: PhaseConfig[] = [
     ],
   },
   {
-    type: "text-sequence",
-    stepMs: 7500,
-    instruction: "Follow each one at your own pace.",
-    counterPrefix: "Step",
-    size: "md",
-    prompts: [
-      "Look up from your screen.",
-      "Find five neutral things you can see.",
-      "Notice three things you can feel. The chair, the floor, your sleeves.",
-      "Listen for two sounds in the background.",
-      "You're in the room now, not in your head.",
+    type: "tap-count",
+    rounds: [
+      { prompt: "Five things you can see", count: 5 },
+      { prompt: "Three things you can feel", count: 3 },
+      { prompt: "Two things you can hear", count: 2 },
     ],
   },
+
   {
     type: "close",
     heading: "One thing at a time.",

@@ -17,14 +17,15 @@ export const methods: Method[] = [
     duration: "2 minutes",
     promise: "When your thoughts won't slow down.",
     description:
-      "Breathing, then a guided spinning visual that interrupts repetitive overthinking and creates distance from a looping thought.",
+      "Four techniques: a guided spinning visual that interrupts a loop, Name the thought for a little distance, Park it to set a worry down for later, and Shrink it to make a thought smaller and further away.",
     area: "Overthinking",
     steps: [
-      "Settle in with four slow breaths — out longer than in.",
-      "Let the spinning shape hold your attention.",
-      "Let it slow down as you watch it.",
+      "Settle in with slow breaths — out longer than in.",
+      "Pick the technique that fits right now.",
+      "Let the visual or the words hold your attention.",
       "Notice the distance between you and the thought.",
     ],
+
   },
   {
     slug: "sleep",
