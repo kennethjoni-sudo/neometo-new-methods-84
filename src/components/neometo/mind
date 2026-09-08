@@ -135,7 +135,7 @@ export function Hero() {
               id="hero-input"
               value={value}
               onChange={(e) => setValue(e.target.value)}
-              placeholder="Focus, sleep, overthinking — what's the moment?"
+              placeholder="Find Methods for your mind"
               className="h-11 flex-1 bg-transparent text-base text-background outline-none placeholder:text-background/45"
             />
             <button
