@@ -101,6 +101,21 @@ export const methods: Method[] = [
       "You'll respond to what's actually in front of you, not the worst-case version.",
     ],
   },
+  {
+    slug: "friction",
+    name: "Next Action",
+    duration: "2 minutes",
+    promise: "Can't seem to get started?",
+    description:
+      "A short breathing and text-guided sequence for breaking the friction at the start of a task — finding the one small physical move that begins it.",
+    area: "Getting started",
+    steps: [
+      "Two slow breaths before deciding anything.",
+      "Forget the finished thing for a moment.",
+      "Find the smallest physical movement that would start it.",
+      "Give yourself permission to stop after five minutes.",
+    ],
+  },
 ];
 
 function rankMethods(query: string): Method[] {
