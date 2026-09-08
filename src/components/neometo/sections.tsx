@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { ArrowRight, ArrowUp, MessageCircle, Sparkles } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 
 import flowArt from "@/assets/neometo-flow.png.asset.json";
@@ -288,6 +289,16 @@ export function Problems() {
                   >
                     Start
                   </Button>
+                  {problem.method !== "unload" && (
+                    <Link
+                      to="/methods/$slug"
+                      params={{ slug: problem.method }}
+                      onClick={(event) => event.stopPropagation()}
+                      className="relative mt-4 text-sm text-muted-foreground hover:text-ink hover:underline"
+                    >
+                      Read about this method
+                    </Link>
+                  )}
                 </div>
               </Reveal>
             );
