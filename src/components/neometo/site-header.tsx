@@ -26,8 +26,7 @@ export function SiteHeader() {
 
         <nav aria-label="Main" className="hidden items-center gap-8 md:flex">
           <Link
-            to="/"
-            hash="methods"
+            to="/methods"
             className="text-sm font-medium text-muted-foreground transition-colors hover:text-ink"
           >
             Methods
@@ -67,8 +66,7 @@ export function SiteHeader() {
               </SheetTitle>
               <nav aria-label="Mobile" className="mt-10 flex flex-col gap-6">
                 <Link
-                  to="/"
-                  hash="methods"
+                  to="/methods"
                   onClick={() => setOpen(false)}
                   className="text-lg font-medium text-ink transition-opacity hover:opacity-70"
                 >
