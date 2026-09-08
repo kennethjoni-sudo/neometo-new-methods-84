@@ -91,12 +91,9 @@ function Index() {
       <main>
         <Hero />
         <Problems />
-        <Manifesto />
         <HowItWorks />
         <FeaturedMethod />
-        <Advisor />
         <PhilosophyTeaser />
-        <Coming />
         <FinalCta />
       </main>
       <SiteFooter />
