@@ -23,14 +23,14 @@ const organizationSchema = {
   name: "NEOMETO",
   slogan: "New Methods for Modern Minds.",
   description,
-  url: "/",
+  url: "https://neometo.lovable.app/",
 };
 
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: "NEOMETO",
-  url: "/",
+  url: "https://neometo.lovable.app/",
   description,
 };
 
