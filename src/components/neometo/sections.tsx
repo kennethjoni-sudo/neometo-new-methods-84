@@ -129,7 +129,7 @@ export function Hero() {
             className="mx-auto mt-10 flex w-full max-w-xl items-center gap-3 rounded-2xl border-[0.5px] border-ink-line bg-ink-raised p-2 pl-5 shadow-lift"
           >
               <label htmlFor="hero-input" className="sr-only">
-              Focus, sleep, overthinking — what&apos;s the moment?
+              Find Methods for your mind
             </label>
             <input
               id="hero-input"
