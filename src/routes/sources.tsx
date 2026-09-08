@@ -14,10 +14,10 @@ export const Route = createFileRoute("/sources")({
       { property: "og:title", content: title },
       { property: "og:description", content: description },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/sources" },
+      { property: "og:url", content: "https://neometo.lovable.app/sources" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "/sources" }],
+    links: [{ rel: "canonical", href: "https://neometo.lovable.app/sources" }],
   }),
   component: SourcesPage,
 });

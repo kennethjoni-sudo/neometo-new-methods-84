@@ -23,14 +23,14 @@ const organizationSchema = {
   name: "NEOMETO",
   slogan: "New Methods for Modern Minds.",
   description,
-  url: "/",
+  url: "https://neometo.lovable.app/",
 };
 
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: "NEOMETO",
-  url: "/",
+  url: "https://neometo.lovable.app/",
   description,
 };
 
@@ -42,12 +42,12 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: title },
       { property: "og:description", content: description },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/" },
-      { property: "og:image", content: flowArt.url },
+      { property: "og:url", content: "https://neometo.lovable.app/" },
+      { property: "og:image", content: `https://neometo.lovable.app${flowArt.url}` },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: flowArt.url },
+      { name: "twitter:image", content: `https://neometo.lovable.app${flowArt.url}` },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [{ rel: "canonical", href: "https://neometo.lovable.app/" }],
     scripts: [
       {
         type: "application/ld+json",

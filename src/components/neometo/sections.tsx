@@ -567,7 +567,7 @@ export function Faq() {
     <section id="faq" className="scroll-mt-24 py-20 md:py-28">
       <div className="section-shell">
         <Reveal>
-          <h2 className="text-[1.75rem] font-bold text-ink md:text-[2.5rem]">Questions</h2>
+          <h1 className="text-[1.75rem] font-bold text-ink md:text-[2.5rem]">Questions</h1>
           <p className="mt-3 text-base text-muted-foreground">
             Honest answers about the methods that are live right now.
           </p>
