@@ -76,6 +76,49 @@ const NAME_PHASES: PhaseConfig[] = [
   },
 ];
 
+const PARK_PHASES: PhaseConfig[] = [
+  {
+    type: "begin",
+    title: "Park It",
+    subtitle: "Same worry, on repeat?",
+    note: "About 2 minutes. We're not solving it now. We're setting a time to come back to it.",
+    buttonLabel: "Begin",
+  },
+  {
+    type: "breathe",
+    cycles: 2,
+    instruction: "Two breaths before we set it down.",
+    pattern: [
+      { label: "Breathe in", ms: 4000 },
+      { label: "Breathe out", ms: 6000 },
+    ],
+  },
+  {
+    type: "text-sequence",
+    stepMs: 7500,
+    instruction: "Take your time with each line.",
+    counterPrefix: "Step",
+    size: "md",
+    prompts: [
+      "Name the worry in a few words. Just the headline.",
+      "Ask: is there anything I can actually do about it in the next hour?",
+      "If there is, do that one thing when this finishes.",
+      "If there isn't, it doesn't need you right now.",
+      "Pick a time later today when you'll give it your full attention.",
+      "Until then, it's parked. It'll keep.",
+    ],
+  },
+  {
+    type: "close",
+    heading: "It's parked, not ignored.",
+    subheading: "You've given it a time. Go back to what you were doing.",
+    actions: [
+      { label: "Back to it", action: "close" },
+      { label: "Try another technique", variant: "outline", action: "select" },
+    ],
+  },
+];
+
 export const thoughtSpinMethod: MethodConfig = {
   label: "Thought Spin method",
   selector: {
@@ -93,6 +136,12 @@ export const thoughtSpinMethod: MethodConfig = {
         title: "Name the thought",
         meta: "Put a little distance between you and it.",
         phases: NAME_PHASES,
+      },
+      {
+        id: "park",
+        title: "Park it",
+        meta: "Set it down and come back to it later.",
+        phases: PARK_PHASES,
       },
     ],
   },
