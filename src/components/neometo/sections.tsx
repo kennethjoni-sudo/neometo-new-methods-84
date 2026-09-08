@@ -120,19 +120,10 @@ export function Hero() {
                 strokeLinejoin="round"
               />
             </svg>
-          </div>
-          <p className="mt-8 text-sm font-semibold tracking-[0.14em] text-brand uppercase">
-            A personality hack, not a diagnosis.
-          </p>
+          </div>    
           <h1 className="mt-5 text-[2.75rem] font-bold leading-[1.02] sm:text-6xl lg:text-[4rem]">
             New Methods for Modern Minds.
           </h1>
-          <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-background/70 md:text-lg">
-            Practical methods for focus, sleep, and overthinking — for the moments when your mind
-            needs another way.
-          </p>
-
-
           <form
             onSubmit={handleSubmit}
             className="mx-auto mt-10 flex w-full max-w-xl items-center gap-3 rounded-2xl border-[0.5px] border-ink-line bg-ink-raised p-2 pl-5 shadow-lift"
@@ -144,6 +135,7 @@ export function Hero() {
               id="hero-input"
               value={value}
               onChange={(e) => setValue(e.target.value)}
+              placeholder="Focus, sleep, overthinking — what's the moment?"
               className="h-11 flex-1 bg-transparent text-base text-background outline-none placeholder:text-background/45"
             />
             <button
@@ -172,16 +164,16 @@ export function Hero() {
           )}
 
           <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
-            <span className="text-sm text-background/50">Nothing specific to say?</span>
             <button
               type="button"
               onClick={() => {
                 logEvent("unload_opened", { source: "hero" });
                 requestMethod("unload");
               }}
-              className="inline-flex items-center gap-2 rounded-full border-[0.5px] border-ink-line bg-ink-raised px-5 py-2.5 text-sm font-semibold text-background transition-colors hover:border-brand"
+              className="inline-flex items-center gap-2 rounded-full bg-success px-5 py-2.5 text-sm font-semibold text-ink transition-opacity hover:opacity-90"
             >
-              <MessageCircle className="size-4 text-brand" />
+              <MessageCircle className="size-4" />
+              Mind Unloader
               Just talk it out
             </button>
           </div>
@@ -198,9 +190,6 @@ export function Hero() {
                 {chip.label}
               </button>
             ))}
-            <a href="#methods" className="rounded-[14px] bg-brand px-4 py-2 text-sm font-semibold text-background transition-opacity hover:opacity-90">
-              + more coming soon
-            </a>
           </div>
         </div>
       </div>
