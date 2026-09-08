@@ -113,6 +113,21 @@ function PhilosophyTeaser() {
   );
 }
 
+function ResultStatement() {
+  return (
+    <section className="bg-ink py-20 text-background md:py-32">
+      <div className="section-shell text-center">
+        <h2 className="mx-auto max-w-4xl text-3xl font-bold leading-tight md:text-5xl">
+          Don&apos;t trust our words. Trust the result.
+        </h2>
+        <p className="mt-6 text-lg leading-relaxed text-background/70 md:text-xl">
+          Run one. You&apos;ll know inside two minutes.
+        </p>
+      </div>
+    </section>
+  );
+}
+
 function Index() {
   return (
     <div className="min-h-screen bg-background">
@@ -122,6 +137,7 @@ function Index() {
         <Problems />
         <TrustStrip />
         <HowItWorks />
+        <ResultStatement />
         <FeaturedMethod />
         <PhilosophyTeaser />
         <FinalCta />
