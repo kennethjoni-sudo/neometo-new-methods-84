@@ -43,6 +43,19 @@ function AboutPage() {
         </p>
       </PageSection>
 
+      <PageSection heading="You don't always need another explanation">
+        <p>
+          NEOMETO explores practical methods for focus, sleep, and mental clarity — from cognitive
+          and behavioural techniques to guided visualization. We explain how each method works and
+          when it might be worth trying.
+        </p>
+        <p>
+          Useful methods already exist across psychology, research, coaching, neuroscience and
+          lived experience. The hard part is finding the right one when you actually need it.
+        </p>
+        <p>NEOMETO brings them together and makes them simple to find and use.</p>
+      </PageSection>
+
       <PageSection heading="How the methods are built">
         <p>
           Every method follows the same four-part shape: begin, breathe, a short sequence of
