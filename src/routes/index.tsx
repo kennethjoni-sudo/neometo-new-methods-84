@@ -6,13 +6,10 @@ import { Button } from "@/components/ui/button";
 
 import { SiteFooter } from "@/components/neometo/site-footer";
 import {
-  Advisor,
-  Coming,
   FeaturedMethod,
   FinalCta,
   Hero,
   HowItWorks,
-  Manifesto,
   Problems,
 } from "@/components/neometo/sections";
 
