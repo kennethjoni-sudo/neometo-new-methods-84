@@ -16,7 +16,7 @@ export const Route = createFileRoute("/philosophy")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "/philosophy" }],
+    links: [{ rel: "canonical", href: "https://neometo.lovable.app/philosophy" }],
   }),
   component: PhilosophyPage,
 });
