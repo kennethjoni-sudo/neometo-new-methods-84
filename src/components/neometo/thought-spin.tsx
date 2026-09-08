@@ -137,6 +137,12 @@ export const thoughtSpinMethod: MethodConfig = {
         meta: "Put a little distance between you and it.",
         phases: NAME_PHASES,
       },
+      {
+        id: "park",
+        title: "Park it",
+        meta: "Set it down and come back to it later.",
+        phases: PARK_PHASES,
+      },
     ],
   },
 };
