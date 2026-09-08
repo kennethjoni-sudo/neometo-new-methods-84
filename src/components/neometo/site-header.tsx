@@ -25,11 +25,17 @@ export function SiteHeader() {
         </Link>
 
         <nav aria-label="Main" className="hidden items-center gap-8 md:flex">
+          <Link
+            to="/"
+            hash="methods"
+            className="text-sm font-medium text-muted-foreground transition-colors hover:text-ink"
+          >
+            Methods
+          </Link>
           {pageLinks.map((link) => (
             <Link
               key={link.label}
               to={link.to}
-              hash={"hash" in link ? link.hash : undefined}
               className="text-sm font-medium text-muted-foreground transition-colors hover:text-ink"
             >
               {link.label}
@@ -60,11 +66,18 @@ export function SiteHeader() {
                 NEOMETO
               </SheetTitle>
               <nav aria-label="Mobile" className="mt-10 flex flex-col gap-6">
-                {links.map((link) => (
+                <Link
+                  to="/"
+                  hash="methods"
+                  onClick={() => setOpen(false)}
+                  className="text-lg font-medium text-ink transition-opacity hover:opacity-70"
+                >
+                  Methods
+                </Link>
+                {pageLinks.map((link) => (
                   <Link
                     key={link.label}
                     to={link.to}
-                    hash={"hash" in link ? link.hash : undefined}
                     onClick={() => setOpen(false)}
                     className="text-lg font-medium text-ink transition-opacity hover:opacity-70"
                   >
