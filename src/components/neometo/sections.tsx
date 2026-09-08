@@ -172,7 +172,7 @@ export function Hero() {
                 logEvent("unload_opened", { source: "hero" });
                 requestMethod("unload");
               }}
-              className="inline-flex items-center gap-2 rounded-full bg-success px-5 py-2.5 text-sm font-semibold text-ink transition-opacity hover:opacity-90"
+              className="inline-flex min-h-11 items-center gap-2 rounded-full bg-success px-5 py-2.5 text-sm font-semibold text-ink transition-opacity hover:opacity-90"
             >
               <MessageCircle className="size-4" />
               Mind Unloader
@@ -180,13 +180,13 @@ export function Hero() {
           </div>
 
 
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
+          <div className="mx-auto mt-6 grid max-w-md grid-cols-2 gap-2 sm:flex sm:max-w-none sm:flex-wrap sm:items-center sm:justify-center">
             {chips.map((chip) => (
               <button
                 key={chip.label}
                 type="button"
                 onClick={() => requestMethod(chip.method)}
-                className="rounded-[14px] border-[0.5px] border-ink-line bg-ink-raised px-4 py-2 text-sm font-medium text-accent transition-colors hover:border-brand"
+                className="inline-flex min-h-11 items-center justify-center rounded-[14px] border-[0.5px] border-ink-line bg-ink-raised px-4 py-2 text-sm font-medium text-accent transition-colors last:col-span-2 hover:border-brand sm:last:col-span-1"
               >
                 {chip.label}
               </button>
@@ -240,7 +240,7 @@ export function Problems() {
   };
 
   return (
-    <section id="methods" className="scroll-mt-24 py-20 md:py-28">
+    <section id="methods" className="scroll-mt-24 py-14 md:py-28">
       {active === "sleep" && <SleepExperience onClose={close} />}
       {active === "focus" && <FocusExperience onClose={close} />}
       {active === "spin" && <ThoughtSpinExperience onClose={close} />}
@@ -269,7 +269,7 @@ export function Problems() {
                 {...(interactive
                   ? { type: "button" as const, onClick: open, "aria-label": `${problem.title} Find a method` }
                   : { "aria-disabled": true })}
-                className={`group relative flex h-full min-h-[260px] w-full flex-col items-start overflow-hidden rounded-3xl border border-border bg-surface p-7 text-left shadow-soft transition-all duration-500 ${
+                className={`group relative flex h-full min-h-[200px] w-full flex-col items-start overflow-hidden rounded-3xl border border-border bg-surface p-6 text-left shadow-soft transition-all duration-500 sm:min-h-[260px] sm:p-7 ${
                   interactive
                     ? "cursor-pointer hover:-translate-y-1 hover:border-brand/60 hover:shadow-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                     : ""
@@ -375,7 +375,7 @@ const steps = [
 
 export function HowItWorks() {
   return (
-    <section id="how-it-works" className="scroll-mt-24 py-20 md:py-28">
+    <section id="how-it-works" className="scroll-mt-24 py-14 md:py-28">
       <div className="section-shell">
         <Reveal>
           <h2 className="eyebrow">How it works</h2>
@@ -406,7 +406,7 @@ export function FeaturedMethod() {
   const [open, setOpen] = useState(false);
 
   return (
-    <section className="py-20 md:py-28">
+    <section className="py-14 md:py-28">
       {open && <ThoughtSpinExperience onClose={() => setOpen(false)} />}
       <Reveal className="section-shell">
         <article className="group grid gap-10 overflow-hidden rounded-4xl border border-border bg-surface p-8 shadow-soft transition-shadow duration-700 hover:shadow-lift md:grid-cols-[1fr_0.8fr] md:items-center md:p-14">
@@ -643,7 +643,7 @@ export function Coming() {
 
 export function FinalCta() {
   return (
-    <section id="final-cta" className="scroll-mt-24 py-24 md:py-36">
+    <section id="final-cta" className="scroll-mt-24 py-16 md:py-36">
       <div className="section-shell relative text-center">
         <Reveal className="relative">
           <h2 className="text-[1.75rem] font-bold text-ink md:text-[3.25rem]">

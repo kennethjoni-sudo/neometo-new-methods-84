@@ -97,15 +97,15 @@ export function TextSequencePhase({
       )}
 
       <div
-        className={`flex items-center justify-center ${
-          size === "lg" ? "min-h-[8rem]" : "min-h-[7rem] max-w-md"
+        className={`flex items-center justify-center px-2 ${
+          size === "lg" ? "min-h-[8rem]" : "min-h-[8rem] max-w-md sm:min-h-[7rem]"
         }`}
         aria-live="polite"
       >
         <p
           key={line}
-          className={`animate-fade-in font-display font-bold tracking-tight ${
-            size === "lg" ? "text-4xl md:text-6xl" : "text-2xl leading-snug md:text-3xl"
+          className={`animate-fade-in font-display font-bold leading-snug tracking-tight ${
+            size === "lg" ? "text-3xl sm:text-4xl md:text-6xl" : "text-xl sm:text-2xl md:text-3xl"
           }`}
           style={{ transition: "opacity 1200ms ease-in-out" }}
         >

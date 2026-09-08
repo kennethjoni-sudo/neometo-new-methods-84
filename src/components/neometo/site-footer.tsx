@@ -4,6 +4,7 @@ const pageLinks = [
   { label: "Philosophy", to: "/philosophy" },
   { label: "About", to: "/about" },
   { label: "FAQ", to: "/faq" },
+  { label: "Sources", to: "/sources" },
   { label: "Contact", to: "/contact" },
 ] as const;
 
@@ -26,11 +27,11 @@ export function SiteFooter() {
         </div>
 
         <div className="flex flex-col gap-4">
-          <nav aria-label="Footer" className="flex flex-wrap gap-x-8 gap-y-3">
+          <nav aria-label="Footer" className="flex flex-wrap gap-x-6 gap-y-1">
             <Link
               to="/"
               hash="methods"
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-ink"
+              className="inline-flex min-h-11 items-center text-sm font-medium text-muted-foreground transition-colors hover:text-ink"
             >
               Methods
             </Link>
@@ -38,19 +39,19 @@ export function SiteFooter() {
               <Link
                 key={link.label}
                 to={link.to}
-                className="text-sm font-medium text-muted-foreground transition-colors hover:text-ink"
+                className="inline-flex min-h-11 items-center text-sm font-medium text-muted-foreground transition-colors hover:text-ink"
               >
                 {link.label}
               </Link>
             ))}
           </nav>
 
-          <nav aria-label="Legal" className="flex flex-wrap gap-x-8 gap-y-3">
+          <nav aria-label="Legal" className="flex flex-wrap gap-x-6 gap-y-1">
             {legalLinks.map((link) => (
               <Link
                 key={link.label}
                 to={link.to}
-                className="text-sm text-muted-foreground/70 transition-colors hover:text-ink"
+                className="inline-flex min-h-11 items-center text-sm text-muted-foreground/70 transition-colors hover:text-ink"
               >
                 {link.label}
               </Link>

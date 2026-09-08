@@ -110,7 +110,7 @@ export function MethodExperience({
                     setTechniqueId(t.id);
                     setIndex(0);
                   }}
-                  className="group flex w-full items-center justify-between gap-6 rounded-3xl border border-background/15 bg-background/5 px-6 py-5 text-left transition-colors hover:border-brand/50 hover:bg-background/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+                  className="group flex min-h-[64px] w-full items-center justify-between gap-4 rounded-3xl border border-background/15 bg-background/5 px-5 py-5 text-left transition-colors hover:border-brand/50 hover:bg-background/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand sm:gap-6 sm:px-6"
                 >
                   <span>
                     <span className="block font-display text-lg font-bold tracking-tight">
