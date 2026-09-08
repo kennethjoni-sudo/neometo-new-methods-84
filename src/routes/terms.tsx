@@ -75,4 +75,27 @@ function TermsPage() {
       <PageSection heading="Intellectual property">
         <PagePlaceholder>
           PLACEHOLDER — state who owns the method copy, the NEOMETO name, the wordmark and the
-          visual system, and what visitors may do with it. Note that the underlying
+          visual system, and what visitors may do with it.
+        </PagePlaceholder>
+      </PageSection>
+
+      <PageSection heading="Changes to these terms">
+        <p>
+          These terms may change as the site grows. The current version always applies, and the
+          date of the last change will be noted here once the final wording is in place.
+        </p>
+      </PageSection>
+
+      <PageSection heading="Contact">
+        <p>
+          Questions about these terms can go through the{" "}
+          <Link to="/contact" className="font-medium text-brand underline-offset-4 hover:underline">
+            contact page
+          </Link>
+          .
+        </p>
+      </PageSection>
+    </PageShell>
+  );
+}
+
