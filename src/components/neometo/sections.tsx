@@ -121,7 +121,7 @@ export function Hero() {
               />
             </svg>
           </div>    
-          <h1 className="mt-5 text-[2.75rem] font-bold leading-[1.02] sm:text-6xl lg:text-[4rem]">
+          <h1 className="mt-8 text-[2.75rem] font-bold leading-[1.02] sm:text-6xl lg:text-[4rem]">
             New Methods for Modern Minds.
           </h1>
           <form
@@ -174,7 +174,6 @@ export function Hero() {
             >
               <MessageCircle className="size-4" />
               Mind Unloader
-              Just talk it out
             </button>
           </div>
 
