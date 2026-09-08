@@ -263,25 +263,15 @@ export function Problems() {
             return (
               <Reveal as="li" key={problem.title} delay={i * 70} className="h-full">
                 <div
-                  role="button"
-                  tabIndex={0}
-                  aria-label={`${problem.title} Start method`}
                   onClick={open}
-                  onKeyDown={(event) => {
-                    if (event.target !== event.currentTarget) return;
-                    if (event.key === "Enter" || event.key === " ") {
-                      event.preventDefault();
-                      open();
-                    }
-                  }}
-                  className="group relative flex h-full min-h-[340px] w-full cursor-pointer flex-col items-start overflow-hidden rounded-3xl border border-border bg-surface p-8 text-left shadow-soft transition-all duration-500 hover:-translate-y-1 hover:border-brand/60 hover:shadow-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background md:min-h-[390px] md:p-10"
+                  className="group relative flex h-full min-h-[380px] w-full cursor-pointer flex-col items-start overflow-hidden rounded-3xl border border-border bg-surface p-8 text-left shadow-soft transition-all duration-500 hover:-translate-y-1 hover:border-brand/60 hover:shadow-lift md:min-h-[390px] md:p-10"
                 >
                   <span className="absolute -right-10 -top-10 size-28 rounded-full bg-brand-soft opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                   <span className="relative flex w-full items-start justify-between gap-6">
                     <MethodGlyph method={problem.method} />
                     <span className="pt-1 text-sm font-medium text-muted-foreground">{problem.duration}</span>
                   </span>
-                  <span className="relative mt-12 min-h-[3.75rem] font-display text-2xl font-bold leading-tight text-ink md:min-h-[4.5rem] md:text-3xl">
+                  <span className="relative mt-12 min-h-[5.625rem] font-display text-2xl font-bold leading-tight text-ink md:min-h-[4.5rem] md:text-3xl">
                     {problem.title}
                   </span>
                   <span className="relative mt-3 min-h-[3rem] text-base leading-relaxed text-muted-foreground md:text-lg">
@@ -289,7 +279,8 @@ export function Problems() {
                   </span>
                   <Button
                     type="button"
-                    className="relative mt-auto rounded-full px-7"
+                    size="lg"
+                    className="relative mt-auto rounded-full px-8"
                     onClick={(event) => {
                       event.stopPropagation();
                       open();
