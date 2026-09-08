@@ -40,7 +40,7 @@ export const Route = createFileRoute("/contact")({
 function ContactPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [topic, setTopic] = useState(TOPICS[0]);
+  const [topic, setTopic] = useState<string>("General");
   const [message, setMessage] = useState("");
 
   const handleSend = () => {
