@@ -1,34 +1,101 @@
-import { MethodExperience, type MethodConfig } from "@/components/neometo/method-engine";
+import {
+  MethodExperience,
+  type MethodConfig,
+  type PhaseConfig,
+} from "@/components/neometo/method-engine";
+
+const SPIN_PHASES: PhaseConfig[] = [
+  {
+    type: "begin",
+    title: "Thought Spin",
+    subtitle: "When your thoughts won't slow down.",
+    note: "About 2 minutes. Find a quiet moment.",
+  },
+  {
+    type: "breathe",
+    cycles: 4,
+    pattern: [
+      { label: "Breathe in", ms: 4000 },
+      { label: "Hold", ms: 2000 },
+      { label: "Breathe out", ms: 6000 },
+    ],
+  },
+  { type: "spin", durationMs: 75_000 },
+  {
+    type: "close",
+    heading: "Notice how still it feels.",
+    subheading: "That's the distance you were looking for.",
+    actions: [
+      { label: "Do it again", action: "restart" },
+      { label: "Try another technique", variant: "outline", action: "select" },
+    ],
+  },
+];
+
+const NAME_PHASES: PhaseConfig[] = [
+  {
+    type: "begin",
+    title: "Create Distance",
+    subtitle: "Thoughts stuck on a loop?",
+    note: "About 2 minutes. We won't argue with the thought. We'll just move it slightly further away.",
+    buttonLabel: "Begin",
+  },
+  {
+    type: "breathe",
+    cycles: 3,
+    instruction: "A few breaths to settle first.",
+    pattern: [
+      { label: "Breathe in", ms: 4000 },
+      { label: "Hold", ms: 2000 },
+      { label: "Breathe out", ms: 6000 },
+    ],
+  },
+  {
+    type: "text-sequence",
+    stepMs: 7500,
+    instruction: "Take your time with each line.",
+    counterPrefix: "Step",
+    size: "md",
+    prompts: [
+      "Find the thought taking up the most space right now.",
+      "Say it to yourself silently.",
+      "Now put this phrase in front of it:",
+      "'I notice I'm having the thought that…'",
+      "Notice how the sentence creates a small gap.",
+      "You are not the thought. You're the one noticing it.",
+    ],
+  },
+  {
+    type: "close",
+    heading: "Thoughts are mental events.",
+    subheading: "You don't have to act on all of them.",
+    actions: [
+      { label: "Close", action: "close" },
+      { label: "Explore other methods", variant: "outline", action: "scroll-methods" },
+    ],
+  },
+];
 
 export const thoughtSpinMethod: MethodConfig = {
   label: "Thought Spin method",
-  phases: [
-    {
-      type: "begin",
-      title: "Thought Spin",
-      subtitle: "When your thoughts won't slow down.",
-      note: "About 2 minutes. Find a quiet moment.",
-    },
-    {
-      type: "breathe",
-      cycles: 4,
-      pattern: [
-        { label: "Breathe in", ms: 4000 },
-        { label: "Hold", ms: 2000 },
-        { label: "Breathe out", ms: 6000 },
-      ],
-    },
-    { type: "spin", durationMs: 75_000 },
-    {
-      type: "close",
-      heading: "Notice how still it feels.",
-      subheading: "That's the distance you were looking for.",
-      actions: [
-        { label: "Do it again", action: "restart" },
-        { label: "Explore other methods", variant: "outline", action: "scroll-methods" },
-      ],
-    },
-  ],
+  selector: {
+    title: "Overthinking",
+    subtitle: "Thoughts won't stop spinning? Try one of these.",
+    techniques: [
+      {
+        id: "spin",
+        title: "Thought Spin",
+        meta: "A spinning visual that interrupts the loop.",
+        phases: SPIN_PHASES,
+      },
+      {
+        id: "name",
+        title: "Name the thought",
+        meta: "Put a little distance between you and it.",
+        phases: NAME_PHASES,
+      },
+    ],
+  },
 };
 
 export function ThoughtSpinExperience({ onClose }: { onClose: () => void }) {
