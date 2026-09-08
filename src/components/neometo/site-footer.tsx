@@ -1,7 +1,6 @@
 import { Link } from "@tanstack/react-router";
 
-const primaryLinks = [
-  { label: "Methods", to: "/", hash: "methods" },
+const pageLinks = [
   { label: "Philosophy", to: "/philosophy" },
   { label: "About", to: "/about" },
   { label: "FAQ", to: "/faq" },
@@ -25,11 +24,17 @@ export function SiteFooter() {
 
         <div className="flex flex-col gap-4">
           <nav aria-label="Footer" className="flex flex-wrap gap-x-8 gap-y-3">
-            {primaryLinks.map((link) => (
+            <Link
+              to="/"
+              hash="methods"
+              className="text-sm font-medium text-muted-foreground transition-colors hover:text-ink"
+            >
+              Methods
+            </Link>
+            {pageLinks.map((link) => (
               <Link
                 key={link.label}
                 to={link.to}
-                hash={"hash" in link ? link.hash : undefined}
                 className="text-sm font-medium text-muted-foreground transition-colors hover:text-ink"
               >
                 {link.label}
