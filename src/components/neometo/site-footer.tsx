@@ -29,8 +29,7 @@ export function SiteFooter() {
         <div className="flex flex-col gap-4">
           <nav aria-label="Footer" className="flex flex-wrap gap-x-6 gap-y-1">
             <Link
-              to="/"
-              hash="methods"
+              to="/methods"
               className="inline-flex min-h-11 items-center text-sm font-medium text-muted-foreground transition-colors hover:text-ink"
             >
               Methods

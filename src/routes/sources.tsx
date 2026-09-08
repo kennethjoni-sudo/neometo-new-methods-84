@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { PageSection, PageShell } from "@/components/neometo/page-shell";
 
@@ -32,39 +32,39 @@ function SourcesPage() {
     >
       <PageSection heading="Thoughts">
         <p>
-          <strong className="font-semibold text-ink">Thought Spin:</strong> our own construction. A
+          <Link to="/methods/$slug" params={{ slug: "spin" }} className="font-semibold text-ink hover:text-brand hover:underline">Thought Spin</Link>: our own construction. A
           simple moving visual gives attention something to hold, which makes it harder for a loop
           to keep running. Not a named technique from anywhere.
         </p>
         <p>
-          <strong className="font-semibold text-ink">Name the thought:</strong> cognitive defusion,
+          <Link to="/methods/$slug" params={{ slug: "spin" }} className="font-semibold text-ink hover:text-brand hover:underline">Name the thought</Link>: cognitive defusion,
           from Acceptance and Commitment Therapy. Putting &ldquo;I notice I&apos;m having the
           thought that…&rdquo; in front of a thought is the plainest form of it.
         </p>
         <p>
-          <strong className="font-semibold text-ink">Park it:</strong> worry postponement — naming a
+          <Link to="/methods/$slug" params={{ slug: "spin" }} className="font-semibold text-ink hover:text-brand hover:underline">Park it</Link>: worry postponement — naming a
           worry and giving it a scheduled time rather than arguing with it now.
         </p>
       </PageSection>
 
       <PageSection heading="Sleep">
         <p>
-          <strong className="font-semibold text-ink">Racing Thoughts Shuffle:</strong> cognitive
+          <Link to="/methods/$slug" params={{ slug: "sleep" }} className="font-semibold text-ink hover:text-brand hover:underline">Racing Thoughts Shuffle</Link>: cognitive
           shuffling. A slow stream of unrelated neutral images is hard to spiral on.
         </p>
         <p>
-          <strong className="font-semibold text-ink">4-7-8:</strong> paced breathing with a long
+          <Link to="/methods/$slug" params={{ slug: "sleep" }} className="font-semibold text-ink hover:text-brand hover:underline">4-7-8</Link>: paced breathing with a long
           exhale.
         </p>
         <p>
-          <strong className="font-semibold text-ink">Body scan:</strong> a shortened body scan, from
+          <Link to="/methods/$slug" params={{ slug: "sleep" }} className="font-semibold text-ink hover:text-brand hover:underline">Body scan</Link>: a shortened body scan, from
           mindfulness practice.
         </p>
       </PageSection>
 
       <PageSection heading="Focus">
         <p>
-          <strong className="font-semibold text-ink">One-Point Anchor:</strong> attention training.
+          <Link to="/methods/$slug" params={{ slug: "focus" }} className="font-semibold text-ink hover:text-brand hover:underline">One-Point Anchor</Link>: attention training.
           Rest attention on one object, notice when it wanders, bring it back. The bringing-back is
           the rep.
         </p>
@@ -72,36 +72,36 @@ function SourcesPage() {
 
       <PageSection heading="Overload">
         <p>
-          <strong className="font-semibold text-ink">One thing at a time:</strong> narrowing a
+          <Link to="/methods/$slug" params={{ slug: "overload" }} className="font-semibold text-ink hover:text-brand hover:underline">One thing at a time</Link>: narrowing a
           pile-up down to the single next thing.
         </p>
         <p>
-          <strong className="font-semibold text-ink">Sensory anchor:</strong> 5-4-3-2-1 sensory
+          <Link to="/methods/$slug" params={{ slug: "overload" }} className="font-semibold text-ink hover:text-brand hover:underline">Sensory anchor</Link>: 5-4-3-2-1 sensory
           grounding, shortened.
         </p>
       </PageSection>
 
       <PageSection heading="Social situations">
         <p>
-          <strong className="font-semibold text-ink">Replaying it:</strong> self-distancing.
+          <Link to="/methods/$slug" params={{ slug: "social" }} className="font-semibold text-ink hover:text-brand hover:underline">Replaying it</Link>: self-distancing.
           Watching a memory from a few feet away rather than from inside it.
         </p>
       </PageSection>
 
       <PageSection heading="Preparation">
         <p>
-          <strong className="font-semibold text-ink">Walk in steadier:</strong> mental rehearsal of
+          <Link to="/methods/$slug" params={{ slug: "prepare" }} className="font-semibold text-ink hover:text-brand hover:underline">Walk in steadier</Link>: mental rehearsal of
           the first minute.
         </p>
         <p>
-          <strong className="font-semibold text-ink">If, then:</strong> implementation intentions —
+          <Link to="/methods/$slug" params={{ slug: "prepare" }} className="font-semibold text-ink hover:text-brand hover:underline">If, then</Link>: implementation intentions —
           deciding a response in advance so you&apos;re not choosing in the moment.
         </p>
       </PageSection>
 
       <PageSection heading="Getting started">
         <p>
-          <strong className="font-semibold text-ink">Next Action:</strong> reducing a task to the
+          <Link to="/methods/$slug" params={{ slug: "friction" }} className="font-semibold text-ink hover:text-brand hover:underline">Next Action</Link>: reducing a task to the
           smallest physical move, plus a five-minute limit so starting costs less.
         </p>
       </PageSection>
