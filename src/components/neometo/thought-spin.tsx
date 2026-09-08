@@ -7,9 +7,9 @@ import {
 const SPIN_PHASES: PhaseConfig[] = [
   {
     type: "begin",
-    title: "Thought Spin",
-    subtitle: "When your thoughts won't slow down.",
-    note: "About 2 minutes. Find a quiet moment.",
+    title: "Spin It Out",
+    subtitle: "Feeling stuck on a loop?",
+    note: "About 2 minutes. We're not slowing the loop down. We're turning it around.",
   },
   {
     type: "breathe",
@@ -20,11 +20,25 @@ const SPIN_PHASES: PhaseConfig[] = [
       { label: "Breathe out", ms: 6000 },
     ],
   },
-  { type: "spin", durationMs: 75_000 },
+  {
+    type: "text-sequence",
+    stepMs: 7000,
+    instruction: "Take your time with each line.",
+    counterPrefix: "Step",
+    size: "md",
+    prompts: [
+      "Find where the feeling actually sits. Chest, stomach, throat, jaw.",
+      "Notice that it moves. Most feelings turn, drift or pulse.",
+      "Which way does it go? Pick a direction, even if you're guessing.",
+      "Now lift it out and hold it in front of you.",
+      "Turn it the other way.",
+    ],
+  },
+  { type: "spin", durationMs: 75_000, reverseAt: 0.45 },
   {
     type: "close",
-    heading: "Notice how still it feels.",
-    subheading: "That's the distance you were looking for.",
+    heading: "You turned it around.",
+    subheading: "Same feeling, running the other way.",
     actions: [
       { label: "Do it again", action: "restart" },
       { label: "Try another technique", variant: "outline", action: "select" },
@@ -120,8 +134,8 @@ const PARK_PHASES: PhaseConfig[] = [
 const SHRINK_PHASES: PhaseConfig[] = [
   {
     type: "begin",
-    title: "Shrink It",
-    subtitle: "One thought taking up the whole frame?",
+    title: "Step Back",
+    subtitle: "One thing filling the whole frame?",
     note: "About 2 minutes. We're not arguing with the thought. We're changing how big it gets to be.",
     buttonLabel: "Begin",
   },
@@ -136,20 +150,78 @@ const SHRINK_PHASES: PhaseConfig[] = [
   },
   {
     type: "shrink",
-    durationMs: 45000,
-    captions: [
-      "Put the thought in front of you, as a picture.",
-      "Notice how big it is. How close.",
-      "Now let it move back.",
-      "Smaller. Further away.",
-      "Let the colour drain out of it.",
-      "It's still there. It just isn't filling the frame.",
+    durationMs: 66000,
+    stages: [
+      {
+        caption: "Put it in front of you, as a picture.",
+        scale: 1,
+        opacity: 0.95,
+        saturation: 100,
+        blur: 0,
+        texture: "solid",
+      },
+      {
+        caption: "Notice how big it is. How close.",
+        scale: 0.95,
+        opacity: 0.95,
+        saturation: 100,
+        blur: 0,
+        texture: "solid",
+      },
+      {
+        caption: "Let the colour drain out of it.",
+        scale: 0.8,
+        opacity: 0.85,
+        saturation: 15,
+        blur: 1,
+        texture: "solid",
+      },
+      {
+        caption: "Change what it's made of. Rough, not smooth.",
+        scale: 0.65,
+        opacity: 0.7,
+        saturation: 10,
+        blur: 1.5,
+        texture: "grain",
+      },
+      {
+        caption: "Now step back, so you can see yourself looking at it.",
+        scale: 0.45,
+        opacity: 0.55,
+        saturation: 5,
+        blur: 2.5,
+        texture: "outline",
+      },
+      {
+        caption: "Further. You're watching someone watch a picture.",
+        scale: 0.3,
+        opacity: 0.4,
+        saturation: 0,
+        blur: 3.5,
+        texture: "outline",
+      },
+      {
+        caption: "Further still. A room, a building, a city below you.",
+        scale: 0.18,
+        opacity: 0.28,
+        saturation: 0,
+        blur: 4.5,
+        texture: "outline",
+      },
+      {
+        caption: "From out here it's one small thing on a very large planet.",
+        scale: 0.08,
+        opacity: 0.18,
+        saturation: 0,
+        blur: 5.5,
+        texture: "outline",
+      },
     ],
   },
   {
     type: "close",
-    heading: "Same thought. Less space.",
-    subheading: "You changed the size of it, not the truth of it.",
+    heading: "Same thing. Different distance.",
+    subheading: "You didn't change what happened. You changed where you're standing.",
     actions: [
       { label: "Close", action: "close" },
       { label: "Try another technique", variant: "outline", action: "select" },
@@ -167,8 +239,8 @@ export const thoughtSpinMethod: MethodConfig = {
     techniques: [
       {
         id: "spin",
-        title: "Thought Spin",
-        meta: "A spinning visual that interrupts the loop.",
+        title: "Spin it out",
+        meta: "Find the turning, then turn it the other way.",
         phases: SPIN_PHASES,
       },
       {
@@ -185,8 +257,8 @@ export const thoughtSpinMethod: MethodConfig = {
       },
       {
         id: "shrink",
-        title: "Shrink it",
-        meta: "Make it smaller, further away, easier to put down.",
+        title: "Step back",
+        meta: "Smaller, further, until it's one small thing.",
         phases: SHRINK_PHASES,
       },
     ],

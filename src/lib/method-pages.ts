@@ -37,7 +37,7 @@ export const methodPageCopy: Record<MethodSlug, PageCopy> = {
       "Two minutes, then back to whatever you were doing.",
     ],
     origin:
-      "Thought Spin is our own construction — a simple moving visual gives attention something to hold. The other two techniques are adapted from cognitive defusion and from worry postponement: naming a thought, and giving it a time later instead of arguing with it now.",
+      "Spin it out is adapted from a neuro-linguistic programming practice of locating a feeling, noticing which way it moves, and turning it the other way — the research base for NLP is thin, and we're not claiming otherwise. The others are adapted from cognitive defusion, from worry postponement, and from changing the size, colour and texture of a mental image while taking a wider viewing position on it.",
   },
   sleep: {
     whenToUse: [
