@@ -5,8 +5,7 @@ import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 
-const links = [
-  { label: "Methods", to: "/", hash: "methods" },
+const pageLinks = [
   { label: "Philosophy", to: "/philosophy" },
   { label: "About", to: "/about" },
   { label: "Contact", to: "/contact" },
@@ -26,7 +25,7 @@ export function SiteHeader() {
         </Link>
 
         <nav aria-label="Main" className="hidden items-center gap-8 md:flex">
-          {links.map((link) => (
+          {pageLinks.map((link) => (
             <Link
               key={link.label}
               to={link.to}
