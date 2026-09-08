@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { ArrowRight, ArrowUp, MessageCircle, Sparkles } from "lucide-react";
 import { useServerFn } from "@tanstack/react-start";
 
@@ -610,7 +611,7 @@ export function Coming() {
       <div className="section-shell">
         <Reveal>
           <h2 className="text-[1.75rem] font-bold text-ink md:text-[2.5rem]">
-            ALL METHODS LIBRARY
+            The full library
           </h2>
           <p className="mt-3 text-base text-muted-foreground">Pick the one that fits the moment.</p>
         </Reveal>
