@@ -260,7 +260,7 @@ export function ExperienceShell({
       role="dialog"
       aria-modal="true"
       aria-label={label}
-      className="fixed inset-0 z-50 flex animate-fade-in items-center justify-center overflow-y-auto bg-ink px-6 py-16 text-background"
+      className="fixed inset-0 z-50 flex animate-fade-in items-center justify-center overflow-y-auto bg-ink px-5 py-20 text-background sm:px-6 sm:py-16"
     >
       <div className="pointer-events-none absolute inset-0 dot-scatter opacity-25" aria-hidden="true" />
 
@@ -268,7 +268,7 @@ export function ExperienceShell({
         <button
           type="button"
           onClick={onBack}
-          className="absolute left-5 top-5 rounded-full px-4 py-2 text-sm font-medium text-background/60 transition-colors hover:bg-background/10 hover:text-background"
+          className="absolute left-3 top-3 inline-flex min-h-11 items-center rounded-full px-4 py-2 text-sm font-medium text-background/70 transition-colors hover:bg-background/10 hover:text-background sm:left-5 sm:top-5"
         >
           {backLabel}
         </button>
@@ -278,7 +278,7 @@ export function ExperienceShell({
         type="button"
         onClick={onClose}
         aria-label={`Close ${label}`}
-        className="absolute right-5 top-5 rounded-full p-2 text-background/50 transition-colors hover:bg-background/10 hover:text-background"
+        className="absolute right-3 top-3 grid size-11 place-items-center rounded-full border border-background/20 bg-background/10 text-background/80 transition-colors hover:bg-background/20 hover:text-background sm:right-5 sm:top-5"
       >
         <X className="size-5" />
       </button>
