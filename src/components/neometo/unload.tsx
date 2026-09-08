@@ -21,6 +21,7 @@ const METHOD_LABELS: Record<MethodSlug, string> = {
   overload: "Overload",
   social: "Replaying it",
   prepare: "Walk in steadier",
+  friction: "Next Action",
 };
 
 export function UnloadExperience({

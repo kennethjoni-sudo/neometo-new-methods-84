@@ -79,6 +79,21 @@ function TermsPage() {
         </PagePlaceholder>
       </PageSection>
 
+      <PageSection heading="Limitation of liability">
+        <PagePlaceholder>
+          PLACEHOLDER — this clause needs a lawyer. EU consumer protection rules limit how far a
+          disclaimer of liability can go, so a copied US-style clause will not do what it looks like
+          it does.
+        </PagePlaceholder>
+      </PageSection>
+
+      <PageSection heading="Governing law">
+        <PagePlaceholder>
+          PLACEHOLDER — the jurisdiction whose law applies and where disputes are heard. If the
+          entity is Danish, this is normally Danish law and the Danish courts.
+        </PagePlaceholder>
+      </PageSection>
+
       <PageSection heading="Changes to these terms">
         <p>
           These terms may change as the site grows. The current version always applies, and the

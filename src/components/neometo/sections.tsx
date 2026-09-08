@@ -562,6 +562,11 @@ const faq = [
     answer:
       "A short breathing and visualization sequence for steadying yourself before something big — a meeting, event, or conversation — without needing a script.",
   },
+  {
+    question: "What is the Next Action method for?",
+    answer:
+      "A short breathing and text-guided sequence for the moments when a task feels impossible to begin. It finds the single smallest physical move that starts it, and gives you permission to stop after five minutes.",
+  },
 ];
 
 export function Faq() {
@@ -611,7 +616,7 @@ export function Coming() {
       <div className="section-shell">
         <Reveal>
           <h2 className="text-[1.75rem] font-bold text-ink md:text-[2.5rem]">
-            The full library
+            The full library.
           </h2>
           <p className="mt-3 text-base text-muted-foreground">Pick the one that fits the moment.</p>
         </Reveal>
