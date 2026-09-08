@@ -12,6 +12,7 @@ import { FocusExperience } from "@/components/neometo/focus";
 import { OverloadExperience } from "@/components/neometo/overload";
 import { SocialExperience } from "@/components/neometo/social";
 import { PrepareExperience } from "@/components/neometo/prepare";
+import { FrictionExperience } from "@/components/neometo/friction";
 import { UnloadExperience } from "@/components/neometo/unload";
 import { advise } from "@/lib/advisor.functions";
 import { matchMethod } from "@/lib/mcp/methods";
@@ -37,6 +38,7 @@ const chips: { label: string; method: MethodSlug }[] = [
   { label: "Overload", method: "overload" },
   { label: "Social situations", method: "social" },
   { label: "Prepare", method: "prepare" },
+  { label: "Can't start", method: "friction" },
 ];
 
 /** Erratic on the left, settling to nearly flat on the right. */
@@ -206,6 +208,7 @@ const problems = [
   { title: "Everything hitting at once?", hint: "Bring it down to one thing at a time.", available: true, method: "overload" as const },
   { title: "Replaying every conversation afterward?", hint: "Prepare beforehand, recover faster after.", available: true, method: "social" as const },
   { title: "Something big coming up?", hint: "Walk in steadier.", available: true, method: "prepare" as const },
+  { title: "Can't seem to get started?", hint: "Break the friction with one small move.", available: true, method: "friction" as const },
   { title: "Just need to say it out loud?", hint: "Talk it out. NEOMETO listens.", available: true, method: "unload" as const },
 ];
 
@@ -244,6 +247,7 @@ export function Problems() {
       {active === "overload" && <OverloadExperience onClose={close} />}
       {active === "social" && <SocialExperience onClose={close} />}
       {active === "prepare" && <PrepareExperience onClose={close} />}
+      {active === "friction" && <FrictionExperience onClose={close} />}
       {active === "unload" && <UnloadExperience onClose={close} seed={seed} seedReply={seedReply} />}
 
 
