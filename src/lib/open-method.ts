@@ -1,6 +1,6 @@
 export const OPEN_METHOD_EVENT = "neometo:open-method";
 
-export type MethodSlug = "spin" | "sleep" | "focus" | "overload" | "social" | "prepare";
+export type MethodSlug = "spin" | "sleep" | "focus" | "overload" | "social" | "prepare" | "friction";
 export type ExperienceSlug = MethodSlug | "unload";
 
 export type SeedReply = {
