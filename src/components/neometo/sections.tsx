@@ -144,7 +144,6 @@ export function Hero() {
               id="hero-input"
               value={value}
               onChange={(e) => setValue(e.target.value)}
-              placeholder="What's going on right now?"
               className="h-11 flex-1 bg-transparent text-base text-background outline-none placeholder:text-background/45"
             />
             <button
