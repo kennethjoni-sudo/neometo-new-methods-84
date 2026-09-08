@@ -45,6 +45,11 @@ function SourcesPage() {
           <Link to="/methods/$slug" params={{ slug: "spin" }} className="font-semibold text-ink hover:text-brand hover:underline">Park it</Link>: worry postponement — naming a
           worry and giving it a scheduled time rather than arguing with it now.
         </p>
+        <p>
+          <Link to="/methods/$slug" params={{ slug: "spin" }} className="font-semibold text-ink hover:text-brand hover:underline">Shrink it</Link>: adapted from changing the
+          size, distance and colour of a mental image so it takes up less room.
+        </p>
+
       </PageSection>
 
       <PageSection heading="Sleep">

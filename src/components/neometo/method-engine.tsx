@@ -10,9 +10,14 @@ import {
 import {
   BeginPhase,
   ClosePhase,
+  PointPhase,
+  ShrinkPhase,
   SpinPhase,
+  TapCountPhase,
   TextSequencePhase,
+  WordsPhase,
   type CloseAction,
+  type TapRound,
 } from "@/components/neometo/method-phases";
 
 /* ------------------------------- Config types ------------------------------ */
@@ -30,7 +35,12 @@ export type PhaseConfig =
     }
   | { type: "breathe"; pattern: BreathStep[]; cycles: number; instruction?: string; cycleNoun?: string }
   | { type: "spin"; durationMs: number; instruction?: string }
+  | { type: "shrink"; durationMs: number; captions: string[] }
+  | { type: "words"; lines: string[]; stepMs: number }
+  | { type: "tap-count"; rounds: TapRound[] }
+  | { type: "point"; durationMs: number; instruction: string }
   | { type: "close"; heading: string; subheading?: string; actions: CloseAction[] };
+
 
 export type TechniqueConfig = {
   id: string;
@@ -171,6 +181,45 @@ export function MethodExperience({
           onDone={next}
         />
       )}
+
+      {!onSelector && phase?.type === "shrink" && (
+        <ShrinkPhase
+          key={`${techniqueId ?? "linear"}-${index}`}
+          durationMs={phase.durationMs}
+          captions={phase.captions}
+          reduced={reduced}
+          onDone={next}
+        />
+      )}
+
+      {!onSelector && phase?.type === "words" && (
+        <WordsPhase
+          key={`${techniqueId ?? "linear"}-${index}`}
+          lines={phase.lines}
+          stepMs={phase.stepMs}
+          reduced={reduced}
+          onDone={next}
+        />
+      )}
+
+      {!onSelector && phase?.type === "tap-count" && (
+        <TapCountPhase
+          key={`${techniqueId ?? "linear"}-${index}`}
+          rounds={phase.rounds}
+          onDone={next}
+        />
+      )}
+
+      {!onSelector && phase?.type === "point" && (
+        <PointPhase
+          key={`${techniqueId ?? "linear"}-${index}`}
+          durationMs={phase.durationMs}
+          instruction={phase.instruction}
+          reduced={reduced}
+          onDone={next}
+        />
+      )}
+
 
       {!onSelector && phase?.type === "close" && (
         <ClosePhase

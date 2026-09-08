@@ -21,21 +21,12 @@ export const focusMethod: MethodConfig = {
       ],
     },
     {
-      type: "text-sequence",
-      prompts: [
-        "Pick one small object near you.",
-        "Rest your eyes on it. Just look.",
-        "Notice its shape, its edges, its color.",
-        "Your mind will wander. That's normal.",
-        "When it does, gently bring it back to the object.",
-        "Notice it again, like it's the first time.",
-        "That's the whole skill.",
-      ],
-      stepMs: 7000,
-      instruction: "Follow each line. Don't rush it.",
-      counterPrefix: "Step",
-      size: "md",
+      type: "point",
+      durationMs: 45000,
+      instruction:
+        "Rest your eyes on the dot. When your attention wanders, bring it back. That's the rep.",
     },
+
     {
       type: "close",
       heading: "That's the rep.",

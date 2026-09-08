@@ -51,12 +51,9 @@ const NAME_PHASES: PhaseConfig[] = [
     ],
   },
   {
-    type: "text-sequence",
+    type: "words",
     stepMs: 7500,
-    instruction: "Take your time with each line.",
-    counterPrefix: "Step",
-    size: "md",
-    prompts: [
+    lines: [
       "Find the thought taking up the most space right now.",
       "Say it to yourself silently.",
       "Now put this phrase in front of it:",
@@ -65,6 +62,7 @@ const NAME_PHASES: PhaseConfig[] = [
       "You are not the thought. You're the one noticing it.",
     ],
   },
+
   {
     type: "close",
     heading: "Thoughts are mental events.",
@@ -119,6 +117,48 @@ const PARK_PHASES: PhaseConfig[] = [
   },
 ];
 
+const SHRINK_PHASES: PhaseConfig[] = [
+  {
+    type: "begin",
+    title: "Shrink It",
+    subtitle: "One thought taking up the whole frame?",
+    note: "About 2 minutes. We're not arguing with the thought. We're changing how big it gets to be.",
+    buttonLabel: "Begin",
+  },
+  {
+    type: "breathe",
+    cycles: 2,
+    instruction: "Two breaths first.",
+    pattern: [
+      { label: "Breathe in", ms: 4000 },
+      { label: "Breathe out", ms: 6000 },
+    ],
+  },
+  {
+    type: "shrink",
+    durationMs: 45000,
+    captions: [
+      "Put the thought in front of you, as a picture.",
+      "Notice how big it is. How close.",
+      "Now let it move back.",
+      "Smaller. Further away.",
+      "Let the colour drain out of it.",
+      "It's still there. It just isn't filling the frame.",
+    ],
+  },
+  {
+    type: "close",
+    heading: "Same thought. Less space.",
+    subheading: "You changed the size of it, not the truth of it.",
+    actions: [
+      { label: "Close", action: "close" },
+      { label: "Try another technique", variant: "outline", action: "select" },
+    ],
+  },
+];
+
+
+
 export const thoughtSpinMethod: MethodConfig = {
   label: "Thought Spin method",
   selector: {
@@ -143,7 +183,14 @@ export const thoughtSpinMethod: MethodConfig = {
         meta: "Set it down and come back to it later.",
         phases: PARK_PHASES,
       },
+      {
+        id: "shrink",
+        title: "Shrink it",
+        meta: "Make it smaller, further away, easier to put down.",
+        phases: SHRINK_PHASES,
+      },
     ],
+
   },
 };
 
