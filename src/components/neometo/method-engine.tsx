@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { ArrowRight } from "lucide-react";
 
+import { Button } from "@/components/ui/button";
+import { supabase } from "@/integrations/supabase/client";
+
 import {
   BreathingCircle,
   ExperienceShell,
@@ -65,6 +68,58 @@ export type MethodConfig = {
   };
 };
 
+/* -------------------------------- Feedback -------------------------------- */
+
+type FeedbackResponse = "yes" | "no" | "skip";
+
+/** Fire-and-forget. Never blocks closing, never surfaces an error. */
+function logFeedback(slug: string | undefined, techniqueId: string | null, response: FeedbackResponse) {
+  if (!slug) return;
+  void (async () => {
+    try {
+      await supabase.from("neometo_logs").insert({
+        method_slug: slug,
+        technique_id: techniqueId,
+        response,
+      });
+    } catch {
+      /* silent */
+    }
+  })();
+}
+
+function FeedbackPhase({ onRespond }: { onRespond: (response: FeedbackResponse) => void }) {
+  return (
+    <div className="text-center">
+      <h2 className="font-display text-3xl font-bold tracking-tight md:text-5xl">Did that help?</h2>
+      <div className="mt-10 flex flex-wrap justify-center gap-4">
+        <Button
+          size="lg"
+          className="min-h-[56px] rounded-full px-10 text-base"
+          onClick={() => onRespond("yes")}
+        >
+          Yes
+        </Button>
+        <Button
+          size="lg"
+          variant="outline"
+          className="min-h-[56px] rounded-full border-background/30 bg-transparent px-10 text-base text-background hover:bg-background/10 hover:text-background"
+          onClick={() => onRespond("no")}
+        >
+          Not really
+        </Button>
+      </div>
+      <button
+        type="button"
+        onClick={() => onRespond("skip")}
+        className="mt-8 inline-flex min-h-11 items-center justify-center text-sm text-background/50 underline-offset-4 transition-colors hover:text-background/80 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+      >
+        Skip
+      </button>
+    </div>
+  );
+}
+
 /* --------------------------------- Engine --------------------------------- */
 
 export function MethodExperience({
@@ -77,6 +132,7 @@ export function MethodExperience({
   const reduced = usePrefersReducedMotion();
   const [techniqueId, setTechniqueId] = useState<string | null>(null);
   const [index, setIndex] = useState(0);
+  const [feedback, setFeedback] = useState(false);
 
   const technique = config.selector?.techniques.find((t) => t.id === techniqueId) ?? null;
   const phases = config.selector ? technique?.phases : config.phases;
@@ -89,11 +145,18 @@ export function MethodExperience({
 
   const next = () => setIndex((i) => Math.min((phases?.length ?? 1) - 1, i + 1));
 
+  const askFeedback = () => setFeedback(true);
+
+  const respond = (response: FeedbackResponse) => {
+    logFeedback(config.slug, techniqueId, response);
+    onClose();
+  };
+
   const runAction = (action: CloseAction["action"]) => {
-    if (action === "close") return onClose();
+    if (action === "close") return askFeedback();
     if (action === "restart") return setIndex(0);
     if (action === "select") return toSelector();
-    onClose();
+    setFeedback(true);
     requestAnimationFrame(() =>
       document.getElementById("methods")?.scrollIntoView({ behavior: "smooth", block: "start" }),
     );
@@ -105,10 +168,12 @@ export function MethodExperience({
     <ExperienceShell
       label={config.label}
       onClose={onClose}
-      onBack={config.selector && !onSelector ? toSelector : undefined}
+      onBack={config.selector && !onSelector && !feedback ? toSelector : undefined}
       backLabel="← Back"
     >
-      {onSelector && config.selector && (
+      {feedback && <FeedbackPhase onRespond={respond} />}
+
+      {!feedback && onSelector && config.selector && (
         <div className="text-center">
           <h2 className="font-display text-4xl font-bold tracking-tight md:text-5xl">
             {config.selector.title}
@@ -139,7 +204,7 @@ export function MethodExperience({
         </div>
       )}
 
-      {!onSelector && phase?.type === "begin" && (
+      {!feedback && !onSelector && phase?.type === "begin" && (
         <BeginPhase
           title={phase.title}
           {...(phase.subtitle ? { subtitle: phase.subtitle } : {})}
@@ -149,7 +214,7 @@ export function MethodExperience({
         />
       )}
 
-      {!onSelector && phase?.type === "text-sequence" && (
+      {!feedback && !onSelector && phase?.type === "text-sequence" && (
         <TextSequencePhase
           key={`${techniqueId ?? "linear"}-${index}`}
           prompts={phase.prompts}
@@ -163,7 +228,7 @@ export function MethodExperience({
         />
       )}
 
-      {!onSelector && phase?.type === "breathe" && (
+      {!feedback && !onSelector && phase?.type === "breathe" && (
         <BreathingCircle
           key={`${techniqueId ?? "linear"}-${index}`}
           reduced={reduced}
@@ -175,7 +240,7 @@ export function MethodExperience({
         />
       )}
 
-      {!onSelector && phase?.type === "spin" && (
+      {!feedback && !onSelector && phase?.type === "spin" && (
         <SpinPhase
           key={`${techniqueId ?? "linear"}-${index}`}
           durationMs={phase.durationMs}
@@ -186,7 +251,7 @@ export function MethodExperience({
         />
       )}
 
-      {!onSelector && phase?.type === "shrink" && (
+      {!feedback && !onSelector && phase?.type === "shrink" && (
         <ShrinkPhase
           key={`${techniqueId ?? "linear"}-${index}`}
           durationMs={phase.durationMs}
@@ -197,7 +262,7 @@ export function MethodExperience({
         />
       )}
 
-      {!onSelector && phase?.type === "words" && (
+      {!feedback && !onSelector && phase?.type === "words" && (
         <WordsPhase
           key={`${techniqueId ?? "linear"}-${index}`}
           lines={phase.lines}
@@ -207,7 +272,7 @@ export function MethodExperience({
         />
       )}
 
-      {!onSelector && phase?.type === "tap-count" && (
+      {!feedback && !onSelector && phase?.type === "tap-count" && (
         <TapCountPhase
           key={`${techniqueId ?? "linear"}-${index}`}
           rounds={phase.rounds}
@@ -215,7 +280,7 @@ export function MethodExperience({
         />
       )}
 
-      {!onSelector && phase?.type === "point" && (
+      {!feedback && !onSelector && phase?.type === "point" && (
         <PointPhase
           key={`${techniqueId ?? "linear"}-${index}`}
           durationMs={phase.durationMs}
@@ -226,7 +291,7 @@ export function MethodExperience({
       )}
 
 
-      {!onSelector && phase?.type === "close" && (
+      {!feedback && !onSelector && phase?.type === "close" && (
         <ClosePhase
           heading={phase.heading}
           {...(phase.subheading ? { subheading: phase.subheading } : {})}
