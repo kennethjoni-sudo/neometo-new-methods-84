@@ -4,15 +4,30 @@ import {
   type PhaseConfig,
 } from "@/components/neometo/method-engine";
 
+const CLOSE_ACTIONS = [
+  { label: "Try another technique", action: "select" },
+  { label: "Done", variant: "outline", action: "close" },
+] as const;
+
 const CLOSE: PhaseConfig = {
+  type: "close",
+  heading: "However far that got you, that's enough for tonight.",
+  actions: [...CLOSE_ACTIONS],
+};
+
+const SHUFFLE_CLOSE: PhaseConfig = {
   type: "close",
   heading: "The stream will thin on its own.",
   subheading:
     "You don't need to stop thinking. You need to stop thinking about the same thing.",
-  actions: [
-    { label: "Try another technique", action: "select" },
-    { label: "Done", variant: "outline", action: "close" },
-  ],
+  actions: [...CLOSE_ACTIONS],
+};
+
+const SCAN_CLOSE: PhaseConfig = {
+  type: "close",
+  heading: "Nothing left to hold.",
+  subheading: "Your body did the work your head couldn't.",
+  actions: [...CLOSE_ACTIONS],
 };
 
 const WORDS = [
