@@ -122,6 +122,18 @@ function FeedbackPhase({ onRespond }: { onRespond: (response: FeedbackResponse) 
 
 /* --------------------------------- Engine --------------------------------- */
 
+const KNOWN_PHASE_TYPES = new Set<string>([
+  "begin",
+  "text-sequence",
+  "breathe",
+  "spin",
+  "shrink",
+  "words",
+  "tap-count",
+  "point",
+  "close",
+]);
+
 export function MethodExperience({
   config,
   onClose,

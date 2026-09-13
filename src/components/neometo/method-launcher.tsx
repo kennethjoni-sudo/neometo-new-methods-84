@@ -1,24 +1,27 @@
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState, type ComponentType } from "react";
 
 import { Button } from "@/components/ui/button";
-import { ThoughtSpinExperience } from "@/components/neometo/thought-spin";
-import { SleepExperience } from "@/components/neometo/sleep";
-import { FocusExperience } from "@/components/neometo/focus";
-import { OverloadExperience } from "@/components/neometo/overload";
-import { SocialExperience } from "@/components/neometo/social";
-import { PrepareExperience } from "@/components/neometo/prepare";
-import { FrictionExperience } from "@/components/neometo/friction";
+import {
+  LazyFocusExperience,
+  LazyFrictionExperience,
+  LazyOverloadExperience,
+  LazyPrepareExperience,
+  LazySleepExperience,
+  LazySocialExperience,
+  LazyThoughtSpinExperience,
+  MethodLoading,
+} from "@/components/neometo/lazy-methods";
 import { logEvent } from "@/lib/analytics";
 import { OPEN_METHOD_EVENT, requestMethod, type MethodSlug, type OpenMethodDetail } from "@/lib/open-method";
 
-const experiences: Record<MethodSlug, (props: { onClose: () => void }) => React.ReactNode> = {
-  spin: ThoughtSpinExperience,
-  sleep: SleepExperience,
-  focus: FocusExperience,
-  overload: OverloadExperience,
-  social: SocialExperience,
-  prepare: PrepareExperience,
-  friction: FrictionExperience,
+const experiences: Record<MethodSlug, ComponentType<{ onClose: () => void }>> = {
+  spin: LazyThoughtSpinExperience,
+  sleep: LazySleepExperience,
+  focus: LazyFocusExperience,
+  overload: LazyOverloadExperience,
+  social: LazySocialExperience,
+  prepare: LazyPrepareExperience,
+  friction: LazyFrictionExperience,
 };
 
 /** Start button for a single method page — opens the method right on the page. */
