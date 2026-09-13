@@ -45,6 +45,12 @@ const RATE_LIMIT_WINDOW_SECONDS = 600;
 export const RATE_LIMITED_REPLY =
   "That's a lot of thinking out loud in a short stretch. Give it a moment and try again shortly.";
 
+/** Upper bound on one advisor turn before we hand back a calm fallback. */
+const TIMEOUT_MS = 15_000;
+
+export const TIMEOUT_REPLY =
+  "I'm taking too long. Try picking a method from the grid — or type something shorter and I'll try again.";
+
 /** One-way hash of the caller's IP with a server-side salt — the raw IP is never stored. */
 async function hashCaller(ip: string, salt: string): Promise<string> {
   const bytes = new TextEncoder().encode(`${salt}:${ip}`);
@@ -170,12 +176,17 @@ export const advise = createServerFn({ method: "POST" })
       .map((m) => `${m.role === "person" ? "Person" : "NEOMETO"}: ${m.content}`)
       .join("\n");
 
+    // Keeps a slow or unreachable model from leaving someone on a dead screen.
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), TIMEOUT_MS);
+
     try {
       const result = streamText({
         model: gateway("google/gemini-3.7-flash"),
         system: LANGUAGE_RULES + modeNote,
         prompt: `${transcript ? `Conversation so far:\n${transcript}\n\n` : ""}Person: ${data.text}`,
         output: Output.object({ schema: AdviseOutput }),
+        abortSignal: controller.signal,
       });
 
       const output = await result.output;
@@ -194,6 +205,9 @@ export const advise = createServerFn({ method: "POST" })
             "I can't respond to that here. If something serious is going on, please reach a real person — a crisis line is free and answers around the clock: call or text 988 in the US and Canada, or find your local line at findahelpline.com.",
         };
       }
-      throw error;
+      // Timed out or the model never answered — stay calm, never show the error.
+      return { intent: "unload", method: null, reply: TIMEOUT_REPLY };
+    } finally {
+      clearTimeout(timer);
     }
   });
