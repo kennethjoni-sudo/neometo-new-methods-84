@@ -412,7 +412,11 @@ export function FeaturedMethod() {
 
   return (
     <section className="py-14 md:py-28">
-      {open && <ThoughtSpinExperience onClose={() => setOpen(false)} />}
+      {open && (
+        <Suspense fallback={<MethodLoading />}>
+          <LazyThoughtSpinExperience onClose={() => setOpen(false)} />
+        </Suspense>
+      )}
       <Reveal className="section-shell">
         <article className="group grid gap-10 overflow-hidden rounded-4xl border border-border bg-surface p-8 shadow-soft transition-shadow duration-700 hover:shadow-lift md:grid-cols-[1fr_0.8fr] md:items-center md:p-14">
           <div>
