@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
-import { PageSection, PageShell } from "@/components/neometo/page-shell";
+import { PagePlaceholder, PageSection, PageShell } from "@/components/neometo/page-shell";
 
 const title = "Terms of Use | NEOMETO";
 const description = "The terms that apply when you use NEOMETO's methods and website.";
@@ -67,11 +67,27 @@ function TermsPage() {
         </p>
       </PageSection>
 
-      <PageSection heading="Intellectual property">{null}</PageSection>
+      <PageSection heading="Intellectual property">
+        <PagePlaceholder>
+          PLACEHOLDER — state who owns the method copy, the NEOMETO name, the wordmark and the
+          visual system, and what visitors may do with it.
+        </PagePlaceholder>
+      </PageSection>
 
-      <PageSection heading="Limitation of liability">{null}</PageSection>
+      <PageSection heading="Limitation of liability">
+        <PagePlaceholder>
+          PLACEHOLDER — this clause needs a lawyer. EU consumer protection rules limit how far a
+          disclaimer of liability can go, so a copied US-style clause will not do what it looks like
+          it does.
+        </PagePlaceholder>
+      </PageSection>
 
-      <PageSection heading="Governing law">{null}</PageSection>
+      <PageSection heading="Governing law">
+        <PagePlaceholder>
+          PLACEHOLDER — the jurisdiction whose law applies and where disputes are heard. If the
+          entity is Danish, this is normally Danish law and the Danish courts.
+        </PagePlaceholder>
+      </PageSection>
 
       <PageSection heading="Changes to these terms">
         <p>
