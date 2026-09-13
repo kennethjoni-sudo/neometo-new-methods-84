@@ -232,6 +232,7 @@ const SHRINK_PHASES: PhaseConfig[] = [
 
 
 export const thoughtSpinMethod: MethodConfig = {
+  slug: "spin",
   label: "Thought Spin method",
   selector: {
     title: "Overthinking",

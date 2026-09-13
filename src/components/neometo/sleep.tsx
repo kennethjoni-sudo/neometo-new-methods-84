@@ -60,6 +60,7 @@ const BODY_STEPS = [
 ];
 
 export const sleepMethod: MethodConfig = {
+  slug: "sleep",
   label: "Sleep method",
   selector: {
     title: "Sleep",
@@ -78,7 +79,7 @@ export const sleepMethod: MethodConfig = {
               "Just picture each word for a moment. Don't force it — let your mind drift to the next one.",
             size: "lg",
           },
-          CLOSE,
+          SHUFFLE_CLOSE,
         ],
       },
       {
@@ -114,7 +115,7 @@ export const sleepMethod: MethodConfig = {
             visual: "ring",
             size: "md",
           },
-          CLOSE,
+          SCAN_CLOSE,
         ],
       },
     ],

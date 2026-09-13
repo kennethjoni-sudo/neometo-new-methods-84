@@ -4,6 +4,7 @@ type MethodConfig,
 } from "@/components/neometo/method-engine";
 
 export const socialMethod: MethodConfig = {
+  slug: "social",
 label: "Social replay method",
 phases: [
 {

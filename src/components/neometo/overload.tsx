@@ -78,6 +78,7 @@ const ANCHOR_PHASES: PhaseConfig[] = [
 ];
 
 export const overloadMethod: MethodConfig = {
+  slug: "overload",
   label: "Overload method",
   selector: {
     title: "Overload",

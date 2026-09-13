@@ -1,6 +1,7 @@
 import { MethodExperience, type MethodConfig } from "@/components/neometo/method-engine";
 
 export const focusMethod: MethodConfig = {
+  slug: "focus",
   label: "Focus method",
   phases: [
     {

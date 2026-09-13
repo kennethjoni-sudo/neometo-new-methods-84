@@ -4,6 +4,7 @@ import {
 } from "@/components/neometo/method-engine";
 
 export const frictionMethod: MethodConfig = {
+  slug: "friction",
   label: "Friction method",
   phases: [
     {
