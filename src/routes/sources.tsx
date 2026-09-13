@@ -28,7 +28,7 @@ function SourcesPage() {
       eyebrow="Sources"
       title="Where the methods come from."
       lead="Every method here is adapted from a practice that already existed. This page says which one, in plain language. It does not say that any of them will work for you — nobody can tell you that in advance."
-      closingLine="Naming where something comes from is not the same as claiming it's proven."
+      closingLine="Naming where something comes from is not the same as promising a result."
     >
       <PageSection heading="Thoughts">
         <p>
@@ -118,9 +118,9 @@ function SourcesPage() {
 
       <PageSection heading="What we don't claim">
         <p>
-          We don&apos;t claim any of these are proven to work for you. We haven&apos;t run trials,
-          we don&apos;t cite studies to imply we have, and we don&apos;t quote numbers we can&apos;t
-          stand behind.
+          We don&apos;t promise that any of these will work for you. We haven&apos;t run trials, we
+          don&apos;t cite studies to imply we have, and we don&apos;t quote numbers we can&apos;t stand
+          behind.
         </p>
         <p>
           We&apos;ve shortened and reworded every one of these. The adaptation is ours. Anyone who

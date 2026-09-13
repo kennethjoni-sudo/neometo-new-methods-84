@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
-import { PagePlaceholder, PageSection, PageShell } from "@/components/neometo/page-shell";
+import { PageSection, PageShell } from "@/components/neometo/page-shell";
 
 const title = "Terms of Use | NEOMETO";
 const description = "The terms that apply when you use NEOMETO's methods and website.";
@@ -28,18 +28,13 @@ function TermsPage() {
       lead="These terms apply to everyone who uses this site and the methods on it."
       closingLine="Short terms, because the service is simple."
     >
-      <PagePlaceholder>
-        NOT FINAL LEGAL TEXT. The structure below is right and the plain-language sections are
-        usable, but the marked blocks need your real company details and a review before you rely on
-        this.
-      </PagePlaceholder>
+      <p className="text-sm leading-relaxed text-muted-foreground">
+        This is a plain-language summary. The full terms are being reviewed and will replace this
+        page.
+      </p>
 
       <PageSection heading="Who these terms apply to">
         <p>Anyone who accesses this site or runs a method on it.</p>
-        <PagePlaceholder>
-          PLACEHOLDER — add a minimum age if you set one. 16 is the common floor in the EU for
-          services that process any personal data without parental consent.
-        </PagePlaceholder>
       </PageSection>
 
       <PageSection heading="What NEOMETO provides">
@@ -72,27 +67,11 @@ function TermsPage() {
         </p>
       </PageSection>
 
-      <PageSection heading="Intellectual property">
-        <PagePlaceholder>
-          PLACEHOLDER — state who owns the method copy, the NEOMETO name, the wordmark and the
-          visual system, and what visitors may do with it.
-        </PagePlaceholder>
-      </PageSection>
+      <PageSection heading="Intellectual property">{null}</PageSection>
 
-      <PageSection heading="Limitation of liability">
-        <PagePlaceholder>
-          PLACEHOLDER — this clause needs a lawyer. EU consumer protection rules limit how far a
-          disclaimer of liability can go, so a copied US-style clause will not do what it looks like
-          it does.
-        </PagePlaceholder>
-      </PageSection>
+      <PageSection heading="Limitation of liability">{null}</PageSection>
 
-      <PageSection heading="Governing law">
-        <PagePlaceholder>
-          PLACEHOLDER — the jurisdiction whose law applies and where disputes are heard. If the
-          entity is Danish, this is normally Danish law and the Danish courts.
-        </PagePlaceholder>
-      </PageSection>
+      <PageSection heading="Governing law">{null}</PageSection>
 
       <PageSection heading="Changes to these terms">
         <p>

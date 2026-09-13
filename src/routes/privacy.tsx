@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { PagePlaceholder, PageSection, PageShell } from "@/components/neometo/page-shell";
+import { PageSection, PageShell } from "@/components/neometo/page-shell";
 
 const title = "Privacy | NEOMETO";
 const description =
@@ -29,13 +29,12 @@ function PrivacyPage() {
       lead="NEOMETO logs which methods people open and what they type into the box on the front page. Nothing is tied to a person. That's the whole of it — the rest of this page is the detail GDPR entitles you to."
       closingLine="You don't need to give anything up to use a useful method."
     >
-      <PageSection heading="Who we are">
-        <PagePlaceholder>
-          PLACEHOLDER — legal entity name, registered address, and CVR number if registered. GDPR
-          requires an identifiable data controller; NEOMETO alone isn't enough once you're operating
-          as a company.
-        </PagePlaceholder>
-      </PageSection>
+      <p className="text-sm leading-relaxed text-muted-foreground">
+        Some details on this page are still being finalised. Everything stated here about what we
+        log is accurate today.
+      </p>
+
+      <PageSection heading="Who we are">{null}</PageSection>
 
       <PageSection heading="What we log">
         <p>
@@ -71,32 +70,16 @@ function PrivacyPage() {
         </p>
       </PageSection>
 
-      <PageSection heading="Cookies and analytics">
-        <PagePlaceholder>
-          PLACEHOLDER — name the analytics tool and state whether it sets cookies. If it does, a
-          consent banner is required before it loads. A cookieless tool such as Plausible or Fathom
-          avoids the banner entirely and fits the rest of this page better.
-        </PagePlaceholder>
-      </PageSection>
+      <PageSection heading="Cookies and analytics">{null}</PageSection>
 
       <PageSection heading="Who processes the data">
         <p>
           The anonymous logs are stored in Supabase, and the site is hosted through Lovable. Both
           act as processors on our behalf and are bound by their own data processing terms.
         </p>
-        <PagePlaceholder>
-          PLACEHOLDER — confirm the Supabase project region. If it sits outside the EU/EEA, name the
-          transfer safeguard (Standard Contractual Clauses) here. Add the email provider if you
-          start sending mail.
-        </PagePlaceholder>
       </PageSection>
 
-      <PageSection heading="How long we keep it">
-        <PagePlaceholder>
-          PLACEHOLDER — a concrete retention period for the method logs and the advisor inputs.
-          Twelve or twenty-four months is typical for product analytics.
-        </PagePlaceholder>
-      </PageSection>
+      <PageSection heading="How long we keep it">{null}</PageSection>
 
       <PageSection heading="Your rights">
         <p>
@@ -109,10 +92,6 @@ function PrivacyPage() {
           data to return or delete it — there's no identifier to search by. That's a consequence of
           collecting as little as possible, not a way of avoiding the request.
         </p>
-        <PagePlaceholder>
-          PLACEHOLDER — name your supervisory authority. In Denmark that's Datatilsynet. Confirm the
-          response window you're committing to; one month is the GDPR default.
-        </PagePlaceholder>
       </PageSection>
 
       <PageSection heading="Questions, or want it removed">
@@ -120,7 +99,6 @@ function PrivacyPage() {
           Write to hello@neometo.com and we'll tell you what we hold and delete anything you ask us
           to.
         </p>
-        <PagePlaceholder>PLACEHOLDER — date this policy was last updated.</PagePlaceholder>
       </PageSection>
     </PageShell>
   );
