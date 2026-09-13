@@ -53,6 +53,30 @@ export type Database = {
         }
         Relationships: []
       }
+      neometo_logs: {
+        Row: {
+          created_at: string
+          id: string
+          method_slug: string
+          response: string
+          technique_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          method_slug: string
+          response: string
+          technique_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          method_slug?: string
+          response?: string
+          technique_id?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       event_summary: {
