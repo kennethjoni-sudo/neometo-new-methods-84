@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { ArrowRight, ArrowUp, MessageCircle, Sparkles } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
@@ -245,14 +245,20 @@ export function Problems() {
 
   return (
     <section id="methods" className="scroll-mt-24 py-14 md:py-28">
-      {active === "sleep" && <SleepExperience onClose={close} />}
-      {active === "focus" && <FocusExperience onClose={close} />}
-      {active === "spin" && <ThoughtSpinExperience onClose={close} />}
-      {active === "overload" && <OverloadExperience onClose={close} />}
-      {active === "social" && <SocialExperience onClose={close} />}
-      {active === "prepare" && <PrepareExperience onClose={close} />}
-      {active === "friction" && <FrictionExperience onClose={close} />}
-      {active === "unload" && <UnloadExperience onClose={close} seed={seed} seedReply={seedReply} />}
+      {active && (
+        <Suspense fallback={<MethodLoading />}>
+          {active === "sleep" && <LazySleepExperience onClose={close} />}
+          {active === "focus" && <LazyFocusExperience onClose={close} />}
+          {active === "spin" && <LazyThoughtSpinExperience onClose={close} />}
+          {active === "overload" && <LazyOverloadExperience onClose={close} />}
+          {active === "social" && <LazySocialExperience onClose={close} />}
+          {active === "prepare" && <LazyPrepareExperience onClose={close} />}
+          {active === "friction" && <LazyFrictionExperience onClose={close} />}
+          {active === "unload" && (
+            <LazyUnloadExperience onClose={close} seed={seed} seedReply={seedReply} />
+          )}
+        </Suspense>
+      )}
 
 
       <div className="section-shell">
