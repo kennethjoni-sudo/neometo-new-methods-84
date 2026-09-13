@@ -14,7 +14,6 @@ subtitle: "Replaying every conversation afterward?",
 note: "About 2 minutes. This won't erase the memory — it'll just stop it from looping.",
 buttonLabel: "Begin",
 },
-{ type: "mystery-phase" } as unknown as never,
 {
 type: "breathe",
 cycles: 2,
