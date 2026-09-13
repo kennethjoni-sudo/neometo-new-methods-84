@@ -19,7 +19,7 @@ export function SiteHeader() {
       <div className="section-shell flex h-16 items-center justify-between md:h-20">
         <Link
           to="/"
-          className="text-base font-bold tracking-[0.22em] text-ink transition-opacity hover:opacity-70"
+          className="inline-flex min-h-11 items-center text-base font-bold tracking-[0.22em] text-ink transition-opacity hover:opacity-70"
         >
           NEOMETO
         </Link>
@@ -27,7 +27,7 @@ export function SiteHeader() {
         <nav aria-label="Main" className="hidden items-center gap-8 md:flex">
           <Link
             to="/methods"
-            className="text-sm font-medium text-muted-foreground transition-colors hover:text-ink"
+            className="inline-flex min-h-11 items-center text-sm font-medium text-muted-foreground transition-colors hover:text-ink"
           >
             Methods
           </Link>
@@ -35,12 +35,13 @@ export function SiteHeader() {
             <Link
               key={link.label}
               to={link.to}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-ink"
+              className="inline-flex min-h-11 items-center text-sm font-medium text-muted-foreground transition-colors hover:text-ink"
             >
               {link.label}
             </Link>
           ))}
         </nav>
+
 
         <div className="flex items-center gap-2">
           <Button asChild size="sm" className="rounded-full px-5">
@@ -64,11 +65,11 @@ export function SiteHeader() {
               <SheetTitle className="text-base font-bold tracking-[0.22em] text-ink">
                 NEOMETO
               </SheetTitle>
-              <nav aria-label="Mobile" className="mt-10 flex flex-col gap-6">
+              <nav aria-label="Mobile" className="mt-10 flex flex-col gap-4">
                 <Link
                   to="/methods"
                   onClick={() => setOpen(false)}
-                  className="text-lg font-medium text-ink transition-opacity hover:opacity-70"
+                  className="inline-flex min-h-11 items-center text-lg font-medium text-ink transition-opacity hover:opacity-70"
                 >
                   Methods
                 </Link>
@@ -77,12 +78,13 @@ export function SiteHeader() {
                     key={link.label}
                     to={link.to}
                     onClick={() => setOpen(false)}
-                    className="text-lg font-medium text-ink transition-opacity hover:opacity-70"
+                    className="inline-flex min-h-11 items-center text-lg font-medium text-ink transition-opacity hover:opacity-70"
                   >
                     {link.label}
                   </Link>
                 ))}
               </nav>
+
             </SheetContent>
           </Sheet>
         </div>

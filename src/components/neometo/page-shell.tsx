@@ -38,7 +38,7 @@ export function PageShell({
 
           <div className="mt-16 rounded-2xl border-[0.5px] border-border bg-surface p-8">
             <p className="text-lg font-medium text-ink">{closingLine}</p>
-            <Button asChild className="mt-6 rounded-full px-6">
+            <Button asChild size="lg" className="mt-6 rounded-full px-6">
               <Link to="/" hash="methods">
                 Back to the methods
               </Link>
