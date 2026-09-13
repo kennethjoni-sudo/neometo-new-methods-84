@@ -3,7 +3,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { PageSection, PageShell } from "@/components/neometo/page-shell";
 import { MethodLauncher } from "@/components/neometo/method-launcher";
 import { methods } from "@/lib/mcp/methods";
-import { methodPageCopy, techniquesFor } from "@/lib/method-pages";
+import { methodPageCopy } from "@/lib/method-pages";
 import type { MethodSlug } from "@/lib/open-method";
 
 const BASE = "https://neometo.lovable.app";
@@ -60,7 +60,6 @@ function MethodPage() {
   const { method } = Route.useLoaderData();
   const slug = method.slug as MethodSlug;
   const displayedDuration = slug === "spin" ? "~3 min" : method.duration;
-  const techniques = techniquesFor(slug);
   const copy = methodPageCopy[slug];
   const others = methods.filter((m) => m.slug !== method.slug);
 
@@ -84,18 +83,15 @@ function MethodPage() {
       </PageSection>
 
       <PageSection heading="Techniques">
-        {techniques.length > 0 ? (
-          <ul className="space-y-4">
-            {techniques.map((technique) => (
-              <li key={technique.title}>
-                <span className="block font-medium text-ink">{technique.title}</span>
-                <span className="block">{technique.meta}</span>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p>This method has one technique — {method.name}. There's nothing to choose between.</p>
-        )}
+        <ul className="space-y-4">
+          {copy.techniques.map((technique) => (
+            <li key={technique.title}>
+              <span className="block font-medium text-ink">{technique.title}</span>
+              <span className="block">{technique.body}</span>
+            </li>
+          ))}
+        </ul>
+        {copy.techniqueNote ? <p>{copy.techniqueNote}</p> : null}
       </PageSection>
 
       <PageSection heading="When to use it">

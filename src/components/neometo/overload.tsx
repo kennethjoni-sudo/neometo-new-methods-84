@@ -40,8 +40,8 @@ const NARROW_PHASES: PhaseConfig[] = [
   },
   {
     type: "close",
-    heading: "One thing at a time. That's the whole method.",
-    subheading: "When it piles up again, come back and do this in 90 seconds.",
+    heading: "One thing. Then the next one.",
+    subheading: "The pile is the same size. You just aren't staring at it anymore.",
     actions: [
       { label: "Do it again", action: "restart" },
       { label: "Explore other methods", variant: "outline", action: "scroll-methods" },
@@ -54,7 +54,7 @@ const ANCHOR_PHASES: PhaseConfig[] = [
     type: "begin",
     title: "Sensory Anchor",
     subtitle: "Everything hitting at once?",
-    note: "About 2 minutes. A quick reset to gather your attention in one place.",
+    note: "No breathing first. Straight into the room.",
     buttonLabel: "Begin",
   },
   {
@@ -68,8 +68,8 @@ const ANCHOR_PHASES: PhaseConfig[] = [
 
   {
     type: "close",
-    heading: "One thing at a time.",
-    subheading: "The overview comes back when the pace drops.",
+    heading: "You're in the room now.",
+    subheading: "Pick the one thing that actually needs you and start there.",
     actions: [
       { label: "Back to work", action: "close" },
       { label: "Try another technique", variant: "outline", action: "select" },
@@ -78,6 +78,7 @@ const ANCHOR_PHASES: PhaseConfig[] = [
 ];
 
 export const overloadMethod: MethodConfig = {
+  slug: "overload",
   label: "Overload method",
   selector: {
     title: "Overload",

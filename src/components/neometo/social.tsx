@@ -4,6 +4,7 @@ type MethodConfig,
 } from "@/components/neometo/method-engine";
 
 export const socialMethod: MethodConfig = {
+  slug: "social",
 label: "Social replay method",
 phases: [
 {
@@ -41,8 +42,8 @@ size: "md",
 },
 {
 type: "close",
-heading: "That's enough replays for today.",
-subheading: "If it comes back, you know where this is.",
+heading: "It happened once. The replay is yours to stop.",
+subheading: "The version in your head isn't the conversation. It's a copy running on a loop.",
 actions: [
 { label: "Do it again", action: "restart" },
 { label: "Explore other methods", variant: "outline", action: "scroll-methods" },

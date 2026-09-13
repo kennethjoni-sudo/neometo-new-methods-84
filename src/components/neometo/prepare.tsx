@@ -92,6 +92,7 @@ const IFTHEN_PHASES: PhaseConfig[] = [
 ];
 
 export const prepareMethod: MethodConfig = {
+  slug: "prepare",
   label: "Preparation method",
   selector: {
     title: "Preparation",
