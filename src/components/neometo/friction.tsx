@@ -14,15 +14,6 @@ export const frictionMethod: MethodConfig = {
       buttonLabel: "Begin",
     },
     {
-      type: "breathe",
-      cycles: 2,
-      instruction: "A quick reset before we break the task down.",
-      pattern: [
-        { label: "Breathe in", ms: 4000 },
-        { label: "Breathe out", ms: 4000 },
-      ],
-    },
-    {
       type: "text-sequence",
       prompts: [
         "Forget the finished thing for a moment.",

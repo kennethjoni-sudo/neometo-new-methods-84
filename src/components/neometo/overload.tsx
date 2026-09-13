@@ -58,16 +58,6 @@ const ANCHOR_PHASES: PhaseConfig[] = [
     buttonLabel: "Begin",
   },
   {
-    type: "breathe",
-    cycles: 3,
-    instruction: "Let's find a steady rhythm first.",
-    pattern: [
-      { label: "Breathe in", ms: 4000 },
-      { label: "Hold", ms: 4000 },
-      { label: "Breathe out", ms: 4000 },
-    ],
-  },
-  {
     type: "tap-count",
     rounds: [
       { prompt: "Five things you can see", count: 5 },
