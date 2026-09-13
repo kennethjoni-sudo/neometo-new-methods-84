@@ -64,7 +64,6 @@ function TermsPage() {
       </PageSection>
 
       <PageSection heading="Changes to these terms">
-
         <p>
           These terms may change as the site grows. The current version always applies, and the
           date of the last change will be noted here once the final wording is in place.
