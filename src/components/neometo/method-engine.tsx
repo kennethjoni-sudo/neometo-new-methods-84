@@ -53,6 +53,8 @@ export type TechniqueConfig = {
 export type MethodConfig = {
   /** Accessible dialog label, e.g. "Sleep method". */
   label: string;
+  /** Method slug, used for anonymous feedback logging. */
+  slug?: string;
   /** Linear method: the ordered phases. Omit when the method opens on a selector. */
   phases?: PhaseConfig[];
   /** Multi-technique method: a selector screen listing techniques. */
