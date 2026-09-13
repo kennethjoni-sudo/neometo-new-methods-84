@@ -27,7 +27,7 @@ function MethodsIndexPage() {
     <PageShell
       eyebrow="Methods"
       title="Every method, one place."
-      lead="Most take about two minutes. None need anything set up."
+      lead="Each one takes a few minutes at most and needs nothing set up."
       closingLine="Two minutes. No account. Nothing to set up."
     >
       <ul className="divide-y divide-border border-y border-border">

@@ -203,7 +203,7 @@ export function Hero() {
 /* -------------------------------- Problems -------------------------------- */
 
 const problems = [
-  { title: "Thoughts won't stop spinning?", hint: "Get a method to slow them down.", duration: "2–3 min", method: "spin" as const },
+  { title: "Thoughts won't stop spinning?", hint: "Get a method to slow them down.", duration: "~3 min", method: "spin" as const },
   { title: "Mind still running at 2am?", hint: "Fall asleep faster, tonight.", duration: "2–3 min", method: "sleep" as const },
   { title: "Can't hold focus for more than a minute?", hint: "Sharpen it, fast.", duration: "90 sec", method: "focus" as const },
   { title: "Everything hitting at once?", hint: "Bring it down to one thing at a time.", duration: "90 sec", method: "overload" as const },
@@ -306,9 +306,9 @@ export function Problems() {
 
         </ul>
         <Reveal>
-          <button type="button" onClick={() => requestMethod("unload")} className="mt-8 inline-flex items-center gap-2 rounded-full text-sm font-semibold text-ink transition-colors hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:ring-offset-background">
-            Something else <ArrowRight className="size-4" />
-          </button>
+          <Link to="/methods" className="mt-8 inline-flex items-center gap-2 rounded-full text-sm font-semibold text-ink transition-colors hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:ring-offset-background">
+            Browse all methods <ArrowRight className="size-4" />
+          </Link>
         </Reveal>
       </div>
     </section>
@@ -410,7 +410,7 @@ export function FeaturedMethod() {
             <h2 className="text-3xl font-bold text-ink md:text-5xl">
               Thought Spin
             </h2>
-            <p className="mt-3 text-sm font-semibold text-brand">2–3 minutes</p>
+            <p className="mt-3 text-sm font-semibold text-brand">About 3 minutes</p>
             <p className="mt-6 text-xl font-medium leading-snug text-ink md:text-[1.75rem]">
               &ldquo;When your thoughts won&apos;t slow down.&rdquo;
             </p>

@@ -29,8 +29,8 @@ function TermsPage() {
       closingLine="Short terms, because the service is simple."
     >
       <p className="text-sm leading-relaxed text-muted-foreground">
-        This is a plain-language summary. The full terms are being reviewed and will replace this
-        page.
+        Some sections on this page are marked as needing legal review. They'll be finalised before
+        launch.
       </p>
 
       <PageSection heading="Who these terms apply to">

@@ -70,8 +70,10 @@ function AboutPage() {
 
       <PageSection heading="Who's behind it">
         <p>
-          Kenneth built NEOMETO on his own, and still does. There's no company behind it, no team,
-          and nobody being paid to tell you it works.
+          I built NEOMETO because the tools I found either asked for a diagnosis first or took too
+          long to use in the moment. I wanted something direct: pick what is happening, run a short
+          method, and get on with your day. I keep every part of it focused on that. I build it
+          alone, and I'd rather ship seven methods that work than seventy that don't.
         </p>
       </PageSection>
 

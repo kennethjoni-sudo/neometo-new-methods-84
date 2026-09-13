@@ -59,7 +59,7 @@ export const Route = createFileRoute("/methods/$slug")({
 function MethodPage() {
   const { method } = Route.useLoaderData();
   const slug = method.slug as MethodSlug;
-  const displayedDuration = slug === "spin" ? "2–3 min" : method.duration;
+  const displayedDuration = slug === "spin" ? "~3 min" : method.duration;
   const techniques = techniquesFor(slug);
   const copy = methodPageCopy[slug];
   const others = methods.filter((m) => m.slug !== method.slug);
