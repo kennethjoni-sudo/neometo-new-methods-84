@@ -84,18 +84,15 @@ function MethodPage() {
       </PageSection>
 
       <PageSection heading="Techniques">
-        {techniques.length > 0 ? (
-          <ul className="space-y-4">
-            {techniques.map((technique) => (
-              <li key={technique.title}>
-                <span className="block font-medium text-ink">{technique.title}</span>
-                <span className="block">{technique.meta}</span>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p>This method has one technique — {method.name}. There's nothing to choose between.</p>
-        )}
+        <ul className="space-y-4">
+          {copy.techniques.map((technique) => (
+            <li key={technique.title}>
+              <span className="block font-medium text-ink">{technique.title}</span>
+              <span className="block">{technique.body}</span>
+            </li>
+          ))}
+        </ul>
+        {copy.techniqueNote ? <p>{copy.techniqueNote}</p> : null}
       </PageSection>
 
       <PageSection heading="When to use it">
