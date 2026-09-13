@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { ArrowRight, ArrowUp, MessageCircle, Sparkles } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
@@ -7,14 +7,17 @@ import flowArt from "@/assets/neometo-flow.png.asset.json";
 import { Button } from "@/components/ui/button";
 import { MethodGlyph, ParticleField } from "@/components/neometo/particle-field";
 import { Reveal } from "@/components/neometo/reveal";
-import { ThoughtSpinExperience } from "@/components/neometo/thought-spin";
-import { SleepExperience } from "@/components/neometo/sleep";
-import { FocusExperience } from "@/components/neometo/focus";
-import { OverloadExperience } from "@/components/neometo/overload";
-import { SocialExperience } from "@/components/neometo/social";
-import { PrepareExperience } from "@/components/neometo/prepare";
-import { FrictionExperience } from "@/components/neometo/friction";
-import { UnloadExperience } from "@/components/neometo/unload";
+import {
+  LazyFocusExperience,
+  LazyFrictionExperience,
+  LazyOverloadExperience,
+  LazyPrepareExperience,
+  LazySleepExperience,
+  LazySocialExperience,
+  LazyThoughtSpinExperience,
+  LazyUnloadExperience,
+  MethodLoading,
+} from "@/components/neometo/lazy-methods";
 import { advise } from "@/lib/advisor.functions";
 import { matchMethod } from "@/lib/mcp/methods";
 import { logEvent } from "@/lib/analytics";
@@ -242,14 +245,20 @@ export function Problems() {
 
   return (
     <section id="methods" className="scroll-mt-24 py-14 md:py-28">
-      {active === "sleep" && <SleepExperience onClose={close} />}
-      {active === "focus" && <FocusExperience onClose={close} />}
-      {active === "spin" && <ThoughtSpinExperience onClose={close} />}
-      {active === "overload" && <OverloadExperience onClose={close} />}
-      {active === "social" && <SocialExperience onClose={close} />}
-      {active === "prepare" && <PrepareExperience onClose={close} />}
-      {active === "friction" && <FrictionExperience onClose={close} />}
-      {active === "unload" && <UnloadExperience onClose={close} seed={seed} seedReply={seedReply} />}
+      {active && (
+        <Suspense fallback={<MethodLoading />}>
+          {active === "sleep" && <LazySleepExperience onClose={close} />}
+          {active === "focus" && <LazyFocusExperience onClose={close} />}
+          {active === "spin" && <LazyThoughtSpinExperience onClose={close} />}
+          {active === "overload" && <LazyOverloadExperience onClose={close} />}
+          {active === "social" && <LazySocialExperience onClose={close} />}
+          {active === "prepare" && <LazyPrepareExperience onClose={close} />}
+          {active === "friction" && <LazyFrictionExperience onClose={close} />}
+          {active === "unload" && (
+            <LazyUnloadExperience onClose={close} seed={seed} seedReply={seedReply} />
+          )}
+        </Suspense>
+      )}
 
 
       <div className="section-shell">
@@ -403,7 +412,11 @@ export function FeaturedMethod() {
 
   return (
     <section className="py-14 md:py-28">
-      {open && <ThoughtSpinExperience onClose={() => setOpen(false)} />}
+      {open && (
+        <Suspense fallback={<MethodLoading />}>
+          <LazyThoughtSpinExperience onClose={() => setOpen(false)} />
+        </Suspense>
+      )}
       <Reveal className="section-shell">
         <article className="group grid gap-10 overflow-hidden rounded-4xl border border-border bg-surface p-8 shadow-soft transition-shadow duration-700 hover:shadow-lift md:grid-cols-[1fr_0.8fr] md:items-center md:p-14">
           <div>

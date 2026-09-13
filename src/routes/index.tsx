@@ -5,6 +5,7 @@ import { SiteHeader } from "@/components/neometo/site-header";
 import { Button } from "@/components/ui/button";
 
 import { SiteFooter } from "@/components/neometo/site-footer";
+import { SectionErrorBoundary } from "@/components/neometo/error-boundary";
 import {
   FeaturedMethod,
   FinalCta,
@@ -129,18 +130,24 @@ function ResultStatement() {
 }
 
 function Index() {
+  const sections = [
+    ["hero", <Hero />],
+    ["problems", <Problems />],
+    ["trust", <TrustStrip />],
+    ["how", <HowItWorks />],
+    ["result", <ResultStatement />],
+    ["featured", <FeaturedMethod />],
+    ["philosophy", <PhilosophyTeaser />],
+    ["cta", <FinalCta />],
+  ] as const;
+
   return (
     <div className="min-h-screen bg-background">
       <SiteHeader />
       <main>
-        <Hero />
-        <Problems />
-        <TrustStrip />
-        <HowItWorks />
-        <ResultStatement />
-        <FeaturedMethod />
-        <PhilosophyTeaser />
-        <FinalCta />
+        {sections.map(([key, node]) => (
+          <SectionErrorBoundary key={key}>{node}</SectionErrorBoundary>
+        ))}
       </main>
       <SiteFooter />
     </div>
