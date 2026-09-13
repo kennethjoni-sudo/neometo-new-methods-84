@@ -82,8 +82,8 @@ function TrustStrip() {
             </li>
           ))}
         </ul>
-        <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
-          <Link to="/sources" className="underline underline-offset-4 hover:text-brand">
+        <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+          <Link to="/sources" className="inline-flex min-h-11 items-center underline underline-offset-4 hover:text-brand">
             How each method was made
           </Link>
           , and what we don&apos;t claim.
