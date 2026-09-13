@@ -21,7 +21,7 @@ export function SiteFooter() {
         <div>
           <p className="text-base font-bold tracking-[0.22em] text-ink">NEOMETO</p>
           <p className="mt-2 text-sm text-muted-foreground">New Methods for Modern Minds.</p>
-          <p className="mt-3 text-xs text-muted-foreground/70">
+          <p className="mt-3 text-sm text-muted-foreground/80">
             NEOMETO provides self-help and educational tools, not medical diagnosis.
           </p>
         </div>

@@ -303,7 +303,7 @@ export function Problems() {
                       to="/methods/$slug"
                       params={{ slug: problem.method }}
                       onClick={(event) => event.stopPropagation()}
-                      className="relative mt-4 text-sm text-muted-foreground hover:text-ink hover:underline"
+                      className="relative mt-2 inline-flex min-h-11 items-center text-sm text-muted-foreground hover:text-ink hover:underline"
                     >
                       Read about this method
                     </Link>
@@ -315,7 +315,7 @@ export function Problems() {
 
         </ul>
         <Reveal>
-          <Link to="/methods" className="mt-8 inline-flex items-center gap-2 rounded-full text-sm font-semibold text-ink transition-colors hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:ring-offset-background">
+          <Link to="/methods" className="mt-8 inline-flex min-h-11 items-center gap-2 rounded-full text-sm font-semibold text-ink transition-colors hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:ring-offset-background">
             Browse all methods <ArrowRight className="size-4" />
           </Link>
         </Reveal>

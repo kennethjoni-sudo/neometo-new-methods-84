@@ -103,7 +103,7 @@ function MethodPage() {
       <PageSection heading="Where it comes from">
         <p>{copy.origin}</p>
         <p>
-          <Link to="/sources" className="font-medium text-brand hover:underline">
+          <Link to="/sources" className="inline-flex min-h-11 items-center font-medium text-brand hover:underline">
             More on where the methods come from
           </Link>
         </p>
