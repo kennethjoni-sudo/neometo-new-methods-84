@@ -29,8 +29,9 @@ export const frictionMethod: MethodConfig = {
     },
     {
       type: "close",
-      heading: "Do the small thing now.",
-      subheading: "Decide in five minutes whether you want to keep going.",
+      heading: "That's the move. Do it now.",
+      subheading:
+        "Five minutes from now you can decide whether to keep going. But the hardest part is already done.",
       actions: [
         { label: "Start the five minutes", action: "close" },
         { label: "Explore other methods", variant: "outline", action: "scroll-methods" },

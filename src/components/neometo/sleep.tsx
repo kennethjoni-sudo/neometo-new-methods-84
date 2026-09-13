@@ -6,7 +6,9 @@ import {
 
 const CLOSE: PhaseConfig = {
   type: "close",
-  heading: "However far that got you, that's enough for tonight.",
+  heading: "The stream will thin on its own.",
+  subheading:
+    "You don't need to stop thinking. You need to stop thinking about the same thing.",
   actions: [
     { label: "Try another technique", action: "select" },
     { label: "Done", variant: "outline", action: "close" },

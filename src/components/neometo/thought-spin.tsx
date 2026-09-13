@@ -79,8 +79,8 @@ const NAME_PHASES: PhaseConfig[] = [
 
   {
     type: "close",
-    heading: "Thoughts are mental events.",
-    subheading: "You don't have to act on all of them.",
+    heading: "Same thought. Less grip.",
+    subheading: "Noticing a thought is not the same as believing it.",
     actions: [
       { label: "Close", action: "close" },
       { label: "Explore other methods", variant: "outline", action: "scroll-methods" },
@@ -122,8 +122,8 @@ const PARK_PHASES: PhaseConfig[] = [
   },
   {
     type: "close",
-    heading: "It's parked, not ignored.",
-    subheading: "You've given it a time. Go back to what you were doing.",
+    heading: "Parked. Not solved, not ignored.",
+    subheading: "You gave it a time. Until then it doesn't need you.",
     actions: [
       { label: "Back to it", action: "close" },
       { label: "Try another technique", variant: "outline", action: "select" },

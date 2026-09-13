@@ -3,7 +3,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { PageSection, PageShell } from "@/components/neometo/page-shell";
 import { MethodLauncher } from "@/components/neometo/method-launcher";
 import { methods } from "@/lib/mcp/methods";
-import { methodPageCopy, techniquesFor } from "@/lib/method-pages";
+import { methodPageCopy } from "@/lib/method-pages";
 import type { MethodSlug } from "@/lib/open-method";
 
 const BASE = "https://neometo.lovable.app";
@@ -60,7 +60,6 @@ function MethodPage() {
   const { method } = Route.useLoaderData();
   const slug = method.slug as MethodSlug;
   const displayedDuration = slug === "spin" ? "~3 min" : method.duration;
-  const techniques = techniquesFor(slug);
   const copy = methodPageCopy[slug];
   const others = methods.filter((m) => m.slug !== method.slug);
 
