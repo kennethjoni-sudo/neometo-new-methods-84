@@ -44,7 +44,11 @@ export function MethodLauncher({ slug, duration }: { slug: MethodSlug; duration:
 
   return (
     <>
-      {open && Experience ? <Experience onClose={() => setOpen(false)} /> : null}
+      {open && Experience ? (
+        <Suspense fallback={<MethodLoading />}>
+          <Experience onClose={() => setOpen(false)} />
+        </Suspense>
+      ) : null}
       <Button
         size="lg"
         className="rounded-full px-8 text-base"

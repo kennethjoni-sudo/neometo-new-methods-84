@@ -7,14 +7,17 @@ import flowArt from "@/assets/neometo-flow.png.asset.json";
 import { Button } from "@/components/ui/button";
 import { MethodGlyph, ParticleField } from "@/components/neometo/particle-field";
 import { Reveal } from "@/components/neometo/reveal";
-import { ThoughtSpinExperience } from "@/components/neometo/thought-spin";
-import { SleepExperience } from "@/components/neometo/sleep";
-import { FocusExperience } from "@/components/neometo/focus";
-import { OverloadExperience } from "@/components/neometo/overload";
-import { SocialExperience } from "@/components/neometo/social";
-import { PrepareExperience } from "@/components/neometo/prepare";
-import { FrictionExperience } from "@/components/neometo/friction";
-import { UnloadExperience } from "@/components/neometo/unload";
+import {
+  LazyFocusExperience,
+  LazyFrictionExperience,
+  LazyOverloadExperience,
+  LazyPrepareExperience,
+  LazySleepExperience,
+  LazySocialExperience,
+  LazyThoughtSpinExperience,
+  LazyUnloadExperience,
+  MethodLoading,
+} from "@/components/neometo/lazy-methods";
 import { advise } from "@/lib/advisor.functions";
 import { matchMethod } from "@/lib/mcp/methods";
 import { logEvent } from "@/lib/analytics";
