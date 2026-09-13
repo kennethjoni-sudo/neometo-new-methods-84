@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -167,6 +167,15 @@ export function MethodExperience({
   };
 
   const phase = phases?.[index];
+
+  // A phase type with no renderer would stall on a blank screen — skip past it.
+  const unknownPhase = Boolean(phase) && !KNOWN_PHASE_TYPES.has(phase!.type);
+  useEffect(() => {
+    if (feedback || onSelector || !phase || !unknownPhase) return;
+    console.warn(`Unknown method phase type: "${phase.type}" — skipping.`);
+    if (index < (phases?.length ?? 0) - 1) next();
+    else setFeedback(true);
+  }, [unknownPhase, index, feedback, onSelector, phase, phases?.length]);
 
   return (
     <ExperienceShell
