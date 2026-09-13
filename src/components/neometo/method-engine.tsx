@@ -150,16 +150,19 @@ export function MethodExperience({
   const respond = (response: FeedbackResponse) => {
     logFeedback(config.slug, techniqueId, response);
     onClose();
+    if (scrollAfter) {
+      requestAnimationFrame(() =>
+        document.getElementById("methods")?.scrollIntoView({ behavior: "smooth", block: "start" }),
+      );
+    }
   };
 
   const runAction = (action: CloseAction["action"]) => {
     if (action === "close") return askFeedback();
     if (action === "restart") return setIndex(0);
     if (action === "select") return toSelector();
+    setScrollAfter(true);
     setFeedback(true);
-    requestAnimationFrame(() =>
-      document.getElementById("methods")?.scrollIntoView({ behavior: "smooth", block: "start" }),
-    );
   };
 
   const phase = phases?.[index];
