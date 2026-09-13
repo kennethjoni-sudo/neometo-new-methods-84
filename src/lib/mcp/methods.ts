@@ -14,7 +14,7 @@ export const methods: Method[] = [
   {
     slug: "spin",
     name: "Thought Spin",
-    duration: "2 minutes",
+    duration: "2–3 minutes",
     promise: "When your thoughts won't slow down.",
     description:
       "Four techniques: Spin it out, which finds where a feeling sits and turns it the other way; Name the thought for a little distance; Park it to set a worry down for later; and Step back, a ladder that takes one thing smaller and further away until it's one small thing.",

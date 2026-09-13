@@ -15,7 +15,7 @@ import {
 
 const title = "NEOMETO | Practical Methods for Focus, Sleep & Overthinking";
 const description =
-  "Explore practical, research-informed methods for focus, sleep, and overthinking. Find the method that fits what you're experiencing right now — no diagnosis required.";
+  "Short, guided methods for focus, sleep and overthinking. Find the one that fits the moment you're in — no account, nothing to sign up for.";
 
 const organizationSchema = {
   "@context": "https://schema.org",

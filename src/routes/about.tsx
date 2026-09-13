@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { PagePlaceholder, PageSection, PageShell } from "@/components/neometo/page-shell";
+import { PageSection, PageShell } from "@/components/neometo/page-shell";
 
 const title = "About NEOMETO | Short, Guided Methods for Modern Minds";
 const description =
@@ -69,11 +69,10 @@ function AboutPage() {
       </PageSection>
 
       <PageSection heading="Who's behind it">
-        <PagePlaceholder>
-          PLACEHOLDER — Kenneth, write three or four sentences here. What made you build it, what
-          you were doing before, and why you've kept it this small. First person reads better than a
-          company voice, and it's the part of this page people will actually remember.
-        </PagePlaceholder>
+        <p>
+          Kenneth built NEOMETO on his own, and still does. There's no company behind it, no team,
+          and nobody being paid to tell you it works.
+        </p>
       </PageSection>
 
       <PageSection heading="What it isn't">
