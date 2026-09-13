@@ -133,6 +133,7 @@ export function MethodExperience({
   const [techniqueId, setTechniqueId] = useState<string | null>(null);
   const [index, setIndex] = useState(0);
   const [feedback, setFeedback] = useState(false);
+  const [scrollAfter, setScrollAfter] = useState(false);
 
   const technique = config.selector?.techniques.find((t) => t.id === techniqueId) ?? null;
   const phases = config.selector ? technique?.phases : config.phases;
