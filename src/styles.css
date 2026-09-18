@@ -77,8 +77,10 @@
   --primary-foreground: oklch(0.99 0.002 260);
   --brand: oklch(0.585 0.208 268);
   --brand-soft: oklch(0.906 0.043 268);
-  --success: oklch(0.680 0.086 161.2);
+  --success: #C9A227;
   --slate: oklch(0.554 0.041 257.4);
+  --mustard: #C9A227;
+  --mustard-soft: #F0DFA8;
   --secondary: oklch(0.906 0.043 268);
   --secondary-foreground: oklch(0.213 0.032 265);
   --muted: oklch(0.955 0.006 100);
