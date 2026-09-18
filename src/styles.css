@@ -46,6 +46,8 @@
   --color-brand-soft: var(--brand-soft);
   --color-success: var(--success);
   --color-slate: var(--slate);
+  --color-mustard: var(--mustard);
+  --color-mustard-soft: var(--mustard-soft);
 
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
