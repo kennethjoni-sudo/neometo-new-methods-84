@@ -147,7 +147,7 @@ export function BreathingCircle({
   cycles,
   onDone,
   cycleNoun = "Breath",
-  instruction = "Follow the circle. Let your breath match its pace.",
+  instruction = "Follow the words. Let your breath match the pace.",
 }: {
   reduced: boolean;
   pattern: BreathStep[];
@@ -178,54 +178,32 @@ export function BreathingCircle({
   const t = Math.min(1, (inCycle - acc) / step.ms);
   const ease = 0.5 - Math.cos(Math.PI * t) / 2;
 
-  // First step expands, last step contracts, anything between holds.
   let scale = 1;
-  if (stepIndex === 0) scale = 0.6 + 0.4 * ease;
-  else if (stepIndex === pattern.length - 1) scale = 1 - 0.4 * ease;
+  if (!reduced) {
+    if (stepIndex === 0) scale = 0.92 + 0.08 * ease;
+    else if (stepIndex === pattern.length - 1) scale = 1 - 0.08 * ease;
+  }
 
   return (
-    <div className="flex flex-col items-center gap-10">
+    <div className="flex flex-col items-center gap-10 text-center">
       <Instruction>{instruction}</Instruction>
 
-      <div className="relative size-64 md:size-80">
-        <ProgressRing progress={Math.min(1, elapsed / totalMs)} />
-        <div
-          className="absolute inset-[18%] rounded-full bg-brand/25 ring-1 ring-brand/50"
+      <div className="flex min-h-[10rem] w-full items-center justify-center px-2" aria-live="polite">
+        <p
+          key={step.label}
+          className="animate-fade-in font-display font-bold leading-snug tracking-tight text-4xl sm:text-5xl md:text-6xl"
           style={{
             transform: reduced ? undefined : `scale(${scale})`,
             transition: "transform 80ms linear",
-            filter: "blur(0.2px)",
           }}
-        />
-        {!reduced && (
-          <div className="absolute inset-0" style={{ transform: `rotate(${(elapsed / 240) % 360}deg)` }}>
-            {Array.from({ length: 8 }).map((_, i) => {
-              const a = (i / 8) * Math.PI * 2;
-              return (
-                <span
-                  key={i}
-                  className="absolute size-1.5 rounded-full bg-brand/70"
-                  style={{ left: `${50 + 46 * Math.cos(a)}%`, top: `${50 + 46 * Math.sin(a)}%` }}
-                />
-              );
-            })}
-          </div>
-        )}
-      </div>
-
-      <div className="text-center" aria-live="polite">
-        <p
-          key={step.label}
-          className="animate-fade-in font-display text-4xl font-bold tracking-tight md:text-5xl"
         >
           {step.label}
         </p>
-        <div className="mt-6">
-          <ProgressLabel>
-            {cycleNoun} {cycleIndex + 1} of {cycles}
-          </ProgressLabel>
-        </div>
       </div>
+
+      <ProgressLabel>
+        {cycleNoun} {cycleIndex + 1} of {cycles}
+      </ProgressLabel>
     </div>
   );
 }
