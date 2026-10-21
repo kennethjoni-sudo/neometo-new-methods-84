@@ -55,7 +55,7 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative overflow-hidden bg-ink pb-20 pt-20 text-background md:pb-28 md:pt-28"
+      className="relative overflow-hidden bg-ink pb-32 pt-20 text-background md:pb-44 md:pt-28"
     >
       {quickStart && (
         <Suspense fallback={<MethodLoading />}>
@@ -181,7 +181,7 @@ export function Problems() {
   };
 
   return (
-    <section id="methods" className="scroll-mt-24 py-14 md:py-28">
+    <section id="methods" className="relative z-10 -mt-12 scroll-mt-24 rounded-t-[2.5rem] bg-background py-14 md:-mt-16 md:rounded-t-[3rem] md:py-28">
       {active && (
         <Suspense fallback={<MethodLoading />}>
           {active === "sleep" && <LazySleepExperience onClose={close} />}
@@ -328,11 +328,14 @@ export function HowItWorks() {
         <ol className="mt-14 grid gap-8 md:grid-cols-3 lg:gap-10">
           {steps.map((step, i) => (
             <Reveal as="li" key={step.number} delay={i * 120}>
-              <div className="h-full min-h-[250px] rounded-3xl border border-border bg-surface p-8 shadow-soft transition-transform duration-500 hover:-translate-y-1 md:p-10">
-                <span className="block font-display text-6xl font-bold text-brand md:text-7xl">
+              <div className="relative h-full min-h-[250px] overflow-hidden rounded-3xl bg-ink p-8 shadow-inner-glow transition-transform duration-500 hover:-translate-y-1 md:p-10">
+                <span aria-hidden className="pointer-events-none absolute -right-2 -top-6 font-display text-[9rem] font-bold leading-none text-background/[0.07] md:text-[11rem]">
                   {step.number}
                 </span>
-                <h3 className="mt-10 text-2xl font-bold leading-tight text-ink md:text-3xl">{step.title}</h3>
+                <span className="relative block font-display text-sm font-semibold tracking-[0.14em] text-brand">
+                  STEP {step.number}
+                </span>
+                <h3 className="relative mt-24 text-2xl font-bold leading-tight text-background md:text-3xl">{step.title}</h3>
               </div>
             </Reveal>
           ))}
