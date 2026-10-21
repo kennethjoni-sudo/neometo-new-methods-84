@@ -44,7 +44,7 @@ export const Route = createFileRoute("/.lovable/oauth/consent")({
   errorComponent: ({ error }) => (
     <Panel>
       <h1 className="font-headline text-2xl font-semibold">Something went wrong</h1>
-      <p className="text-sm text-foreground/70">{error.message}</p>
+      <p className="text-sm text-foreground/70">{error instanceof Error ? error.message : String(error)}</p>
     </Panel>
   ),
 });
