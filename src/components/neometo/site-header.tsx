@@ -22,9 +22,9 @@ export function SiteHeader({ tone = "light" }: { tone?: "light" | "dark" }) {
       <div className="section-shell flex h-16 items-center justify-between md:h-20">
         <Link
           to="/"
-          className={cn("inline-flex min-h-11 items-center text-xl transition-opacity hover:opacity-70 md:text-2xl", dark ? "text-background" : "text-ink")}
+          className="inline-flex min-h-11 items-center transition-opacity hover:opacity-70"
         >
-          <Logo />
+          <Logo tone={dark ? "dark" : "light"} />
         </Link>
 
         <nav aria-label="Main" className="hidden items-center gap-8 md:flex">
@@ -66,7 +66,7 @@ export function SiteHeader({ tone = "light" }: { tone?: "light" | "dark" }) {
             </SheetTrigger>
             <SheetContent side="right" className="w-[260px]">
               <SheetTitle className="text-xl text-ink">
-                <Logo />
+                <Logo tone="light" />
               </SheetTitle>
               <nav aria-label="Mobile" className="mt-10 flex flex-col gap-4">
                 <Link
