@@ -175,8 +175,8 @@
 
 @utility glow-backdrop {
   background:
-    radial-gradient(ellipse 45% 35% at 25% 30%, color-mix(in oklab, var(--brand) 16%, transparent), transparent 70%),
-    radial-gradient(ellipse 40% 30% at 80% 65%, color-mix(in oklab, var(--brand-glow) 18%, transparent), transparent 70%);
+    radial-gradient(ellipse 45% 35% at 25% 30%, color-mix(in oklab, var(--brand) 24%, transparent), transparent 70%),
+    radial-gradient(ellipse 40% 30% at 80% 65%, color-mix(in oklab, var(--brand-glow) 24%, transparent), transparent 70%);
   filter: blur(20px);
 }
 

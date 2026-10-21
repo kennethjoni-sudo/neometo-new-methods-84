@@ -18,7 +18,7 @@ export function SiteHeader({ tone = "light" }: { tone?: "light" | "dark" }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className={cn("sticky top-0 z-50 backdrop-blur-xl", dark ? "border-b border-ink-line/60 bg-ink/85 text-background" : "border-b border-border/60 bg-background/80")}>
+    <header className={cn("sticky top-0 z-50 backdrop-blur-xl", dark ? "border-b border-ink-line/60 bg-ink text-background" : "border-b border-border/60 bg-background/80")}>
       <div className="section-shell flex h-16 items-center justify-between md:h-20">
         <Link
           to="/"
