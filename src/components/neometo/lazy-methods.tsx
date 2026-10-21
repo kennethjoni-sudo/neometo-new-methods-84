@@ -28,6 +28,9 @@ export const LazyFrictionExperience = lazy(() =>
 export const LazyUnloadExperience = lazy(() =>
   import("@/components/neometo/unload").then((m) => ({ default: m.UnloadExperience })),
 );
+export const LazyQuickStartExperience = lazy(() =>
+  import("@/components/neometo/quick-start").then((m) => ({ default: m.QuickStartExperience })),
+);
 
 /** Quiet full-screen placeholder while a method's code arrives. */
 export function MethodLoading() {
