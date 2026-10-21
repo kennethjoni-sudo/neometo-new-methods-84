@@ -73,16 +73,16 @@ const trustItems = [
 
 function TrustStrip() {
   return (
-    <section className="bg-background pb-4 pt-2 md:pb-8 md:pt-6">
+    <section className="bg-background py-10 md:py-16">
       <div className="section-shell">
-        <ul className="grid grid-cols-2 gap-x-6 gap-y-3 text-sm text-ink md:flex md:items-center md:justify-between md:gap-8">
+        <ul className="grid grid-cols-1 gap-7 text-lg font-medium text-ink sm:grid-cols-2 sm:gap-x-10 sm:gap-y-8 lg:grid-cols-4 lg:gap-8 lg:text-xl">
           {trustItems.map((item) => (
-            <li key={item} className="leading-snug">
+            <li key={item} className="border-t-2 border-brand/30 pt-4 leading-relaxed">
               {item}
             </li>
           ))}
         </ul>
-        <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+        <p className="mt-8 text-base leading-relaxed text-muted-foreground">
           <Link to="/sources" className="inline-flex min-h-11 items-center underline underline-offset-4 hover:text-brand">
             How each method was made
           </Link>
