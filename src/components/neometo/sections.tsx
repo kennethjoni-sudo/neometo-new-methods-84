@@ -206,7 +206,8 @@ export function Problems() {
       )}
 
 
-      <div className="section-shell">
+      <div className="pointer-events-none absolute inset-0 glow-backdrop" aria-hidden="true" />
+      <div className="section-shell relative">
         <Reveal>
           <h2 className="max-w-3xl text-3xl font-bold leading-tight text-ink md:text-5xl">
             What do you want to get better at?
@@ -333,7 +334,8 @@ export function HowItWorks() {
         <Reveal>
           <h2 className="text-3xl font-bold leading-tight text-ink md:text-5xl">How it works</h2>
         </Reveal>
-        <ol className="mt-14 grid gap-8 md:grid-cols-3 lg:gap-10">
+        <ol className="relative mt-14 grid gap-8 md:grid-cols-3 lg:gap-10">
+          <div className="pointer-events-none absolute -inset-10 glow-backdrop" aria-hidden="true" />
           {steps.map((step, i) => (
             <Reveal as="li" key={step.number} delay={i * 120}>
               <div className="relative h-full min-h-[250px] overflow-hidden rounded-3xl bg-ink p-8 shadow-inner-glow transition-transform duration-500 hover:-translate-y-1 md:p-10">
