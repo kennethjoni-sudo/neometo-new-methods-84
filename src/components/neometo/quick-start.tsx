@@ -4,7 +4,7 @@ import { MethodExperience, type MethodConfig } from "@/components/neometo/method
 /** The existing Focus technique, entering its guided phases without a second start screen. */
 const quickStartMethod: MethodConfig = {
   ...focusMethod,
-  phases: focusMethod.phases?.filter((phase) => phase.type !== "begin"),
+  phases: (focusMethod.phases ?? []).filter((phase) => phase.type !== "begin"),
 };
 
 export function QuickStartExperience({ onClose }: { onClose: () => void }) {
