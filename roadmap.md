@@ -1,7 +1,7 @@
 # Roadmap
 
-- [ ] Repair logo sharpness, increase its size and spacing, and improve favicon contrast.
-- [ ] Verify logo rendering on desktop and phone layouts.
+- [x] Repair logo sharpness, increase its size and spacing, and improve favicon contrast.
+- [x] Verify logo rendering on desktop and phone layouts.
 
 - [x] Apply the approved eight NEOMETO fixes.
 - [x] Verify copy, method flows, mobile layouts, and build output.
