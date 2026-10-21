@@ -44,6 +44,10 @@ const chips: { label: string; method: MethodSlug }[] = [
 ];
 
 /** Erratic on the left, settling to nearly flat on the right. */
+const WAVE_A =
+  "M0 20 C40 20 60 20 80 20 C92 20 96 8 104 8 C112 8 114 32 124 32 C134 32 136 2 148 2 C160 2 162 38 172 38 C182 38 186 10 196 10 C206 10 210 28 220 28 C230 28 234 16 244 16 C256 16 262 22 274 22 C290 22 300 20 320 20";
+const WAVE_B =
+  "M0 20 C50 20 70 20 92 20 C102 20 106 26 114 26 C124 26 128 10 138 10 C150 10 154 30 164 30 C176 30 180 12 190 12 C200 12 206 26 216 26 C228 26 234 18 246 18 C262 18 280 20 320 20";
 const WAVE_PATH =
   "M0 20 L14 6 L22 33 L34 3 L44 30 L56 9 L68 27 L82 13 L96 25 L112 15 L128 23 L146 18 L166 21 L188 19.5 L214 20.3 L244 20 L280 20 L320 20";
 
@@ -67,37 +71,41 @@ export function Hero() {
 
       <div className="section-shell relative">
         <div className="mx-auto max-w-3xl animate-rise text-center">
-          <div className="relative mx-auto h-12 w-full max-w-md md:h-14">
+          <div className="relative mx-auto h-20 w-full max-w-xl md:h-24">
+            <div className="absolute inset-x-10 top-1/2 h-16 -translate-y-1/2 rounded-full bg-brand/25 blur-3xl" aria-hidden="true" />
             <svg
               viewBox="0 0 320 40"
               role="presentation"
               aria-hidden="true"
-              className="absolute inset-0 size-full text-brand motion-safe:animate-wave-glow"
-              style={{ filter: "drop-shadow(0 0 18px color-mix(in oklab, var(--brand) 55%, transparent))" }}
+              className="absolute inset-0 size-full overflow-visible motion-safe:animate-wave-glow"
             >
               <defs>
-                <linearGradient id="waveGradient" x1="0" y1="0" x2="100%" y2="0">
-                  <stop offset="0%" stopColor="currentColor" stopOpacity="0.7" />
-                  <stop offset="55%" stopColor="currentColor" stopOpacity="1" />
-                  <stop offset="100%" stopColor="currentColor" stopOpacity="0.5" />
+                <linearGradient id="waveFadeA" x1="0" y1="0" x2="100%" y2="0">
+                  <stop offset="0%" stopColor="var(--brand-glow)" stopOpacity="0" />
+                  <stop offset="50%" stopColor="var(--brand-glow)" stopOpacity="1" />
+                  <stop offset="100%" stopColor="var(--brand-glow)" stopOpacity="0" />
+                </linearGradient>
+                <linearGradient id="waveFadeB" x1="0" y1="0" x2="100%" y2="0">
+                  <stop offset="0%" stopColor="var(--brand)" stopOpacity="0" />
+                  <stop offset="50%" stopColor="var(--brand)" stopOpacity="1" />
+                  <stop offset="100%" stopColor="var(--brand)" stopOpacity="0" />
                 </linearGradient>
               </defs>
-              <path
-                d={WAVE_PATH}
-                fill="none"
-                stroke="url(#waveGradient)"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
+              <path d={WAVE_B} fill="none" stroke="url(#waveFadeB)" strokeWidth="1.6" strokeLinecap="round"
+                style={{ filter: "drop-shadow(0 0 6px var(--brand))" }} />
+              <path d={WAVE_A} fill="none" stroke="url(#waveFadeA)" strokeWidth="1.8" strokeLinecap="round"
+                style={{ filter: "drop-shadow(0 0 8px var(--brand-glow))" }} />
             </svg>
           </div>    
           <h1 className="mt-8 text-[2.75rem] font-bold leading-[1.02] sm:text-6xl lg:text-[4rem]">
             New Methods for Modern Minds.
           </h1>
+          <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-background/70">
+            Short, guided methods for slowing down, sharpening focus and finding rest.
+          </p>
           <Button
             size="lg"
-            className="mt-10 min-h-14 rounded-full px-8 text-base shadow-lift"
+            className="mt-10 min-h-14 rounded-full px-8 text-base shadow-glow-brand"
             onClick={() => {
               logEvent("method_opened", { method: "focus", source: "hero_direct" });
               setQuickStart(true);
@@ -181,7 +189,7 @@ export function Problems() {
   };
 
   return (
-    <section id="methods" className="relative z-10 -mt-12 scroll-mt-24 rounded-t-[2.5rem] bg-background py-14 md:-mt-16 md:rounded-t-[3rem] md:py-28">
+    <section id="methods" className="relative z-10 overflow-hidden -mt-12 scroll-mt-24 rounded-t-[2.5rem] bg-background py-14 md:-mt-16 md:rounded-t-[3rem] md:py-28">
       {active && (
         <Suspense fallback={<MethodLoading />}>
           {active === "sleep" && <LazySleepExperience onClose={close} />}
@@ -198,7 +206,8 @@ export function Problems() {
       )}
 
 
-      <div className="section-shell">
+      <div className="pointer-events-none absolute inset-0 glow-backdrop" aria-hidden="true" />
+      <div className="section-shell relative">
         <Reveal>
           <h2 className="max-w-3xl text-3xl font-bold leading-tight text-ink md:text-5xl">
             What do you want to get better at?
@@ -325,7 +334,8 @@ export function HowItWorks() {
         <Reveal>
           <h2 className="text-3xl font-bold leading-tight text-ink md:text-5xl">How it works</h2>
         </Reveal>
-        <ol className="mt-14 grid gap-8 md:grid-cols-3 lg:gap-10">
+        <ol className="relative mt-14 grid gap-8 md:grid-cols-3 lg:gap-10">
+          <div className="pointer-events-none absolute -inset-10 glow-backdrop" aria-hidden="true" />
           {steps.map((step, i) => (
             <Reveal as="li" key={step.number} delay={i * 120}>
               <div className="relative h-full min-h-[250px] overflow-hidden rounded-3xl bg-ink p-8 shadow-inner-glow transition-transform duration-500 hover:-translate-y-1 md:p-10">

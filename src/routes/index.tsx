@@ -143,7 +143,7 @@ function Index() {
 
   return (
     <div className="min-h-screen bg-background">
-      <SiteHeader />
+      <SiteHeader tone="dark" />
       <main>
         {sections.map(([key, node]) => (
           <SectionErrorBoundary key={key}>{node}</SectionErrorBoundary>
