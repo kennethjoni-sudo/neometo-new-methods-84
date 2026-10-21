@@ -1,7 +1,6 @@
 import { Suspense, useEffect, useState } from "react";
-import { ArrowRight, ArrowUp, MessageCircle, Sparkles } from "lucide-react";
+import { ArrowRight, MessageCircle, Sparkles } from "lucide-react";
 import { Link } from "@tanstack/react-router";
-import { useServerFn } from "@tanstack/react-start";
 
 import flowArt from "@/assets/neometo-flow.png.asset.json";
 import { Button } from "@/components/ui/button";
@@ -16,10 +15,9 @@ import {
   LazySocialExperience,
   LazyThoughtSpinExperience,
   LazyUnloadExperience,
+  LazyQuickStartExperience,
   MethodLoading,
 } from "@/components/neometo/lazy-methods";
-import { advise } from "@/lib/advisor.functions";
-import { matchMethod } from "@/lib/mcp/methods";
 import { logEvent } from "@/lib/analytics";
 import {
   OPEN_METHOD_EVENT,
@@ -51,45 +49,7 @@ const WAVE_PATH =
 
 
 export function Hero() {
-  const [value, setValue] = useState("");
-  const [thinking, setThinking] = useState(false);
-  const [instant, setInstant] = useState<{ slug: MethodSlug; name: string } | null>(null);
-  const askAdvisor = useServerFn(advise);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const query = value.trim();
-    if (!query) {
-      requestMethod("unload");
-      return;
-    }
-    if (thinking) return;
-    logEvent("hero_search", { query });
-
-    // Instant client-side guess stays visible while the AI reads the input.
-    const top = matchMethod(query);
-    setInstant(top ? { slug: top.slug as MethodSlug, name: top.name } : null);
-    setThinking(true);
-
-    try {
-      const result = await askAdvisor({ data: { text: query, mode: "auto" as const, history: [] } });
-      if (result.intent === "specific_method" && result.method) {
-        requestMethod(result.method);
-      } else {
-        requestMethod("unload", query, {
-          content: result.reply,
-          method: result.method,
-          crisis: result.intent === "crisis",
-        });
-      }
-    } catch {
-      if (top) requestMethod(top.slug as MethodSlug);
-      else requestMethod("unload", query);
-    } finally {
-      setThinking(false);
-      setInstant(null);
-    }
-  };
+  const [quickStart, setQuickStart] = useState(false);
 
 
   return (
@@ -97,6 +57,11 @@ export function Hero() {
       id="top"
       className="relative overflow-hidden bg-ink pb-20 pt-20 text-background md:pb-28 md:pt-28"
     >
+      {quickStart && (
+        <Suspense fallback={<MethodLoading />}>
+          <LazyQuickStartExperience onClose={() => setQuickStart(false)} />
+        </Suspense>
+      )}
       {/* Edge dot motif — subtle, never centered. */}
       <div className="pointer-events-none absolute inset-0 dot-scatter opacity-30" aria-hidden="true" />
 
@@ -130,44 +95,16 @@ export function Hero() {
           <h1 className="mt-8 text-[2.75rem] font-bold leading-[1.02] sm:text-6xl lg:text-[4rem]">
             New Methods for Modern Minds.
           </h1>
-          <form
-            onSubmit={handleSubmit}
-            className="mx-auto mt-10 flex w-full max-w-xl items-center gap-3 rounded-2xl border-[0.5px] border-ink-line bg-ink-raised p-2 pl-5 shadow-lift"
+          <Button
+            size="lg"
+            className="mt-10 min-h-14 rounded-full px-8 text-base shadow-lift"
+            onClick={() => {
+              logEvent("method_opened", { method: "focus", source: "hero_direct" });
+              setQuickStart(true);
+            }}
           >
-              <label htmlFor="hero-input" className="sr-only">
-              Find Methods for your mind
-            </label>
-            <input
-              id="hero-input"
-              value={value}
-              onChange={(e) => setValue(e.target.value)}
-              placeholder="Find Methods for your mind"
-              className="h-11 flex-1 bg-transparent text-base text-background outline-none placeholder:text-background/45"
-            />
-            <button
-              type="submit"
-              aria-label="Ask NEOMETO"
-              disabled={thinking}
-              className="grid size-11 shrink-0 place-items-center rounded-full bg-brand text-background transition-transform duration-300 hover:scale-105 disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
-            >
-              <ArrowUp className="size-5" />
-            </button>
-          </form>
-
-          {thinking && (
-            <div className="mt-4 flex flex-wrap items-center justify-center gap-3 text-sm text-background/60" aria-live="polite">
-              <span>Reading that…</span>
-              {instant && (
-                <button
-                  type="button"
-                  onClick={() => requestMethod(instant.slug)}
-                  className="rounded-full border-[0.5px] border-ink-line bg-ink-raised px-4 py-2 text-sm font-medium text-accent transition-colors hover:border-brand"
-                >
-                  Start {instant.name} now
-                </button>
-              )}
-            </div>
-          )}
+            Start a short method <ArrowRight className="size-5" />
+          </Button>
 
           <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
             <button

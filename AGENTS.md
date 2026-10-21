@@ -8,3 +8,6 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Product analytics must use the allowlisted payload builder; free-form input must never enter event metadata.
+- The homepage direct start reuses the existing Focus phases without the begin screen; keeping one shared technique avoids divergent guidance.
