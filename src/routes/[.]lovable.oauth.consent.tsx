@@ -37,6 +37,16 @@ const IDENTITY_SCOPE_LABELS: Record<string, string> = {
 };
 
 export const Route = createFileRoute("/.lovable/oauth/consent")({
+  head: () => ({
+    meta: [
+      { title: "Connect an app | NEOMETO" },
+      { name: "description", content: "Review and approve an app's access to your NEOMETO account." },
+      { property: "og:title", content: "Connect an app | NEOMETO" },
+      { property: "og:description", content: "Review and approve an app's access to your NEOMETO account." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
+    ],
+  }),
   validateSearch: z.object({
     authorization_id: z.string().min(1).optional(),
   }),
