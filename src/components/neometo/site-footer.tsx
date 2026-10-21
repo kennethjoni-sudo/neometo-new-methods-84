@@ -1,3 +1,4 @@
+import { Logo } from "@/components/neometo/logo";
 import { Link } from "@tanstack/react-router";
 
 const pageLinks = [
@@ -19,7 +20,7 @@ export function SiteFooter() {
     <footer id="footer" className="border-t border-border/70 py-14">
       <div className="section-shell flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
         <div>
-          <p className="text-base font-bold tracking-[0.22em] text-ink">NEOMETO</p>
+          <p className="text-xl text-ink"><Logo /></p>
           <p className="mt-2 text-sm text-muted-foreground">New Methods for Modern Minds.</p>
           <p className="mt-3 text-sm text-muted-foreground/80">
             NEOMETO provides self-help and educational tools, not medical diagnosis.

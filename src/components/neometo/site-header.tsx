@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Menu } from "lucide-react";
 
+import { Logo } from "@/components/neometo/logo";
+import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 
@@ -11,23 +13,24 @@ const pageLinks = [
   { label: "Contact", to: "/contact" },
 ] as const;
 
-export function SiteHeader() {
+export function SiteHeader({ tone = "light" }: { tone?: "light" | "dark" }) {
+  const dark = tone === "dark";
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-xl">
+    <header className={cn("sticky top-0 z-50 backdrop-blur-xl", dark ? "border-b border-ink-line/60 bg-ink/85 text-background" : "border-b border-border/60 bg-background/80")}>
       <div className="section-shell flex h-16 items-center justify-between md:h-20">
         <Link
           to="/"
-          className="inline-flex min-h-11 items-center text-base font-bold tracking-[0.22em] text-ink transition-opacity hover:opacity-70"
+          className={cn("inline-flex min-h-11 items-center text-xl transition-opacity hover:opacity-70 md:text-2xl", dark ? "text-background" : "text-ink")}
         >
-          NEOMETO
+          <Logo />
         </Link>
 
         <nav aria-label="Main" className="hidden items-center gap-8 md:flex">
           <Link
             to="/methods"
-            className="inline-flex min-h-11 items-center text-sm font-medium text-muted-foreground transition-colors hover:text-ink"
+            className={cn("inline-flex min-h-11 items-center text-sm font-medium transition-colors", dark ? "text-background/70 hover:text-background" : "text-muted-foreground hover:text-ink")}
           >
             Methods
           </Link>
@@ -35,7 +38,7 @@ export function SiteHeader() {
             <Link
               key={link.label}
               to={link.to}
-              className="inline-flex min-h-11 items-center text-sm font-medium text-muted-foreground transition-colors hover:text-ink"
+              className={cn("inline-flex min-h-11 items-center text-sm font-medium transition-colors", dark ? "text-background/70 hover:text-background" : "text-muted-foreground hover:text-ink")}
             >
               {link.label}
             </Link>
@@ -55,15 +58,15 @@ export function SiteHeader() {
               <Button
                 variant="ghost"
                 size="icon"
-                className="rounded-full md:hidden"
+                className={cn("rounded-full md:hidden", dark && "text-background hover:bg-ink-raised hover:text-background")}
                 aria-label="Open menu"
               >
                 <Menu className="h-5 w-5" />
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-[260px]">
-              <SheetTitle className="text-base font-bold tracking-[0.22em] text-ink">
-                NEOMETO
+              <SheetTitle className="text-xl text-ink">
+                <Logo />
               </SheetTitle>
               <nav aria-label="Mobile" className="mt-10 flex flex-col gap-4">
                 <Link
