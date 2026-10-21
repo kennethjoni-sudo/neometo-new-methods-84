@@ -19,12 +19,12 @@ export function SiteHeader({ tone = "light" }: { tone?: "light" | "dark" }) {
 
   return (
     <header className={cn("sticky top-0 z-50 backdrop-blur-xl", dark ? "border-b border-ink-line/60 bg-ink text-background" : "border-b border-border/60 bg-background/80")}>
-      <div className="section-shell flex h-16 items-center justify-between md:h-20">
+      <div className="section-shell flex h-20 items-center justify-between gap-3 md:h-24">
         <Link
           to="/"
           className="inline-flex min-h-11 items-center transition-opacity hover:opacity-70"
         >
-          <Logo tone={dark ? "dark" : "light"} />
+          <Logo tone={dark ? "dark" : "light"} className="w-40 shrink-0 md:w-64" />
         </Link>
 
         <nav aria-label="Main" className="hidden items-center gap-8 md:flex">
@@ -47,7 +47,7 @@ export function SiteHeader({ tone = "light" }: { tone?: "light" | "dark" }) {
 
 
         <div className="flex items-center gap-2">
-          <Button asChild size="sm" className="rounded-full px-5">
+          <Button asChild size="sm" className="rounded-full px-3 text-xs sm:px-5 sm:text-sm">
             <Link to="/" hash="methods">
               Find a method
             </Link>

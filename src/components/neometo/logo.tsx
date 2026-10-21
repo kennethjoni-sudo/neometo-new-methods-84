@@ -1,9 +1,7 @@
 import { cn } from "@/lib/utils";
-import logoLight from "@/assets/logo-light.png.asset.json";
-import logoDark from "@/assets/logo-dark.png.asset.json";
+import { LogoArtwork } from "@/components/neometo/logo-artwork";
 
-/** Wordmark image: "Neometo" with the two lowercase E's in brand blue. */
+/** Original logo shapes, rendered sharply at every screen density. */
 export function Logo({ className, tone = "light" }: { className?: string; tone?: "light" | "dark" }) {
-  const src = tone === "dark" ? logoLight.url : logoDark.url;
-  return <img src={src} alt="NEOMETO" className={cn("h-6 w-auto md:h-7", className)} />;
+  return <LogoArtwork tone={tone} className={cn("h-auto w-56 max-w-full md:w-64", className)} />;
 }

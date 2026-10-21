@@ -11,3 +11,4 @@
 
 - Product analytics must use the allowlisted payload builder; free-form input must never enter event metadata.
 - The homepage direct start reuses the existing Focus phases without the begin screen; keeping one shared technique avoids divergent guidance.
+- Render the supplied logo as traced vector artwork with semantic theme fills; derive the favicon from the same e shape to keep edges crisp and the brand consistent.
