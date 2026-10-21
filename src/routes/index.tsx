@@ -99,7 +99,7 @@ function PhilosophyTeaser() {
       <div className="section-shell">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-[2rem] font-bold leading-[1.1] sm:text-4xl">
-            Your mind is a skill. Not a diagnosis.
+            Your mind is a skill. <span className="text-gradient-brand">Not a diagnosis.</span>
           </h2>
           <p className="mt-6 text-lg leading-relaxed text-background/70">
             You train a skill. You don't diagnose it. Every method here is short enough to run in
